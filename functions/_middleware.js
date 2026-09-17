@@ -86,10 +86,9 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 		if (!/charset=/i.test(contentType)) {
 			headers.set('Content-Type', 'text/html; charset=utf-8');
 		}
-		// Browser always revalidates; Cloudflare edge caches briefly for TTFB.
-		headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-		headers.set('CDN-Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
-		headers.set('Cloudflare-CDN-Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
+		headers.set('Cache-Control', 'no-cache, must-revalidate');
+		headers.set('CDN-Cache-Control', 'no-store');
+		headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
 	}
 }
 

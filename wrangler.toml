@@ -1,7 +1,8 @@
-# CI Workers Builds project name (repo: paliacheats)
-name = "paliacheats"
+# CI Workers Builds project name (repo: palia-cheat-.org)
+name = "palia-cheat--org"
 compatibility_date = "2026-01-01"
 main = "src/worker.ts"
+workers_dev = true
 
 [assets]
 directory = "./dist"

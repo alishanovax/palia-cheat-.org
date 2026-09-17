@@ -91,16 +91,21 @@ export default {
 			return redirectResponse(new URL(mapped + url.search, CANONICAL_ORIGIN));
 		}
 
-		const response = await env.ASSETS.fetch(request);
+		// Drop stale edge cache for this URL (custom domain caches by Host header).
+		const cache = caches.default;
+		await cache.delete(request);
+
+		const assetRequest = new Request(request, { cf: { cacheTtl: 0, cacheEverything: false } });
+		const response = await env.ASSETS.fetch(assetRequest);
 		const contentType = response.headers.get('Content-Type') || '';
 		if (!contentType.includes('text/html')) {
 			return response;
 		}
 
 		const headers = new Headers(response.headers);
-		headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-		headers.set('CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
-		headers.set('Cloudflare-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+		headers.set('Cache-Control', 'no-cache, must-revalidate');
+		headers.set('CDN-Cache-Control', 'no-store');
+		headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
 
 		return new Response(response.body, {
 			status: response.status,
