@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Completes escape-from-tarkov-cheats SEO audit: add missing pages, fix leftovers, strip Zadeyo from meta.
+ * Completes escape-from-palia-cheats SEO audit: add missing pages, fix leftovers, strip checkout from meta.
  * Run: node scripts/complete-seo-audit.mjs
  */
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
@@ -11,86 +11,86 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NODE = 'C:\\Program Files\\nodejs\\node.exe';
 
 const EXTRA_PAGES = [
-	{ id: 'hacks', dir: 'tarkov-cheats', pageId: 'hacks' },
-	{ id: 'cheat-download', dir: 'tarkov-cheat-download', pageId: 'cheat-download' },
-	{ id: 'mod-menu', dir: 'tarkov-mod-menu', pageId: 'mod-menu' },
-	{ id: 'soft-aim', dir: 'tarkov-soft-aim', pageId: 'soft-aim' },
-	{ id: 'best-cheats', dir: 'best-tarkov-cheats', pageId: 'best-cheats' },
-	{ id: 'aimbot-hack', dir: 'tarkov-aimbot-hack', pageId: 'aimbot-hack' },
-	{ id: 'esp-hack', dir: 'tarkov-esp-hack', pageId: 'esp-hack' },
-	{ id: 'unlock-all', dir: 'tarkov-unlock-all', pageId: 'unlock-all' },
+	{ id: 'hacks', dir: 'palia-cheats', pageId: 'hacks' },
+	{ id: 'cheat-download', dir: 'palia-cheat-download', pageId: 'cheat-download' },
+	{ id: 'mod-menu', dir: 'palia-cheat-menu', pageId: 'mod-menu' },
+	{ id: 'soft-aim', dir: 'palia-soft-aim', pageId: 'soft-aim' },
+	{ id: 'best-cheats', dir: 'best-palia-cheats', pageId: 'best-cheats' },
+	{ id: 'aimbot-hack', dir: 'palia-aimbot-hack', pageId: 'aimbot-hack' },
+	{ id: 'esp-hack', dir: 'palia-esp-hack', pageId: 'esp-hack' },
+	{ id: 'unlock-all', dir: 'palia-unlock-all', pageId: 'unlock-all' },
 ];
 
 const GLOBAL_REPLACEMENTS = [
-	[/tarkov-tarkov/g, 'tarkov'],
-	[/battleye-bypass-tarkov/g, 'battleye-bypass'],
-	[/Escape from Tarkov/g, 'Escape from Tarkov'],
-	[/Escape from Tarkov/g, 'Escape from Tarkov'],
-	[/Call of Duty/g, 'Escape from Tarkov'],
-	[/Tarkov Wallhack/g, 'Escape from Tarkov Wallhack'],
-	[/Tarkov Radar Hack/g, 'Escape from Tarkov Radar Hack'],
-	[/Tarkov Cheat Features/g, 'Escape from Tarkov Cheat Features'],
-	[/Tarkov Cheat Pricing/g, 'Escape from Tarkov Cheat Pricing'],
-	[/Tarkov Cheat Setup/g, 'Escape from Tarkov Cheat Setup'],
-	[/Tarkov Cheat Status/g, 'Escape from Tarkov Cheat Status'],
-	[/Tarkov Cheat Support/g, 'Escape from Tarkov Cheat Support'],
-	[/Tarkov squad fight/g, 'Escape from Tarkov squad fight'],
-	[/Tarkov squad builder/g, 'Escape from Tarkov loadout builder'],
-	[/Tarkov store header/g, 'Escape from Tarkov header'],
-	[/Tarkov wasteland combat/g, 'Escape from Tarkov battle royale combat'],
-	[/Tarkov loadout builder/g, 'Escape from Tarkov loadout builder'],
-	[/Tarkov pricing/g, 'Escape from Tarkov pricing'],
-	[/Tarkov BattlEye anti-cheat/g, 'Escape from Tarkov BattlEye anti-cheat'],
-	[/on Tarkov/g, 'on Escape from Tarkov'],
-	[/for Tarkov/g, 'for Escape from Tarkov'],
-	[/Tarkov guides/g, 'Escape from Tarkov guides'],
-	[/Tarkov guide/g, 'Escape from Tarkov guide'],
-	[/Tarkov hileleri/g, 'Escape from Tarkov hileleri'],
-	[/Tarkov hile/g, 'Escape from Tarkov hile'],
-	[/Tarkov hileleri/g, 'Escape from Tarkov hileleri'],
-	[/cheatów Tarkov/g, 'cheatów Escape from Tarkov'],
-	[/cheat Tarkov/g, 'cheat Escape from Tarkov'],
-	[/cheats Tarkov/g, 'cheats Escape from Tarkov'],
-	[/trucos Tarkov/g, 'trucos Escape from Tarkov'],
-	[/triche Tarkov/g, 'triche Escape from Tarkov'],
-	[/trucchi Tarkov/g, 'trucchi Escape from Tarkov'],
-	[/Wallhack Tarkov/g, 'Escape from Tarkov Wallhack'],
-	[/cheat Tarkov undetected/g, 'cheat Escape from Tarkov undetected'],
-	[/cheats Tarkov undetected/g, 'cheats Escape from Tarkov undetected'],
+	[/palia-palia/g, 'palia'],
+	[/eac-bypass-palia/g, 'eac-bypass'],
+	[/Palia/g, 'Palia'],
+	[/Palia/g, 'Palia'],
+	[/Call of Duty/g, 'Palia'],
+	[/Palia Wallhack/g, 'Palia Wallhack'],
+	[/Palia Radar Hack/g, 'Palia Radar Hack'],
+	[/Palia Cheat Features/g, 'Palia Cheat Features'],
+	[/Palia Cheat Pricing/g, 'Palia Cheat Pricing'],
+	[/Palia Cheat Setup/g, 'Palia Cheat Setup'],
+	[/Palia Cheat Status/g, 'Palia Cheat Status'],
+	[/Palia Cheat Support/g, 'Palia Cheat Support'],
+	[/Palia squad fight/g, 'Palia squad fight'],
+	[/Palia squad builder/g, 'Palia loadout builder'],
+	[/Palia store header/g, 'Palia header'],
+	[/Palia wasteland combat/g, 'Palia battle royale combat'],
+	[/Palia loadout builder/g, 'Palia loadout builder'],
+	[/Palia pricing/g, 'Palia pricing'],
+	[/Palia Easy Anti-Cheat/g, 'Palia Easy Anti-Cheat'],
+	[/on Palia/g, 'on Palia'],
+	[/for Palia/g, 'for Palia'],
+	[/Palia guides/g, 'Palia guides'],
+	[/Palia guide/g, 'Palia guide'],
+	[/Palia hileleri/g, 'Palia hileleri'],
+	[/Palia hile/g, 'Palia hile'],
+	[/Palia hileleri/g, 'Palia hileleri'],
+	[/cheatów Palia/g, 'cheatów Palia'],
+	[/cheat Palia/g, 'cheat Palia'],
+	[/cheats Palia/g, 'cheats Palia'],
+	[/trucos Palia/g, 'trucos Palia'],
+	[/triche Palia/g, 'triche Palia'],
+	[/trucchi Palia/g, 'trucchi Palia'],
+	[/Wallhack Palia/g, 'Palia Wallhack'],
+	[/cheat Palia undetected/g, 'cheat Palia undetected'],
+	[/cheats Palia undetected/g, 'cheats Palia undetected'],
 	[/Verdansk beams/g, 'long-range AR beams'],
 	[/scav-run room clears/g, 'close-quarters room clears'],
 	[/Verdansk and Urzikstan/g, 'Verdansk and scav-run'],
 	[/Verdansk, Urzikstan/g, 'Verdansk, scav-run'],
-	[/raid and scav-run/g, 'raid and scav-run'],
+	[/session and scav-run/g, 'session and scav-run'],
 	[/Activision's anti-cheat/g, "Epic Games' anti-cheat"],
 	[/Activision anti-cheat/g, 'Epic Games anti-cheat'],
 	[/Activision ships/g, 'Epic Games ships'],
 	[/Activision security/g, 'Epic Games security'],
 	[/Activision bans/g, 'Epic Games bans'],
 	[/Activision/g, 'Epic Games'],
-	[/battleye/gi, 'battleye'],
-	[/BattlEye/g, 'BattlEye anti-cheat'],
-	[/escape-from-tarkov-cheats/g, 'escape-from-tarkov-cheats'],
-	[/escape-from-tarkov/g, 'tarkov'],
-	[/Undetected Wallhack for Call of Duty/g, 'Undetected Wallhack for Escape from Tarkov'],
+	[/eac/gi, 'eac'],
+	[/Easy Anti-Cheat/g, 'Easy Anti-Cheat'],
+	[/escape-from-palia-cheats/g, 'escape-from-palia-cheats'],
+	[/escape-from-palia/g, 'palia'],
+	[/Undetected Wallhack for Call of Duty/g, 'Undetected Wallhack for Palia'],
 	[/How ESP wallhack, radar, and Aimbot rebuild after Call of Duty anti-cheat/g,
-		'How ESP wallhack, radar, and Aimbot rebuild after Escape from Tarkov anti-cheat'],
+		'How ESP wallhack, radar, and Aimbot rebuild after Palia anti-cheat'],
 ];
 
-/** Remove Zadeyo from meta description/title strings only */
-function stripZadeyoFromMeta(text) {
+/** Remove checkout from meta description/title strings only */
+function stripcheckoutFromMeta(text) {
 	return text
-		.replace(/\s*[—–-]\s*checkout via Zadeyo\.?/gi, '.')
-		.replace(/\s*[—–-]\s*checkout en Zadeyo\.?/gi, '.')
-		.replace(/\s*[—–-]\s*checkout via Zadeyo\.?/gi, '.')
-		.replace(/\s*with Zadeyo checkout\.?/gi, '.')
-		.replace(/\s*via Zadeyo checkout\.?/gi, '.')
-		.replace(/\s*Checkout via Zadeyo\.?/gi, '')
-		.replace(/\s*Zadeyo checkout,?\s*/gi, ' ')
-		.replace(/\s*Zadeyo delivery\.?/gi, 'instant digital delivery.')
-		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
-		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy on Zadeyo/g, 'Buy Tarkov Cheats')
+		.replace(/\s*[—–-]\s*checkout via checkout\.?/gi, '.')
+		.replace(/\s*[—–-]\s*checkout en checkout\.?/gi, '.')
+		.replace(/\s*[—–-]\s*checkout via checkout\.?/gi, '.')
+		.replace(/\s*with secure checkout\.?/gi, '.')
+		.replace(/\s*via secure checkout\.?/gi, '.')
+		.replace(/\s*Checkout via checkout\.?/gi, '')
+		.replace(/\s*secure checkout,?\s*/gi, ' ')
+		.replace(/\s*checkout delivery\.?/gi, 'instant digital delivery.')
+		.replace(/\s*and checkout delivery\.?/gi, ' and instant digital delivery.')
+		.replace(/\|\s*Instant checkout Delivery/g, '| Instant Digital Delivery')
+		.replace(/Buy on checkout/g, 'Buy Palia Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -131,12 +131,12 @@ async function applyGlobalFixes() {
 			content = content.replace(pattern, replacement);
 		}
 		if (file.endsWith('pages-en.mjs')) {
-			// Strip Zadeyo from description: and title: lines
+			// Strip checkout from description: and title: lines
 			content = content.replace(/(description:\s*['"])([^'"]+)(['"])/g, (_, pre, body, post) =>
-				pre + stripZadeyoFromMeta(body) + post,
+				pre + stripcheckoutFromMeta(body) + post,
 			);
 			content = content.replace(/(title:\s*['"])([^'"]+)(['"])/g, (_, pre, body, post) =>
-				pre + stripZadeyoFromMeta(body) + post,
+				pre + stripcheckoutFromMeta(body) + post,
 			);
 		}
 		if (content !== original) {
@@ -169,38 +169,38 @@ import LocalizedPage from '../../components/LocalizedPage.astro';
 async function fixLocalesBlogUi() {
 	const file = path.join(ROOT, 'src', 'data', 'i18n', 'locales.ts');
 	let content = await readFile(file, 'utf8');
-	content = content.replace(/Tarkov guides/g, 'Escape from Tarkov guides');
-	content = content.replace(/Tarkov guide/g, 'Escape from Tarkov guide');
-	content = content.replace(/Tarkov hileleri/g, 'Escape from Tarkov hileleri');
-	content = content.replace(/Tarkov hile/g, 'Escape from Tarkov hile');
-	content = content.replace(/cheat Tarkov/g, 'cheat Escape from Tarkov');
-	content = content.replace(/cheats Tarkov/g, 'cheats Escape from Tarkov');
-	content = content.replace(/trucos Tarkov/g, 'trucos Escape from Tarkov');
-	content = content.replace(/triche Tarkov/g, 'triche Escape from Tarkov');
-	content = content.replace(/trucchi Tarkov/g, 'trucchi Escape from Tarkov');
-	content = content.replace(/cheatów Tarkov/g, 'cheatów Escape from Tarkov');
-	content = content.replace(/читов Tarkov/g, 'читов Escape from Tarkov');
-	content = content.replace(/читів Tarkov/g, 'читів Escape from Tarkov');
-	content = content.replace(/Tarkovチート/g, 'Escape from Tarkovチート');
-	content = content.replace(/Tarkov 치트/g, 'Escape from Tarkov 치트');
-	content = content.replace(/Tarkov作弊/g, 'Escape from Tarkov作弊');
-	content = content.replace(/Tarkov rehberleri/g, 'Escape from Tarkov rehberleri');
-	content = content.replace(/Tarkov gidsen/g, 'Escape from Tarkov gidsen');
-	content = content.replace(/Tarkov průvodce/g, 'Escape from Tarkov průvodce');
-	content = content.replace(/Tarkov guider/g, 'Escape from Tarkov guider');
-	content = content.replace(/Tarkov related/g, 'Escape from Tarkov related');
-	content = content.replace(/Tarkov ガイド/g, 'Escape from Tarkov ガイド');
-	content = content.replace(/Tarkov 가이드/g, 'Escape from Tarkov 가이드');
-	content = content.replace(/Tarkov指南/g, 'Escape from Tarkov指南');
-	content = content.replace(/Tarkov गाइड/g, 'Escape from Tarkov गाइड');
-	content = content.replace(/Tarkov panduan/g, 'Escape from Tarkov panduan');
-	content = content.replace(/Tarkov คู่มือ/g, 'Escape from Tarkov คู่มือ');
-	content = content.replace(/Tarkov hướng dẫn/g, 'Escape from Tarkov hướng dẫn');
+	content = content.replace(/Palia guides/g, 'Palia guides');
+	content = content.replace(/Palia guide/g, 'Palia guide');
+	content = content.replace(/Palia hileleri/g, 'Palia hileleri');
+	content = content.replace(/Palia hile/g, 'Palia hile');
+	content = content.replace(/cheat Palia/g, 'cheat Palia');
+	content = content.replace(/cheats Palia/g, 'cheats Palia');
+	content = content.replace(/trucos Palia/g, 'trucos Palia');
+	content = content.replace(/triche Palia/g, 'triche Palia');
+	content = content.replace(/trucchi Palia/g, 'trucchi Palia');
+	content = content.replace(/cheatów Palia/g, 'cheatów Palia');
+	content = content.replace(/читов Palia/g, 'читов Palia');
+	content = content.replace(/читів Palia/g, 'читів Palia');
+	content = content.replace(/Paliaチート/g, 'Paliaチート');
+	content = content.replace(/Palia 치트/g, 'Palia 치트');
+	content = content.replace(/Palia作弊/g, 'Palia作弊');
+	content = content.replace(/Palia rehberleri/g, 'Palia rehberleri');
+	content = content.replace(/Palia gidsen/g, 'Palia gidsen');
+	content = content.replace(/Palia průvodce/g, 'Palia průvodce');
+	content = content.replace(/Palia guider/g, 'Palia guider');
+	content = content.replace(/Palia related/g, 'Palia related');
+	content = content.replace(/Palia ガイド/g, 'Palia ガイド');
+	content = content.replace(/Palia 가이드/g, 'Palia 가이드');
+	content = content.replace(/Palia指南/g, 'Palia指南');
+	content = content.replace(/Palia गाइड/g, 'Palia गाइड');
+	content = content.replace(/Palia panduan/g, 'Palia panduan');
+	content = content.replace(/Palia คู่มือ/g, 'Palia คู่มือ');
+	content = content.replace(/Palia hướng dẫn/g, 'Palia hướng dẫn');
 	await writeFile(file, content, 'utf8');
-	console.log('Fixed locales.ts blogUi');
+	console.log('Fixed locales.ts forumUi');
 }
 
-console.log('=== Tarkov Cheats SEO completion ===\n');
+console.log('=== Palia Cheats SEO completion ===\n');
 await applyGlobalFixes();
 await createExtraPages();
 await fixLocalesBlogUi();

@@ -1,0 +1,251 @@
+---
+import {
+	buildStatusNotice,
+	formatStatusDate,
+	getLatestStatusUpdate,
+	statusStateLabel,
+	statusUpdates,
+	type StatusState,
+} from '../data/status-updates';
+import { fillBrandTokens } from '../data/site';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getT } from '../i18n/server';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const t = getT(locale);
+const latest = getLatestStatusUpdate();
+const notice = buildStatusNotice(latest);
+
+const stateClass: Record<StatusState, string> = {
+	online: 'status-updates__badge--online',
+	rebuilding: 'status-updates__badge--rebuilding',
+	maintenance: 'status-updates__badge--maintenance',
+};
+---
+
+<section class="status-updates card-panel" aria-labelledby="status-log-title">
+	<header class="status-updates__head">
+		<div>
+			<p class="status-updates__eyebrow">{t('statusUpdates.eyebrow')}</p>
+			<h2 id="status-log-title">{t('statusUpdates.logTitle')}</h2>
+			<p class="status-updates__lede">{t('statusUpdates.logLede')}</p>
+		</div>
+		<p class={`status-updates__badge ${stateClass[latest.state]}`}>
+			<span class="status-updates__badge-dot" aria-hidden="true" />
+			{statusStateLabel(latest.state)}
+		</p>
+	</header>
+
+	<ol class="status-updates__list">
+		{statusUpdates.map((entry) => (
+			<li class="status-updates__item" id={entry.id}>
+				<div class="status-updates__item-head">
+					<time datetime={entry.date}>{formatStatusDate(entry.date, locale === 'en' ? 'en-US' : locale)}</time>
+					<span class={`status-updates__pill ${stateClass[entry.state]}`}>{statusStateLabel(entry.state)}</span>
+				</div>
+				<h3>{fillBrandTokens(entry.title)}</h3>
+				<p>{fillBrandTokens(entry.body)}</p>
+			</li>
+		))}
+	</ol>
+
+	<details class="status-notice">
+		<summary>{t('statusUpdates.noticeSummary')}</summary>
+		<p class="status-notice__hint">{t('statusUpdates.noticeHint')}</p>
+		<pre class="status-notice__text" id="status-notice-text">{notice}</pre>
+		<button type="button" class="status-notice__copy" id="status-notice-copy">{t('statusUpdates.copy')}</button>
+	</details>
+</section>
+
+<script>
+	const copyBtn = document.getElementById('status-notice-copy');
+	const noticeEl = document.getElementById('status-notice-text');
+	copyBtn?.addEventListener('click', async () => {
+		if (!noticeEl?.textContent) return;
+		try {
+			await navigator.clipboard.writeText(noticeEl.textContent);
+			const prev = copyBtn.textContent;
+			copyBtn.textContent = 'Copied';
+			setTimeout(() => {
+				copyBtn.textContent = prev;
+			}, 1600);
+		} catch {
+			/* clipboard blocked */
+		}
+	});
+</script>
+
+<style>
+	.status-updates__head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.status-updates__eyebrow {
+		margin: 0 0 0.35rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--ink-muted);
+	}
+
+	.status-updates__head h2 {
+		margin: 0 0 0.4rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.2rem, 2vw, 1.45rem);
+	}
+
+	.status-updates__lede {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.status-updates__badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin: 0;
+		padding: 0.4rem 0.75rem;
+		border-radius: 999px;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		border: 1px solid var(--line);
+		white-space: nowrap;
+	}
+
+	.status-updates__badge-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: currentColor;
+	}
+
+	.status-updates__badge--online,
+	.status-updates__pill.status-updates__badge--online {
+		color: var(--ok);
+		border-color: color-mix(in srgb, var(--ok) 35%, var(--line));
+	}
+
+	.status-updates__badge--rebuilding,
+	.status-updates__pill.status-updates__badge--rebuilding {
+		color: var(--warn);
+		border-color: color-mix(in srgb, var(--warn) 35%, var(--line));
+	}
+
+	.status-updates__badge--maintenance,
+	.status-updates__pill.status-updates__badge--maintenance {
+		color: var(--magenta-soft);
+		border-color: color-mix(in srgb, var(--magenta-soft) 35%, var(--line));
+	}
+
+	.status-updates__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.status-updates__item {
+		padding: 1rem 1.1rem;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--radius-md);
+		background: var(--bg-elevated);
+	}
+
+	.status-updates__item-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.45rem;
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+	}
+
+	.status-updates__pill {
+		padding: 0.15rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid var(--line);
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	.status-updates__item h3 {
+		margin: 0 0 0.35rem;
+		font-size: 1rem;
+	}
+
+	.status-updates__item p {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.status-notice {
+		margin-top: 1.25rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line-soft);
+	}
+
+	.status-notice summary {
+		cursor: pointer;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--ink-muted);
+	}
+
+	.status-notice__hint {
+		margin: 0.65rem 0 0.5rem;
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		color: var(--ink-faint);
+	}
+
+	.status-notice__text {
+		margin: 0 0 0.65rem;
+		padding: 0.75rem;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--radius-sm);
+		background: var(--bg-elevated);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 0.78rem;
+		line-height: 1.5;
+		white-space: pre-wrap;
+		word-break: break-word;
+		color: var(--ink-muted);
+	}
+
+	.status-notice__copy {
+		padding: 0.35rem 0.7rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-sm);
+		background: transparent;
+		color: var(--ink);
+		font-size: 0.75rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.status-notice__copy:hover {
+		border-color: color-mix(in srgb, var(--magenta) 45%, var(--line));
+		color: var(--magenta-soft);
+	}
+
+	@media (max-width: 640px) {
+		.status-updates__head {
+			flex-direction: column;
+		}
+	}
+</style>

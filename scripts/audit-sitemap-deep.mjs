@@ -18,6 +18,13 @@ function readBrandUrl() {
 
 const SITE = readBrandUrl();
 
+function readIndexableNonEnLocales() {
+	const src = readFileSync(path.join(ROOT, 'src/data/i18n/locale-indexing.ts'), 'utf8');
+	return /INDEXABLE_NON_EN_LOCALES\s*=\s*true/.test(src);
+}
+
+const INDEXABLE_NON_EN_LOCALES = readIndexableNonEnLocales();
+
 async function resolveDist() {
 	for (const dir of [path.join(ROOT, 'dist'), path.join(ROOT, 'dist', 'client')]) {
 		try {
@@ -93,11 +100,14 @@ async function main() {
 		}
 	}
 
-	const allXmlFiles = ['sitemap-en.xml', 'sitemap-images.xml', 'sitemap-i18n.xml'];
-	const locales = [
-		'es','fr','de','pt','it','nl','pl','ru','tr','ar','ja','ko','zh','hi','id','th','vi','uk','cs','ro','sv',
-	];
-	for (const l of locales) allXmlFiles.push(`sitemap-${l}.xml`);
+	const allXmlFiles = ['sitemap-en.xml', 'sitemap-images.xml'];
+	if (INDEXABLE_NON_EN_LOCALES) {
+		allXmlFiles.push('sitemap-i18n.xml');
+		const locales = [
+			'es','fr','de','pt','it','nl','pl','ru','tr','ar','ja','ko','zh','hi','id','th','vi','uk','cs','ro','sv',
+		];
+		for (const l of locales) allXmlFiles.push(`sitemap-${l}.xml`);
+	}
 
 	const allPageUrls = new Set();
 	const allImageUrls = new Set();

@@ -2,7 +2,7 @@
 import LocalizedPage from '../../../components/LocalizedPage.astro';
 import { localeCodes, defaultLocale, isLocaleCode } from '../../../data/i18n/locales';
 import { localizedSlugs, pageIds, type PageId } from '../../../data/i18n/routing';
-import { sitemapExcludedPageIds } from '../../../data/seo-canonical';
+import { buildExcludedPageIds } from '../../../data/seo-canonical';
 
 export function getStaticPaths() {
 	const paths: { params: { lang: string; slug: string }; props: { locale: typeof localeCodes[number]; pageId: PageId } }[] = [];
@@ -11,7 +11,7 @@ export function getStaticPaths() {
 		if (lang === defaultLocale) continue;
 		for (const pageId of pageIds) {
 			if (pageId === 'home') continue;
-			if (sitemapExcludedPageIds.has(pageId)) continue;
+			if (buildExcludedPageIds.has(pageId)) continue;
 			const slug = localizedSlugs[pageId][lang];
 			if (!slug) continue;
 			paths.push({ params: { lang, slug }, props: { locale: lang, pageId } });

@@ -2,10 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
-import { productInfo, seoFaqs, siteConfig, type FaqItem } from '../../../data/site';
-import { absoluteFaqUrl, faqBasePath, getFaqCrawlImage, getFaqPath, getRelatedFaqs } from '../../../data/faq';
+import { fillBrandTokens, productInfo, seoFaqs, siteConfig, type FaqItem } from '../../../data/site';
+import {
+	absoluteFaqUrl,
+	faqBasePath,
+	getFaqCrawlImage,
+	getFaqPath,
+	getRelatedFaqs,
+	isFaqIndexable,
+} from '../../../data/faq';
 import { getSelfHreflangAlternates } from '../../../data/i18n/routing';
-import { contentSrcSet, productMainSizes } from '../../../lib/responsive-images';
+import { contentImageSrc, contentSrcSet, productMainSizes } from '../../../lib/responsive-images';
 
 export function getStaticPaths() {
 	return seoFaqs.map((faq) => ({
@@ -16,36 +23,40 @@ export function getStaticPaths() {
 
 const { faq } = Astro.props as { faq: FaqItem };
 
-const canonicalPath = getFaqPath(faq.slug);
-const canonicalURL = absoluteFaqUrl(faq.slug);
+const indexable = isFaqIndexable(faq.slug);
+const canonicalPath = indexable ? getFaqPath(faq.slug) : '/#faq';
+const canonicalURL = indexable ? absoluteFaqUrl(faq.slug) : new URL('/#faq', siteConfig.url).href;
 const hreflangAlternates = getSelfHreflangAlternates(canonicalPath);
 const related = getRelatedFaqs(faq.slug, 4);
 const photo = getFaqCrawlImage(faq);
 
-const extraGraph: Record<string, unknown>[] = [
-	{
-		'@type': 'FAQPage',
-		'@id': `${canonicalURL}#faq`,
-		url: canonicalURL,
-		image: photo.url,
-		primaryImageOfPage: {
-			'@type': 'ImageObject',
-			url: photo.url,
-		},
-		mainEntity: [
+/** Only indexed FAQ URLs emit FAQPage — homepage #faq is visible HTML without JSON-LD. */
+const extraGraph: Record<string, unknown>[] = indexable
+	? [
 			{
-				'@type': 'Question',
-				'@id': `${canonicalURL}#question`,
-				name: faq.question,
+				'@type': 'FAQPage',
+				'@id': `${canonicalURL}#faq`,
 				url: canonicalURL,
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: faq.answer,
+				image: photo.url,
+				primaryImageOfPage: {
+					'@type': 'ImageObject',
+					url: photo.url,
 				},
+				mainEntity: [
+					{
+						'@type': 'Question',
+						'@id': `${canonicalURL}#question`,
+						name: fillBrandTokens(faq.question),
+						url: canonicalURL,
+						acceptedAnswer: {
+							'@type': 'Answer',
+							text: fillBrandTokens(faq.answer),
+						},
+					},
+				],
 			},
-		],
-	},
-];
+		]
+	: [];
 ---
 
 <Layout
@@ -54,7 +65,7 @@ const extraGraph: Record<string, unknown>[] = [
 	canonicalPath={canonicalPath}
 	hreflangAlternates={hreflangAlternates}
 	ogImage={photo.src}
-	ogImageAlt={faq.question}
+	ogImageAlt={photo.caption}
 	type="article"
 	locale="en"
 	breadcrumbs={[
@@ -63,6 +74,7 @@ const extraGraph: Record<string, unknown>[] = [
 		{ label: faq.question },
 	]}
 	extraGraph={extraGraph}
+	noindex={!indexable}
 >
 	<Navbar />
 	<main class="faq-page">
@@ -79,10 +91,10 @@ const extraGraph: Record<string, unknown>[] = [
 			<article class="faq-detail">
 				<figure class="faq-detail__media">
 					<img
-						src={photo.src}
+						src={contentImageSrc(photo.src)}
 						srcset={contentSrcSet(photo.src)}
 						sizes={productMainSizes}
-						alt={faq.question}
+						alt={photo.caption}
 						width="1280"
 						height="720"
 						loading="eager"
@@ -100,7 +112,7 @@ const extraGraph: Record<string, unknown>[] = [
 					<a href={siteConfig.checkoutUrl} class="faq-detail__buy" rel="noopener noreferrer">
 						Buy {siteConfig.name} — ${productInfo.plans[0].price}
 					</a>
-					<a href="/pricing/" class="faq-detail__link">Compare pricing</a>
+					<a href="/store/" class="faq-detail__link">Compare pricing</a>
 					<a href="/support/" class="faq-detail__link">Contact support</a>
 				</div>
 			</article>
@@ -217,7 +229,7 @@ const extraGraph: Record<string, unknown>[] = [
 		margin: 0;
 		font-size: 1.05rem;
 		line-height: 1.75;
-		color: var(--ink-muted);
+		color: #fff;
 	}
 
 	.faq-detail__ctas {

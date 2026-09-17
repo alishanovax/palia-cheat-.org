@@ -6,39 +6,39 @@ export const LOCALES = [
 ];
 
 export const PAGE_IDS = [
-	'home', 'tarkov-esp', 'tarkov-aimbot', 'features', 'pricing', 'setup',
-	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'battleye',
+	'home', 'palia-esp', 'palia-aimbot', 'features', 'pricing', 'setup',
+	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac',
 	'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 	'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
 ];
 
-/** Hero image per page — simple tarkov cheats keyword filenames. */
+/** Hero image per page — Palia gameplay screenshots. */
 export const HERO_IMAGES = {
-	home: '/images/tarkov-cheats-esp.webp',
-	'tarkov-esp': '/images/tarkov-cheats-radar.webp',
-	'tarkov-aimbot': '/images/tarkov-cheats-aimbot.webp',
-	features: '/images/tarkov-cheats-aimbot-view.webp',
-	pricing: '/images/tarkov-cheats-raid.webp',
-	setup: '/images/tarkov-cheats-radar.webp',
-	updates: '/images/tarkov-cheats-esp.webp',
-	faq: '/images/tarkov-cheats-aimbot-view.webp',
-	support: '/images/tarkov-cheats-raid.webp',
-	undetected: '/images/tarkov-cheats-wallhack.webp',
-	wallhack: '/images/tarkov-cheats-wallhack.webp',
-	radar: '/images/tarkov-cheats-radar.webp',
-	battleye: '/images/tarkov-cheats-aimbot.webp',
-	'cheats-2026': '/images/tarkov-cheats-esp.webp',
-	hacks: '/images/tarkov-cheats-raid.webp',
-	'cheat-download': '/images/tarkov-cheats-raid.webp',
-	'mod-menu': '/images/tarkov-cheats-radar.webp',
-	'soft-aim': '/images/tarkov-cheats-aimbot-view.webp',
-	'best-cheats': '/images/tarkov-cheats-esp.webp',
-	'aimbot-hack': '/images/tarkov-cheats-aimbot-view.webp',
-	'esp-hack': '/images/tarkov-cheats-wallhack.webp',
-	'unlock-all': '/images/tarkov-cheats-radar.webp',
-	privacy: '/images/tarkov-cheats-aimbot.webp',
-	refund: '/images/tarkov-cheats-raid.webp',
-	terms: '/images/tarkov-cheats-aimbot-view.webp',
+	home: '/images/palia-gameplay-kilima-village.webp',
+	'palia-esp': '/images/palia-gameplay-ore-mining.webp',
+	'palia-aimbot': '/images/palia-gameplay-bahari-landscape.webp',
+	features: '/images/palia-gameplay-housing-interior.webp',
+	pricing: '/images/palia-gameplay-homestead.webp',
+	setup: '/images/palia-gameplay-housing-interior.webp',
+	updates: '/images/palia-gameplay-kilima-village.webp',
+	faq: '/images/palia-gameplay-homestead.webp',
+	support: '/images/palia-gameplay-kilima-village.webp',
+	undetected: '/images/palia-gameplay-kilima-village.webp',
+	wallhack: '/images/palia-gameplay-ore-mining.webp',
+	radar: '/images/palia-gameplay-bahari-landscape.webp',
+	eac: '/images/palia-gameplay-kilima-village.webp',
+	'cheats-2026': '/images/palia-gameplay-homestead.webp',
+	hacks: '/images/palia-gameplay-ore-mining.webp',
+	'cheat-download': '/images/palia-gameplay-homestead.webp',
+	'mod-menu': '/images/palia-gameplay-housing-interior.webp',
+	'soft-aim': '/images/palia-gameplay-bahari-landscape.webp',
+	'best-cheats': '/images/palia-gameplay-homestead.webp',
+	'aimbot-hack': '/images/palia-gameplay-bahari-landscape.webp',
+	'esp-hack': '/images/palia-gameplay-ore-mining.webp',
+	'unlock-all': '/images/palia-gameplay-housing-interior.webp',
+	privacy: '/images/palia-gameplay-kilima-village.webp',
+	refund: '/images/palia-gameplay-homestead.webp',
+	terms: '/images/palia-gameplay-kilima-village.webp',
 };
 
 export const TS_HEADER = `import type { LocaleCode } from './locales';
@@ -58,7 +58,7 @@ export type PageContent = {
 \tctaSecondaryHref?: string;
 };
 export type LocaleUi = {
-\tnav: { home: string; hacks: string; aimbot: string; esp: string; features: string; pricing: string; setup: string; updates: string; faq: string; buyNow: string };
+\tnav: { home: string; hacks: string; aimbot: string; esp: string; features: string; pricing: string; store: string; setup: string; updates: string; faq: string; buyNow: string };
 \thero: { accent: string; accentShort: string; subtitle: string; subtitleShort: string; buyNow: string; seeFeatures: string };
 \ttrust: { status: string; statusNote: string; statusShort: string; delivery: string; platform: string; antiCheat: string; antiCheatShort: string };
 \tproduct: { title: string; addToCart: string; monthly: string; lifetime: string; available: string; gameBadge: string; platformBadge: string; statusBadge: string };
@@ -70,7 +70,7 @@ export type LocaleUi = {
 \t\theaderArt: string; cheatsPackage: string; rebootFight: string; battleRoyale: string; battleRoyaleIsland: string;
 \t};
 };
-export type PageId = 'home' | 'tarkov-esp' | 'tarkov-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'battleye' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
+export type PageId = 'home' | 'palia-esp' | 'palia-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;
 
 /** Clamp meta strings to SEO limits without ugly ellipsis. */
@@ -88,20 +88,20 @@ export function clampDesc(s) {
 	return lastSpace > 130 ? trimmed.slice(0, lastSpace) : trimmed.slice(0, 160);
 }
 
-/** Remove Zadeyo from meta title/description strings only. */
-export function stripZadeyoFromMeta(text) {
+/** Remove checkout from meta title/description strings only. */
+export function stripcheckoutFromMeta(text) {
 	return text
-		.replace(/\s*[—–-]\s*checkout via Zadeyo\.?/gi, '.')
-		.replace(/\s*[—–-]\s*checkout en Zadeyo\.?/gi, '.')
-		.replace(/\s*[—–-]\s*checkout über Zadeyo\.?/gi, '.')
-		.replace(/\s*with Zadeyo checkout\.?/gi, '.')
-		.replace(/\s*via Zadeyo checkout\.?/gi, '.')
-		.replace(/\s*Checkout via Zadeyo\.?/gi, '')
-		.replace(/\s*Zadeyo checkout,?\s*/gi, ' ')
-		.replace(/\s*Zadeyo delivery\.?/gi, ' instant digital delivery.')
-		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
-		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy on Zadeyo/g, 'Buy Tarkov Cheats')
+		.replace(/\s*[—–-]\s*checkout via checkout\.?/gi, '.')
+		.replace(/\s*[—–-]\s*checkout en checkout\.?/gi, '.')
+		.replace(/\s*[—–-]\s*checkout über checkout\.?/gi, '.')
+		.replace(/\s*with secure checkout\.?/gi, '.')
+		.replace(/\s*via secure checkout\.?/gi, '.')
+		.replace(/\s*Checkout via checkout\.?/gi, '')
+		.replace(/\s*secure checkout,?\s*/gi, ' ')
+		.replace(/\s*checkout delivery\.?/gi, ' instant digital delivery.')
+		.replace(/\s*and checkout delivery\.?/gi, ' and instant digital delivery.')
+		.replace(/\|\s*Instant checkout Delivery/g, '| Instant Digital Delivery')
+		.replace(/Buy on checkout/g, 'Buy Palia Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -124,11 +124,11 @@ export function section(h2, ...args) {
 /** Authoritative external citation helpers (open in new tab). */
 export const EXT = {
 	activision:
-		'<a href="https://www.escapefromtarkov.com/" target="_blank" rel="noopener noreferrer">Escape from Tarkov</a>',
-	tarkov:
-		'<a href="https://www.escapefromtarkov.com/" target="_blank" rel="noopener noreferrer">Escape from Tarkov</a>',
+		'<a href="https://palia.com/" target="_blank" rel="noopener noreferrer">Palia</a>',
+	palia:
+		'<a href="https://palia.com/" target="_blank" rel="noopener noreferrer">Palia</a>',
 	status:
-		'<a href="https://www.escapefromtarkov.com/support" target="_blank" rel="noopener noreferrer">Escape from Tarkov Support</a>',
-	battleye:
-		'<a href="https://www.battleye.com/" target="_blank" rel="noopener noreferrer">BattlEye Anti-Cheat</a>',
+		'<a href="https://palia.com/support" target="_blank" rel="noopener noreferrer">Palia Support</a>',
+	eac:
+		'<a href="https://www.eac.com/" target="_blank" rel="noopener noreferrer">Easy Anti-Cheat</a>',
 };

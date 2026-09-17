@@ -1,11 +1,11 @@
 {
-  "name": "Tarkov Cheats",
-  "short_name": "Tarkov",
-  "description": "Undetected tarkov cheats — ESP, aimbot, and radar for PC",
+  "name": "Palia Cheats",
+  "short_name": "Palia",
+  "description": "Undetected palia cheats — ESP, aimbot, and radar for PC",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0811",
-  "theme_color": "#0a0811",
+  "background_color": "#0D0A14",
+  "theme_color": "#0D0A14",
   "icons": [
     {
       "src": "/favicon.png",

@@ -14,10 +14,10 @@ const PREFERRED_HOSTS = [
 	englishPaths.features,
 	englishPaths.pricing,
 	englishPaths.updates,
-	englishPaths['tarkov-esp'],
-	englishPaths['tarkov-aimbot'],
+	englishPaths['palia-esp'],
+	englishPaths['palia-aimbot'],
 	englishPaths.hacks,
-	englishPaths.undetected,
+	englishPaths.setup,
 ] as const;
 
 /**

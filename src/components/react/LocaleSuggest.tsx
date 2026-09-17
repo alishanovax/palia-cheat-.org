@@ -20,15 +20,6 @@ function detectPreferredLocale(locales: LocaleMeta[], defaultLocale: string): st
 	const cookie = document.cookie.match(/(?:^|;\s*)fc_locale=([^;]+)/)?.[1];
 	if (cookie && locales.some((l) => l.code === cookie)) return cookie;
 
-	const detected = i18n.services.languageDetector?.detect?.();
-	const raw = Array.isArray(detected) ? detected[0] : detected;
-	if (typeof raw === 'string') {
-		const primary = raw.toLowerCase().split('-')[0];
-		if (locales.some((l) => l.code === primary) && supportedLngs.includes(primary)) {
-			return primary;
-		}
-	}
-
 	const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
 	for (const tag of langs) {
 		const primary = tag.toLowerCase().split('-')[0];

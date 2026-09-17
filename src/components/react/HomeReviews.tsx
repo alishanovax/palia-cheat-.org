@@ -20,7 +20,7 @@ type Props = {
 };
 
 function formatDate(iso: string, locale: string) {
-	return new Date(`${iso}T12:00:00`).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
+	return new Date(`${iso}T12:00:00`).toLocaleDateString(locale, {
 		month: 'long',
 		year: 'numeric',
 	});

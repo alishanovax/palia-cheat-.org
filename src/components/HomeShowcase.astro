@@ -1,0 +1,310 @@
+---
+import { getLocalizedPath } from '../data/i18n/routing';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { paliaImages } from '../data/palia';
+import { siteConfig } from '../data/site';
+import {
+	contentImageBasename,
+	contentImageSrc,
+	contentSrcSet,
+	galleryTileSizes,
+} from '../lib/responsive-images';
+import { getT } from '../i18n/server';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const t = getT(locale);
+
+/** One unique Palia gameplay shot per card — no duplicates, no blank srcset slots. */
+const items = [
+	{
+		tag: t('showcase.tagEsp'),
+		title: t('showcase.cardEspTitle'),
+		copy: t('showcase.cardEspCopy'),
+		href: getLocalizedPath('palia-esp', locale),
+		image: { src: paliaImages.espOverlay, alt: paliaImages.product[0].alt },
+	},
+	{
+		tag: t('showcase.tagWallhack'),
+		title: t('showcase.cardWallTitle'),
+		copy: t('showcase.cardWallCopy'),
+		href: getLocalizedPath('palia-esp', locale),
+		image: { src: paliaImages.cheatsWallhack, alt: paliaImages.product[3].alt },
+	},
+	{
+		tag: t('showcase.tagAim'),
+		title: t('showcase.cardAimTitle'),
+		copy: t('showcase.cardAimCopy'),
+		href: getLocalizedPath('palia-aimbot', locale),
+		image: { src: paliaImages.cheatsAimbot, alt: paliaImages.product[2].alt },
+	},
+	{
+		tag: t('showcase.tagTeleport'),
+		title: t('showcase.cardTpTitle'),
+		copy: t('showcase.cardTpCopy'),
+		href: getLocalizedPath('radar', locale),
+		image: { src: paliaImages.cheatsTeleport, alt: paliaImages.product[4].alt },
+	},
+	{
+		tag: t('showcase.tagHomestead'),
+		title: t('showcase.cardFarmTitle'),
+		copy: t('showcase.cardFarmCopy'),
+		href: getLocalizedPath('hacks', locale),
+		image: { src: paliaImages.cheatsGarden, alt: paliaImages.product[5].alt },
+	},
+];
+
+const showcaseSchema = {
+	'@type': 'ItemList',
+	'@id': `${siteConfig.url}/#cheat-showcase`,
+	name: t('showcase.title'),
+	description: t('showcase.lede'),
+	itemListElement: items.map((item, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: item.title,
+		url: new URL(item.href, siteConfig.url).href,
+		image: new URL(contentImageBasename(item.image.src), siteConfig.url).href,
+	})),
+};
+---
+
+<section class="showcase" aria-labelledby="showcase-title">
+	<div class="shell">
+		<header class="showcase__head">
+			<div class="showcase__title-wrap">
+				<span class="showcase__bar" aria-hidden="true" />
+				<h2 id="showcase-title">{t('showcase.title')}</h2>
+			</div>
+			<p class="showcase__lede">{t('showcase.lede')}</p>
+		</header>
+
+		<div class="showcase__grid">
+			{
+				items.map((item) => {
+					const imgSrc = contentImageSrc(item.image.src);
+					const imgSrcSet = contentSrcSet(item.image.src);
+					return (
+						<a
+							class="showcase__card"
+							href={item.href}
+							aria-label={`${item.title} — ${item.copy}`}
+						>
+							<figure class="showcase__media">
+								<img
+									src={imgSrc}
+									srcset={imgSrcSet}
+									sizes={galleryTileSizes}
+									alt={item.image.alt}
+									width="960"
+									height="600"
+									loading="lazy"
+									decoding="async"
+								/>
+								<figcaption class="showcase__caption">
+									<span class="showcase__tag">{item.tag}</span>
+									<span class="showcase__platform">{t('showcase.platform')}</span>
+								</figcaption>
+							</figure>
+							<div class="showcase__body">
+								<h3>{item.title}</h3>
+								<p>{item.copy}</p>
+								<span class="showcase__more">{t('showcase.details')}</span>
+							</div>
+						</a>
+					);
+				})
+			}
+		</div>
+	</div>
+	<script type="application/ld+json" set:html={JSON.stringify(showcaseSchema)} />
+</section>
+
+<style>
+	.showcase {
+		padding-block: clamp(2.75rem, 5vw, 4rem);
+		background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg) 100%);
+		border-top: 1px solid var(--line-soft);
+	}
+
+	.showcase__head {
+		margin-bottom: 1.85rem;
+		max-width: 42rem;
+	}
+
+	.showcase__title-wrap {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin-bottom: 0.65rem;
+	}
+
+	.showcase__bar {
+		width: 3px;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: var(--magenta);
+		flex-shrink: 0;
+	}
+
+	.showcase__head h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.55rem, 2.8vw, 2rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: #fff;
+	}
+
+	.showcase__lede {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: var(--ink-muted);
+	}
+
+	.showcase__grid {
+		display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+
+	.showcase__card {
+		grid-column: span 2;
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-elevated);
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.showcase__card:nth-child(4),
+	.showcase__card:nth-child(5) {
+		grid-column: span 3;
+	}
+
+	.showcase__card:hover {
+		border-color: color-mix(in srgb, var(--magenta) 45%, var(--line));
+		transform: translateY(-3px);
+		box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+	}
+
+	.showcase__media {
+		position: relative;
+		margin: 0;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: #121218 url('/images/palia-gameplay-kilima-village-480w.webp') center / cover
+			no-repeat;
+	}
+
+	.showcase__media::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			180deg,
+			transparent 35%,
+			rgba(8, 9, 10, 0.55) 72%,
+			rgba(8, 9, 10, 0.92) 100%
+		);
+		pointer-events: none;
+	}
+
+	.showcase__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 40%;
+	}
+
+	.showcase__caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.65rem 0.85rem;
+	}
+
+	.showcase__tag {
+		font-size: 0.65rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--magenta-soft);
+	}
+
+	.showcase__platform {
+		font-size: 0.62rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #fff;
+		opacity: 0.85;
+	}
+
+	.showcase__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		padding: 1rem 1.05rem 1.1rem;
+	}
+
+	.showcase__body h3 {
+		margin: 0 0 0.45rem;
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.25;
+		color: #fff;
+	}
+
+	.showcase__body p {
+		margin: 0;
+		flex: 1;
+		font-size: 0.8125rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.showcase__more {
+		margin-top: 0.8rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--magenta-soft);
+	}
+
+	@media (max-width: 1100px) {
+		.showcase__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.showcase__card,
+		.showcase__card:nth-child(4),
+		.showcase__card:nth-child(5) {
+			grid-column: span 1;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.showcase__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

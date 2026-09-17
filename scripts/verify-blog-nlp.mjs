@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { blogPosts } from '../src/data/blog/posts.generated.ts';
+import { blogPosts } from '../src/data/forum/posts.generated.ts';
 
 console.log('posts', blogPosts.length);
 console.log('sample title', blogPosts[0].translations.en.title);

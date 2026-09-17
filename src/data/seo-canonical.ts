@@ -14,11 +14,15 @@ export {
 	type CannibalPageId,
 };
 
-export const sitemapExcludedPageIds = new Set<PageId>(cannibalPageIds as PageId[]);
+/** Cannibal pageIds — edge 301 only; never build Astro HTML or sitemap entries. */
+export const buildExcludedPageIds = new Set<PageId>(cannibalPageIds as PageId[]);
 
-/** Primary commercial landing for the head term "tarkov cheats". */
+/** @deprecated Use buildExcludedPageIds — same set, kept for existing imports. */
+export const sitemapExcludedPageIds = buildExcludedPageIds;
+
+/** Primary commercial landing for the head term "palia cheats". */
 export const MONEY_PAGE_ID = 'hacks' as const satisfies PageId;
-export const MONEY_PATH = '/tarkov-cheats/' as const;
+export const MONEY_PATH = '/cheats/' as const;
 
 export function getCannibalTarget(pageId: PageId): PageId {
 	return getCannibalTargetId(pageId) as PageId;

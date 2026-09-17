@@ -1,11 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import I18nProvider from './I18nProvider';
 
-type Props = {
-	locale: string;
+type HomeLinks = {
+	cheats: string;
+	esp: string;
+	aimbot: string;
+	updates: string;
 };
 
-function HomeAboutInner() {
+type Props = {
+	locale: string;
+	links: HomeLinks;
+};
+
+function HomeAboutInner({ links }: Props) {
 	const { t } = useTranslation();
 
 	return (
@@ -14,13 +22,13 @@ function HomeAboutInner() {
 			<p>{t('home.aboutP1')}</p>
 			<p>
 				{t('home.aboutP2Before')}{' '}
-				<a href="/tarkov-cheats/">{t('home.aboutPillar')}</a>
+				<a href={links.cheats}>{t('home.aboutPillar')}</a>
 				{t('home.aboutP2Mid')}
-				<a href="/tarkov-esp/">{t('home.aboutEsp')}</a>
+				<a href={links.esp}>{t('home.aboutEsp')}</a>
 				{t('home.aboutP2Mid')}
-				<a href="/tarkov-aimbot/">{t('home.aboutAimbot')}</a>
+				<a href={links.aimbot}>{t('home.aboutAimbot')}</a>
 				{t('home.aboutP2Or')}
-				<a href="/updates/">{t('home.aboutUndetected')}</a>
+				<a href={links.updates}>{t('home.aboutUndetected')}</a>
 				{t('home.aboutP2After')}
 			</p>
 		</section>
@@ -30,7 +38,7 @@ function HomeAboutInner() {
 export default function HomeAboutApp(props: Props) {
 	return (
 		<I18nProvider locale={props.locale}>
-			<HomeAboutInner />
+			<HomeAboutInner {...props} />
 		</I18nProvider>
 	);
 }

@@ -1,0 +1,280 @@
+#!/usr/bin/env node
+/**
+ * Generates src/data/forum/posts.generated.ts — Palia forum threads.
+ * Run: node scripts/generate-forum-posts.mjs
+ */
+import { writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'forum', 'posts.generated.ts');
+
+const IMAGE_KEYS = ['hero', 'espWallhack', 'aimbotCombat', 'aimbotSkeleton', 'playerEsp', 'headerArt', 'cheatsPackage', 'squadFight', 'battleRoyaleCombat', 'battleRoyaleIslandMap'];
+
+/** @type {Array<{id:string,imageKey:string,published:string,updated:string,category:string,featured?:boolean,slug:string,title:string,metaDescription:string,h1:string,intro:string,keywords:string[],imageAlt:string,sections:Array<{h2:string,paragraphs:string[]}>}>} */
+const sources = [
+	{
+		id: 'cheat-setup-guide',
+		imageKey: 'headerArt',
+		published: '2026-08-01',
+		updated: '2026-09-10',
+		category: 'Setup Guide',
+		featured: true,
+		slug: 'how-to-use-palia-cheats-setup-guide',
+		title: 'How to Use Palia Cheats — Full Setup Guide',
+		metaDescription:
+			'Step-by-step instructions to download, install, and use Palia cheats on Windows PC. Loader setup, cheat menu toggles, and first-session tips from $35.',
+		h1: 'How to Use Palia Cheats — Complete Setup Instructions',
+		intro:
+			'This guide walks you through every step after you buy Palia cheats — from downloading the loader to opening the cheat menu in Kilima Village. Follow each step in order before your first session.',
+		keywords: ['palia cheats download', 'how to use palia cheats', 'palia cheat menu', 'palia cheats setup'],
+		imageAlt: 'Palia cheat menu setup on Windows PC',
+		sections: [
+			{
+				h2: 'Step 1 — Buy and download your license',
+				paragraphs: [
+					'Click any <strong>Buy Cheats</strong> button on this site to reach secure checkout. Plans start at $35 for 30 days. After payment, your license key appears on screen instantly — copy it before closing the tab.',
+					'Download the loader from the link in your order email. Save it to a folder outside your Palia install directory. Right-click the loader and run as administrator on Windows 10 or 11.',
+				],
+			},
+			{
+				h2: 'Step 2 — Launch Palia and open the cheat menu',
+				paragraphs: [
+					'Start Palia through Steam or the official launcher. Once you reach Kilima Village, press <strong>INSERT</strong> to open the Palia cheat menu. The overlay appears on top of the game without alt-tabbing.',
+					'Enable modules one at a time: start with Resource ESP, then add Fishing ESP once you confirm the overlay is stable. Do not enable every toggle on day one.',
+				],
+			},
+			{
+				h2: 'Step 3 — Configure ESP and fishing tools',
+				paragraphs: [
+					'In the cheat menu, open the ESP tab. Toggle ore, wood, forage, fish, and insect categories individually. Set distance to 200m for performance on lower-end PCs.',
+					'Fishing ESP highlights rare fish pools in Bahari Bay. Pair it with the auto-catch toggle for faster gold farming. Check our <a href="/status/">status page</a> after every Palia patch before playing.',
+				],
+			},
+		],
+	},
+	{
+		id: 'aimbot-settings-ban',
+		imageKey: 'aimbotCombat',
+		published: '2026-08-15',
+		updated: '2026-09-12',
+		category: 'Aimbot Settings',
+		featured: true,
+		slug: 'palia-aimbot-settings-ban-risk',
+		title: 'Palia Aimbot Settings — What Level and Ban Risk',
+		metaDescription:
+			'Learn safe Palia aimbot settings for hunting in Bahari Bay. What smoothness level to use, why you will not get banned at low settings, and when to disable aimbot.',
+		h1: 'Palia Aimbot Settings: What Level and Why You Will Not Get Banned',
+		intro:
+			'Hunting aimbot is one of the most popular Palia cheat modules. This thread explains which settings keep you safe in multiplayer and which levels draw attention from other players or anti-cheat.',
+		keywords: ['palia aimbot', 'palia aimbot settings', 'palia cheats ban', 'best palia cheats'],
+		imageAlt: 'Palia hunting aimbot settings in cheat menu',
+		sections: [
+			{
+				h2: 'Recommended aimbot settings for Palia hunting',
+				paragraphs: [
+					'Set smoothness between 15–25 for natural-looking shots on Sernuk and Chapaa. FOV at 40–60 degrees covers most hunting encounters without snapping across the screen.',
+					'Enable bone priority on "head" for clean one-shot kills. Disable aimbot in Kilima Village town square — other players can see unnatural aim patterns in crowded areas.',
+				],
+			},
+			{
+				h2: 'Why low settings reduce ban risk',
+				paragraphs: [
+					'Palia uses Easy Anti-Cheat on Windows PC. At low smoothness, your aim corrections look like skilled manual play. Aggressive rage settings (smoothness under 5, FOV over 120) create obvious snap patterns that EAC flags faster.',
+					'No cheat is 100% safe forever. We rebuild after every EAC patch. Check <a href="/status/">live status</a> before each session and keep the loader updated.',
+				],
+			},
+		],
+	},
+	{
+		id: 'fishing-esp-guide',
+		imageKey: 'espWallhack',
+		published: '2026-07-20',
+		updated: '2026-09-05',
+		category: 'Fishing ESP',
+		featured: false,
+		slug: 'palia-fishing-esp-best-settings',
+		title: 'Palia Fishing ESP — Best Settings for Gold Farming',
+		metaDescription:
+			'Configure Palia fishing ESP to find rare fish in Bahari Bay. Best filter settings, distance tuning, and gold-per-hour tips with Palia premium cheats.',
+		h1: 'Palia Fishing ESP — Best Settings for Rare Fish',
+		intro:
+			'Fishing ESP is the fastest gold method in Palia when configured correctly. This guide covers filter settings, Bahari Bay hotspots, and how to pair ESP with auto-catch for maximum profit.',
+		keywords: ['palia fishing esp', 'palia cheats for pc', 'palia premium cheats', 'palia cheats price'],
+		imageAlt: 'Palia fishing ESP highlighting rare fish in Bahari Bay',
+		sections: [
+			{
+				h2: 'Enable fishing ESP filters',
+				paragraphs: [
+					'Open the cheat menu → ESP → Fishing. Enable "rare fish only" to reduce screen clutter. Set highlight color to bright green for star-quality pools.',
+					'Distance filter at 150m works well for Bahari Bay shores. Increase to 300m if you use teleport to hop between fishing spots quickly.',
+				],
+			},
+		],
+	},
+	{
+		id: 'buy-palia-cheats-guide',
+		imageKey: 'cheatsPackage',
+		published: '2026-06-10',
+		updated: '2026-09-01',
+		category: 'Buyers Guide',
+		featured: true,
+		slug: 'buy-palia-cheats-buyers-guide-2026',
+		title: 'Buy Palia Cheats — 2026 Buyers Guide',
+		metaDescription:
+			'Where to buy Palia cheats safely in 2026. Compare palia cheats price, features, delivery speed, and red flags before you purchase premium Palia cheats for PC.',
+		h1: 'Buy Palia Cheats — Complete 2026 Buyers Guide',
+		intro:
+			'Searching "buy palia cheats" returns dozens of sites. This buyers guide explains what to look for in a palia cheats provider, how to verify undetected status, and why $35 is the standard monthly price.',
+		keywords: ['buy palia cheats', 'palia cheats buy', 'palia cheats provider', 'palia cheats price'],
+		imageAlt: 'Buy Palia cheats comparison guide for Windows PC',
+		sections: [
+			{
+				h2: 'What a good Palia cheats provider includes',
+				paragraphs: [
+					'Look for instant delivery, a clear feature list (ESP, teleport, cheat menu), and post-patch status updates. Avoid sites that promise "100% undetected forever" with no maintenance log.',
+					'Our <a href="/cheats/">palia cheats page</a> lists every module in one $35 license. Monthly and lifetime plans include the same features — pick based on how long you plan to play.',
+				],
+			},
+		],
+	},
+	{
+		id: 'cheat-menu-overview',
+		imageKey: 'aimbotSkeleton',
+		published: '2026-07-01',
+		updated: '2026-08-20',
+		category: 'Cheat Menu',
+		featured: false,
+		slug: 'palia-cheat-menu-full-feature-list',
+		title: 'Palia Cheat Menu — Full Feature List Explained',
+		metaDescription:
+			'Every toggle in the Palia cheat menu explained — resource ESP, teleport, skill automation, hunting aimbot, and freecam. Best palia cheat menu for PC.',
+		h1: 'Palia Cheat Menu — Every Feature Explained',
+		intro:
+			'The Palia cheat menu organizes every module into clear tabs. This thread walks through each section so you know what every toggle does before enabling it in multiplayer.',
+		keywords: ['palia cheat menu', 'palia cheats download', 'best palia cheats', 'palia cheats for pc'],
+		imageAlt: 'Full Palia cheat menu with all module toggles',
+		sections: [
+			{
+				h2: 'ESP, Movement, and Automation tabs',
+				paragraphs: [
+					'<strong>ESP tab:</strong> Resource nodes, fish, insects, and player markers. <strong>Movement tab:</strong> Teleport, freecam, speed multiplier, and noclip. <strong>Automation tab:</strong> AFK skill grinding, auto-fish, and auto-forage.',
+					'Enable one tab at a time during your first week. Experienced users combine Resource ESP + Teleport for the fastest gold-per-hour loop in Bahari Bay.',
+				],
+			},
+		],
+	},
+	{
+		id: 'resource-esp-kilima',
+		imageKey: 'playerEsp',
+		published: '2026-06-25',
+		updated: '2026-08-10',
+		category: 'Resource ESP',
+		featured: false,
+		slug: 'palia-resource-esp-kilima-village-guide',
+		title: 'Palia Resource ESP — Kilima Village Farming Route',
+		metaDescription:
+			'Best Kilima Village resource ESP route for ore, wood, and forage. Palia cheats for PC with node highlights and distance filters.',
+		h1: 'Resource ESP Farming Route — Kilima Village',
+		intro:
+			'Kilima Village has dense ore and wood nodes perfect for Resource ESP. This route covers the most profitable loop using Palia cheats node highlights.',
+		keywords: ['palia esp', 'palia cheats for pc', 'palia resource esp', 'palia cheats'],
+		imageAlt: 'Resource ESP nodes highlighted in Kilima Village',
+		sections: [
+			{
+				h2: 'Kilima ore and wood loop',
+				paragraphs: [
+					'Start at the mines north of town. Enable ore ESP with iron and copper filters. Follow the node trail east, then teleport back to the mine entrance to reset the loop.',
+					'Wood nodes cluster near the housing district. Pair wood ESP with auto-chop for passive material farming while you decorate your plot.',
+				],
+			},
+		],
+	},
+	{
+		id: 'teleport-bahari',
+		imageKey: 'battleRoyaleIslandMap',
+		published: '2026-05-15',
+		updated: '2026-07-30',
+		category: 'Teleport',
+		featured: false,
+		slug: 'palia-teleport-bahari-bay-coordinates',
+		title: 'Palia Teleport — Bahari Bay Coordinate Guide',
+		metaDescription:
+			'Saved teleport coordinates for Bahari Bay fishing spots, hunting grounds, and rare resource nodes. Palia cheats teleport module guide.',
+		h1: 'Teleport Coordinates — Bahari Bay Hotspots',
+		intro:
+			'The teleport module lets you save and recall coordinates anywhere in Palia. These Bahari Bay bookmarks cover the best fishing, hunting, and foraging locations.',
+		keywords: ['palia teleport cheat', 'palia cheats', 'bahari bay cheats', 'palia cheats download'],
+		imageAlt: 'Palia teleport module with Bahari Bay coordinates',
+		sections: [
+			{
+				h2: 'How to save and recall coordinates',
+				paragraphs: [
+					'Open cheat menu → Movement → Teleport. Stand at your target location and press <strong>F5</strong> to save. Press <strong>F6</strong> to recall the last saved point.',
+					'Save separate bookmarks for Bahari fishing pier, hunting plateau, and the northern ore cave. Switch between them with the coordinate list in the menu.',
+				],
+			},
+		],
+	},
+	{
+		id: 'premium-vs-free',
+		imageKey: 'squadFight',
+		published: '2026-04-20',
+		updated: '2026-08-05',
+		category: 'Comparison',
+		featured: false,
+		slug: 'palia-premium-cheats-vs-free-trainers',
+		title: 'Palia Premium Cheats vs Free Trainers — Worth $35?',
+		metaDescription:
+			'Compare palia premium cheats at $35 vs free Palia trainers. Why paid cheats include EAC protection, teleport, and a full cheat menu free tools lack.',
+		h1: 'Premium Palia Cheats vs Free Trainers',
+		intro:
+			'Free Palia trainers circulate on forums but lack multiplayer safety, teleport, and patch updates. This thread compares what you get for $35 with premium Palia cheats.',
+		keywords: ['palia premium cheats', 'palia cheats price', 'best palia cheats', 'palia cheats provider'],
+		imageAlt: 'Premium Palia cheats feature comparison chart',
+		sections: [
+			{
+				h2: 'Why premium beats free trainers',
+				paragraphs: [
+					'Free trainers often trigger EAC within days and lack multiplayer-safe modules. Premium Palia cheats include kernel-level protection, instant patch rebuilds, and a full cheat menu with 40+ toggles.',
+					'At $35/month you get Resource ESP, Fishing ESP, teleport, hunting aimbot, skill automation, and Discord support. Free tools typically offer speed hacks only with no anti-cheat maintenance.',
+				],
+			},
+		],
+	},
+];
+
+function buildPost(src, imageKeyIndex) {
+	const key = IMAGE_KEYS[imageKeyIndex % IMAGE_KEYS.length];
+	return {
+		id: src.id,
+		imageKey: src.imageKey || key,
+		published: src.published,
+		updated: src.updated,
+		category: src.category,
+		featured: src.featured ?? false,
+		translations: {
+			en: {
+				slug: src.slug,
+				title: src.title,
+				metaDescription: src.metaDescription,
+				h1: src.h1,
+				intro: src.intro,
+				keywords: src.keywords,
+				imageAlt: src.imageAlt,
+				sections: src.sections,
+			},
+		},
+	};
+}
+
+const posts = sources.map((s, i) => buildPost(s, i));
+
+const output = `// Auto-generated by scripts/generate-forum-posts.mjs — do not edit manually
+import type { BlogPostDefinition } from './types';
+
+export const blogPosts: BlogPostDefinition[] = ${JSON.stringify(posts, null, 2)} as BlogPostDefinition[];
+`;
+
+writeFileSync(OUT, output, 'utf8');
+console.log(`Wrote ${posts.length} forum posts to ${OUT}`);

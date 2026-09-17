@@ -1,5 +1,5 @@
 import { getPageContent } from './i18n';
-import { getBlogSitemapEntriesForLocale } from './blog/helpers';
+import { getBlogSitemapEntriesForLocale } from './forum/helpers';
 import { getLocalizedPath, hreflangLinksXml, pageIds, type PageId } from './i18n/routing';
 import { defaultLocale, localeCodes, type LocaleCode } from './i18n/locales';
 import { siteConfig } from './site';
@@ -8,6 +8,7 @@ import { escapeXml, assertCrawlableAssetUrl } from './sitemap-xml';
 import { sitemapLastmod } from './brand-sitemap';
 import { getPageCrawlImage } from './page-images';
 import { sitemapExcludedPageIds } from './seo-canonical';
+import { isLocaleIndexed } from './i18n/locale-indexing';
 
 export type LocaleSitemapEntry = {
 	path: string;
@@ -27,6 +28,10 @@ const BLOG_PAGES_PER_LOCALE = 0; // Locale blogs 301 to EN — not indexed
 export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntry[] {
 	if (locale === defaultLocale) {
 		throw new Error(`English pages belong in sitemap-en.xml, not sitemap-${locale}.xml`);
+	}
+
+	if (!isLocaleIndexed(locale)) {
+		return [];
 	}
 
 	const productEntries: LocaleSitemapEntry[] = pageIds
@@ -50,8 +55,8 @@ export function buildLocaleSitemapEntries(locale: LocaleCode): LocaleSitemapEntr
 			changefreq: meta.changefreq,
 			image: {
 				url: new URL(imageSrc, siteConfig.url).href,
-				title: pageId === 'home' ? crawl.title : page?.title ?? crawl.title,
-				caption: pageId === 'home' ? crawl.caption : page?.imageAlt ?? crawl.caption,
+				title: crawl.title,
+				caption: crawl.caption,
 			},
 		};
 	});

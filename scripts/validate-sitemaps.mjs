@@ -52,106 +52,144 @@ async function resolveDistRoot() {
 const SITE = readBrandUrl();
 const IMAGE_SITEMAP_ENTRIES = countBrandSitemapImages();
 
-const BLOG_PAGES = 18; // /blog/ index + 17 posts
+function readProductSchemaId() {
+	const src = readFileSync(path.join(ROOT, 'src/data/site-core.ts'), 'utf8');
+	const m = src.match(/productCanonicalPath\s*=\s*'([^']+)'/);
+	if (!m) throw new Error('site-core.ts missing productCanonicalPath');
+	return `${SITE}${m[1]}#product`;
+}
+
+const PRODUCT_SCHEMA_ID = readProductSchemaId();
+const LEGACY_HOME_PRODUCT_ID = `${SITE}/#product`;
+
+function readIndexableNonEnLocales() {
+	const src = readFileSync(path.join(ROOT, 'src/data/i18n/locale-indexing.ts'), 'utf8');
+	return /INDEXABLE_NON_EN_LOCALES\s*=\s*true/.test(src);
+}
+
+const INDEXABLE_NON_EN_LOCALES = readIndexableNonEnLocales();
+
+const BLOG_PAGES = 9; // /forum/ index + 8 posts
 const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
-const FAQ_PAGES = 11; // FAQ answer pages (index is in the product pages)
-/** Product pages in sitemap — excludes cannibal EN URLs that 301 to stronger pillars */
-const ENGLISH_PRODUCT_PAGES = 14;
-const ENGLISH_PAGES = ENGLISH_PRODUCT_PAGES + BLOG_PAGES + REVIEW_PAGES + FAQ_PAGES;
+const FAQ_SITEMAP_PAGES = 4; // Indexed FAQ answer pages (index is in the product pages)
+const FAQ_HTML_DETAIL_PAGES = 10; // All FAQ slug pages built (non-indexed get noindex)
+/** Indexable product pages (11 cannibal URLs 301 to pillars — see seo-cannibal-map.ts) */
+const CANNIBAL_PRODUCT_PAGES = 11;
+const ENGLISH_PRODUCT_PAGES = 25 - CANNIBAL_PRODUCT_PAGES;
+const ENGLISH_PAGES = ENGLISH_PRODUCT_PAGES + BLOG_PAGES + REVIEW_PAGES + FAQ_SITEMAP_PAGES;
 const I18N_LOCALES = 21;
-/** Locale product pages also exclude the same cannibal pageIds */
-const PRODUCT_PAGES_PER_LOCALE = 14;
+const PRODUCT_PAGES_PER_LOCALE = ENGLISH_PRODUCT_PAGES;
 const BLOG_PAGES_PER_LOCALE = 0; // Locale blog URLs 301 to EN; not in sitemaps
 const PAGES_PER_LOCALE = PRODUCT_PAGES_PER_LOCALE + BLOG_PAGES_PER_LOCALE;
-const I18N_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
+const I18N_URLS = INDEXABLE_NON_EN_LOCALES ? I18N_LOCALES * PAGES_PER_LOCALE : 0;
 const TOTAL_PAGES = ENGLISH_PAGES + I18N_URLS;
-/** Full EN HTML may still emit redirect stubs for cannibal URLs; sitemaps omit them */
-const ENGLISH_HTML_PAGES = 25 + BLOG_PAGES + REVIEW_PAGES + FAQ_PAGES;
-/** Locale HTML = product pages + blog redirect stubs (index + 17 posts) that are omitted from sitemaps */
-const LOCALE_BLOG_REDIRECT_PAGES = 18;
+/** EN HTML — cannibal routes are redirect-only (no Astro stubs). */
+const ENGLISH_HTML_PRODUCT_PAGES = ENGLISH_PRODUCT_PAGES;
+const ENGLISH_HTML_PAGES =
+	ENGLISH_HTML_PRODUCT_PAGES + BLOG_PAGES + REVIEW_PAGES + FAQ_HTML_DETAIL_PAGES;
+/** Locale HTML = indexable product pages + blog redirect stubs omitted from sitemaps */
+const LOCALE_BLOG_REDIRECT_PAGES = 9;
+const EXTRA_HTML_PAGES = 1; // 404.html
 const TOTAL_HTML_PAGES =
-	ENGLISH_HTML_PAGES + I18N_LOCALES * (PRODUCT_PAGES_PER_LOCALE + LOCALE_BLOG_REDIRECT_PAGES);
-const HREFLANG_PER_URL = 23;
-const SITEMAP_INDEX_ENTRIES = 1 + I18N_LOCALES + 1; // EN + locales + images
+	ENGLISH_HTML_PAGES +
+	I18N_LOCALES * (PRODUCT_PAGES_PER_LOCALE + LOCALE_BLOG_REDIRECT_PAGES) +
+	EXTRA_HTML_PAGES; // built HTML (indexable + FAQ noindex stubs + 404.html)
+const HREFLANG_PER_URL = INDEXABLE_NON_EN_LOCALES ? 23 : 2;
+const SITEMAP_INDEX_ENTRIES = INDEXABLE_NON_EN_LOCALES ? 1 + I18N_LOCALES + 1 : 2;
+const EXPECTED_LOCALE_SITEMAP_URLS = INDEXABLE_NON_EN_LOCALES ? PAGES_PER_LOCALE : 0;
 
-/** Built HTML that intentionally 301s — allowed to be absent from sitemaps */
+/** Legacy EN URLs that 301 to new unique slugs — omitted from sitemaps */
 const REDIRECT_ONLY_PATHS = new Set([
-	'/best-tarkov-cheats/',
-	'/tarkov-aimbot-hack/',
-	'/tarkov-esp-hack/',
-	'/tarkov-cheats-2026/',
-	'/undetected-tarkov-cheats/',
-	'/tarkov-mod-menu/',
-	'/tarkov-unlock-all/',
-	'/tarkov-soft-aim/',
-	'/tarkov-wallhack/',
-	'/tarkov-cheat-download/',
-	'/battleye-bypass/',
+	'/palia-cheats-buyers-guide-2026/',
+	'/palia-cheats-undetected/',
+	'/download-palia-cheats/',
+	'/palia-hunting-aimbot/',
+	'/palia-unlock-all-guide/',
+	'/palia-resource-esp/',
+	'/undetected-palia-cheats/',
+	'/palia-esp-hack/',
+	'/palia-aimbot-hack/',
+	'/palia-eac-bypass/',
+	'/eac-bypass/',
+	'/palia-cheats-2026/',
+	'/palia-cheat-download/',
+	'/palia-cheat-menu/',
+	'/palia-unlock-all/',
+	'/best-palia-cheats/',
+	'/palia-mod-menu/',
+	'/palia-soft-aim/',
+	'/palia-wallhack/',
+	'/palia-teleport/',
+	'/palia-aimbot/',
+	'/palia-cheats/',
+	'/palia-esp/',
+	'/privacy-policy/',
+	'/refund-policy/',
+	'/updates/',
+	// Cannibal URLs (301 to pillars — no Astro HTML; see validate-cannibal-routes.mjs)
+	'/eac/',
+	'/cheats-2026/',
+	'/unlock-all/',
+	'/soft-aim/',
+	'/hunting-aimbot/',
+	'/resource-esp/',
+	'/download/',
+	'/mod-menu/',
+	'/best/',
+	'/wallhack/',
+	'/undetected/',
+]);
+
+/** FAQ slug pages built with noindex — omitted from sitemaps by design */
+const NOINDEX_FAQ_PATHS = new Set([
+	'/faq/what-are-palia-cheats/',
+	'/faq/are-palia-cheats-undetected-in-2026/',
+	'/faq/buy-undetected-palia-cheats-windows-pc/',
+	'/faq/esp-wallhack-teleport-or-aimbot/',
+	'/faq/what-is-a-palia-wallhack/',
+	'/faq/does-palia-cheats-include-teleport/',
+	'/faq/eac-anti-cheat-and-palia-cheats/',
 ]);
 
 const ENGLISH_PATHS = [
 	'/',
-	'/tarkov-esp/',
-	'/tarkov-aimbot/',
+	'/esp/',
+	'/aimbot/',
 	'/features/',
-	'/pricing/',
+	'/store/',
 	'/setup/',
-	'/updates/',
+	'/status/',
 	'/faq/',
 	'/support/',
-	'/undetected-tarkov-cheats/',
-	'/tarkov-wallhack/',
-	'/tarkov-radar-hack/',
-	'/battleye-bypass/',
-	'/tarkov-cheats-2026/',
-	'/tarkov-cheats/',
-	'/tarkov-cheat-download/',
-	'/tarkov-mod-menu/',
-	'/tarkov-soft-aim/',
-	'/tarkov-unlock-all/',
-	'/privacy-policy/',
-	'/refund-policy/',
+	'/teleport/',
+	'/cheats/',
+	'/privacy/',
+	'/refund/',
 	'/terms/',
-	'/blog/',
-	'/blog/tarkov-scav-run-aggressive-strategies/',
-	'/blog/tarkov-loot-routes-guide/',
-	'/blog/tarkov-weapon-tier-list/',
-	'/blog/tarkov-skin-leaks-guide/',
-	'/blog/tarkov-tournament-meta-guide/',
-	'/blog/tarkov-pro-settings-guide/',
-	'/blog/tarkov-warmup-maps-ranked/',
-	'/blog/tarkov-patch-notes-guide/',
-	'/blog/tarkov-cheats-complete-guide-2026/',
-	'/blog/escape-from-tarkov-cheats-buyers-guide/',
-	'/blog/tarkov-cheats-2026-whats-new/',
-	'/blog/tarkov-aimbot-settings-guide/',
-	'/blog/tarkov-esp-wallhack-explained/',
-	'/blog/undetected-tarkov-cheats-battleye/',
-	'/blog/tarkov-cheats-vs-cheatvault-comparison/',
-	'/blog/elitefn-vs-tarkov-cheats-two-week-test/',
-	'/blog/tarkov-cheats-vs-ghostware-features-pricing/',
+	'/forum/',
+	'/forum/how-to-use-palia-cheats-setup-guide/',
+	'/forum/palia-aimbot-settings-ban-risk/',
+	'/forum/palia-fishing-esp-best-settings/',
+	'/forum/buy-palia-cheats-buyers-guide-2026/',
+	'/forum/palia-cheat-menu-full-feature-list/',
+	'/forum/palia-resource-esp-kilima-village-guide/',
+	'/forum/palia-teleport-bahari-bay-coordinates/',
+	'/forum/palia-premium-cheats-vs-free-trainers/',
 	'/reviews/',
-	'/reviews/tarkov-soft-aim-review-xkrypt0/',
-	'/reviews/tarkov-esp-scav-run-review-buildsr4k/',
-	'/reviews/tarkov-cloud-dma-review-dma-wizard/',
-	'/reviews/tarkov-soft-aim-review-ctrl-player99/',
-	'/reviews/tarkov-cheat-setup-review-stormchaser07/',
-	'/reviews/tarkov-loot-esp-review-lootgoblinx/',
-	'/reviews/tarkov-soft-aim-raid-review-rankedgrind42/',
-	'/reviews/tarkov-radar-hack-review-vanlifeeft/',
-	'/reviews/tarkov-battleye-update-review-patchdaymike/',
-	'/reviews/tarkov-sniper-soft-aim-review-snipezonly/',
-	'/faq/what-are-tarkov-cheats/',
-	'/faq/are-tarkov-cheats-undetected-in-2026/',
-	'/faq/pmc-raids-and-scav-runs/',
-	'/faq/esp-wallhack-radar-or-aimbot/',
+	'/reviews/palia-fishing-review-mike-p/',
+	'/reviews/palia-esp-review-jess-k/',
+	'/reviews/palia-teleport-review-palia-grind/',
+	'/reviews/palia-menu-review-tom-r/',
+	'/reviews/palia-hunting-review-nightowl42/',
+	'/reviews/palia-setup-review-defenderdan/',
+	'/reviews/palia-fishing-review-luna-fish/',
+	'/reviews/palia-esp-review-routerunner/',
+	'/reviews/palia-eac-patch-review-patchday-mike/',
+	'/reviews/palia-setup-review-karen-w/',
 	'/faq/how-are-licenses-delivered/',
-	'/faq/where-to-check-updates/',
 	'/faq/how-to-contact-support/',
-	'/faq/what-is-a-tarkov-wallhack/',
-	'/faq/does-tarkov-cheats-include-radar-hack/',
-	'/faq/battleye-anti-cheat-and-tarkov-cheats/',
-	'/faq/buy-undetected-tarkov-cheats-windows-pc/',
+	'/faq/where-to-check-updates/',
+	'/faq/kilima-and-bahari-bay-support/',
 ];
 
 const LOCALE_CODES = [
@@ -249,13 +287,19 @@ async function main() {
 		localeSitemapLocs[locale] = locs;
 		localeUrlTotal += locs.length;
 
-		if (locs.length !== PAGES_PER_LOCALE) {
-			fail(`sitemap-${locale}.xml: expected ${PAGES_PER_LOCALE} URLs, got ${locs.length}`);
+		if (locs.length !== EXPECTED_LOCALE_SITEMAP_URLS) {
+			fail(
+				`sitemap-${locale}.xml: expected ${EXPECTED_LOCALE_SITEMAP_URLS} URLs, got ${locs.length}`,
+			);
 			bump();
 		}
 	}
 	if (errors === 0) {
-		ok(`All 21 locale sitemaps have ${PAGES_PER_LOCALE} URLs each (${localeUrlTotal} total)`);
+		if (INDEXABLE_NON_EN_LOCALES) {
+			ok(`All 21 locale sitemaps have ${PAGES_PER_LOCALE} URLs each (${localeUrlTotal} total)`);
+		} else {
+			ok('Locale sitemaps empty (non-EN pages noindex until translations)');
+		}
 	}
 
 	// Count checks
@@ -287,24 +331,24 @@ async function main() {
 		bump();
 	} else ok('sitemap-images.xml has unique page <loc> hosts (no duplicates)');
 
-	for (const required of [`${SITE}/features/`, `${SITE}/pricing/`, `${SITE}/updates/`]) {
+	for (const required of [`${SITE}/features/`, `${SITE}/store/`, `${SITE}/status/`]) {
 		if (!enLocs.includes(required)) {
 			fail(`Missing core page in sitemap-en.xml: ${required}`);
 			bump();
 		}
 	}
 	if (errors === 0) {
-		ok('Core pages present in sitemap-en.xml: /features/ /pricing/ (Store) /updates/ (Status)');
+		ok('Core pages present in sitemap-en.xml: /features/ /store/ (Store) /status/ (Status)');
 	}
 
-	for (const required of [`${SITE}/features/`, `${SITE}/pricing/`, `${SITE}/updates/`]) {
+	for (const required of [`${SITE}/features/`, `${SITE}/store/`, `${SITE}/status/`]) {
 		if (!imageLocs.includes(required)) {
 			fail(`Missing core host in sitemap-images.xml: ${required}`);
 			bump();
 		}
 	}
 	if (errors === 0) {
-		ok('Image sitemap hosts Features, Store (/pricing/), and Status (/updates/)');
+		ok('Image sitemap hosts Features, Store (/store/), and Status (/status/)');
 	}
 
 	// English path coverage (skip intentional 301 stubs)
@@ -394,7 +438,13 @@ async function main() {
 	if (homeHreflang !== HREFLANG_PER_URL) {
 		fail(`Homepage hreflang links: expected ${HREFLANG_PER_URL}, got ${homeHreflang}`);
 		bump();
-	} else ok(`Homepage has ${HREFLANG_PER_URL} hreflang alternates (22 locales + x-default)`);
+	} else {
+		ok(
+			INDEXABLE_NON_EN_LOCALES
+				? `Homepage has ${HREFLANG_PER_URL} hreflang alternates (22 locales + x-default)`
+				: `Homepage has ${HREFLANG_PER_URL} hreflang alternates (EN + x-default)`,
+		);
+	}
 
 	// sitemap.xml index — EN + 21 locale sitemaps + images
 	if (indexLocs.length !== SITEMAP_INDEX_ENTRIES) {
@@ -410,14 +460,18 @@ async function main() {
 		fail('sitemap.xml missing sitemap-images.xml');
 		bump();
 	}
-	for (const locale of I18N_LOCALE_CODES) {
-		const loc = `${SITE}/sitemap-${locale}.xml`;
-		if (!indexLocs.includes(loc)) {
-			fail(`sitemap.xml missing sitemap-${locale}.xml`);
-			bump();
+	if (INDEXABLE_NON_EN_LOCALES) {
+		for (const locale of I18N_LOCALE_CODES) {
+			const loc = `${SITE}/sitemap-${locale}.xml`;
+			if (!indexLocs.includes(loc)) {
+				fail(`sitemap.xml missing sitemap-${locale}.xml`);
+				bump();
+			}
 		}
+		if (errors === 0) ok('sitemap.xml lists English, all 21 locale, and image sitemaps');
+	} else if (errors === 0) {
+		ok('sitemap.xml lists English + images only (locale sitemaps omitted until translations)');
 	}
-	if (errors === 0) ok('sitemap.xml lists English, all 21 locale, and image sitemaps');
 
 	// robots.txt — single GSC submission path
 	if (!robots.includes(`${SITE}/sitemap.xml`)) {
@@ -446,8 +500,11 @@ async function main() {
 	const htmlSet = new Set(htmlPaths);
 	const missingFromSitemap = [...htmlSet].filter((p) => {
 		if (sitemapPaths.has(p) || REDIRECT_ONLY_PATHS.has(p)) return false;
-		// Locale blog stubs 301 to EN — intentionally omitted from sitemaps
-		if (/^\/[a-z]{2}\/blog(\/|$)/.test(p)) return false;
+		if (NOINDEX_FAQ_PATHS.has(p)) return false;
+		if (!INDEXABLE_NON_EN_LOCALES && /^\/[a-z]{2}(\/|$)/.test(p)) return false;
+		// Locale blog/forum stubs 301 to EN — intentionally omitted from sitemaps
+		if (/^\/[a-z]{2}\/(blog|forum)(\/|$)/.test(p)) return false;
+		if (p === '/brand-studio/' || p.startsWith('/brand-studio/')) return false;
 		return true;
 	});
 	const extraInSitemap = [...sitemapPaths].filter((p) => !htmlSet.has(p));
@@ -460,22 +517,78 @@ async function main() {
 	if (missingFromSitemap.length > 0) {
 		fail(`HTML pages missing from sitemaps: ${missingFromSitemap.slice(0, 5).join(', ')}${missingFromSitemap.length > 5 ? '…' : ''}`);
 		bump();
-	} else ok('Every indexable HTML page is listed in a sitemap');
+	} else ok('Every sitemap-listed HTML page is present (noindex FAQ stubs excluded)');
 
 	if (extraInSitemap.length > 0) {
 		fail(`Sitemap URLs without HTML: ${extraInSitemap.slice(0, 5).join(', ')}`);
 		bump();
 	} else ok('Every sitemap URL has a matching HTML page');
 
-	// Locale homepages in per-locale sitemaps
-	for (const locale of I18N_LOCALE_CODES) {
-		const home = `${SITE}/${locale}/`;
-		if (!localeSitemapLocs[locale].includes(home)) {
-			fail(`Missing locale homepage in sitemap-${locale}.xml: ${home}`);
+	if (INDEXABLE_NON_EN_LOCALES) {
+		for (const locale of I18N_LOCALE_CODES) {
+			const home = `${SITE}/${locale}/`;
+			if (!localeSitemapLocs[locale].includes(home)) {
+				fail(`Missing locale homepage in sitemap-${locale}.xml: ${home}`);
+				bump();
+			}
+		}
+		if (errors === 0) ok('All 21 non-English locale homepages in per-locale sitemaps');
+	}
+
+	// Review JSON-LD must reference the single Product node on /cheats/ (not homepage /#product)
+	const cheatsHtml = await readFile(path.join(DIST, 'cheats/index.html'), 'utf8');
+	const sampleReviewHtml = await readFile(
+		path.join(DIST, 'reviews/palia-fishing-review-mike-p/index.html'),
+		'utf8',
+	);
+	if (!cheatsHtml.includes(PRODUCT_SCHEMA_ID)) {
+		fail(`/cheats/ missing Product @id ${PRODUCT_SCHEMA_ID}`);
+		bump();
+	} else ok(`/cheats/ Product @id is ${PRODUCT_SCHEMA_ID}`);
+	if (sampleReviewHtml.includes(LEGACY_HOME_PRODUCT_ID)) {
+		fail(`Review itemReviewed still points at ${LEGACY_HOME_PRODUCT_ID}`);
+		bump();
+	} else if (!sampleReviewHtml.includes(`"itemReviewed":{"@id":"${PRODUCT_SCHEMA_ID}"}`)) {
+		fail(`Review itemReviewed must reference ${PRODUCT_SCHEMA_ID}`);
+		bump();
+	} else ok(`Review itemReviewed references ${PRODUCT_SCHEMA_ID}`);
+
+	// FAQPage: indexed /faq/{slug}/ only — not duplicated on homepage
+	const homeHtml = await readFile(path.join(DIST, 'index.html'), 'utf8');
+	const indexedFaqHtml = await readFile(
+		path.join(DIST, 'faq/how-are-licenses-delivered/index.html'),
+		'utf8',
+	);
+	const noindexFaqHtml = await readFile(
+		path.join(DIST, 'faq/what-are-palia-cheats/index.html'),
+		'utf8',
+	);
+	if (homeHtml.includes('"@type":"FAQPage"')) {
+		fail('Homepage must not emit FAQPage JSON-LD (use indexed /faq/{slug}/ only)');
+		bump();
+	} else ok('Homepage has no FAQPage JSON-LD');
+	if (!indexedFaqHtml.includes('"@type":"FAQPage"')) {
+		fail('Indexed FAQ slug page missing FAQPage JSON-LD');
+		bump();
+	} else ok('Indexed FAQ slug pages emit FAQPage JSON-LD');
+	if (noindexFaqHtml.includes('"@type":"FAQPage"')) {
+		fail('Noindex FAQ slug pages must not emit FAQPage JSON-LD');
+		bump();
+	} else ok('Noindex FAQ slug pages omit FAQPage JSON-LD');
+
+	const INDEXED_FAQ_HOME_IDS = [
+		'how-are-licenses-delivered',
+		'how-to-contact-support',
+		'where-to-check-updates',
+		'kilima-and-bahari-bay-support',
+	];
+	for (const slug of INDEXED_FAQ_HOME_IDS) {
+		if (homeHtml.includes(`id="${slug}"`)) {
+			fail(`Homepage #faq must not duplicate indexed FAQ slug: ${slug}`);
 			bump();
 		}
 	}
-	if (errors === 0) ok('All 21 non-English locale homepages in per-locale sitemaps');
+	if (errors === 0) ok('Homepage #faq has no indexed FAQ slug duplicates');
 
 	// Locale URL count summary
 	console.log('\nLocale URL counts (per-locale sitemaps):');

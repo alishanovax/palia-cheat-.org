@@ -2,7 +2,7 @@ import { siteConfig } from './site';
 import { englishPaths, pageIds, type PageId } from './i18n/routing';
 import { pageSitemapMeta } from './sitemap-meta';
 import { resolvedSitemapImages, sitemapLastmod } from './brand-sitemap';
-import { sitemapExcludedPageIds } from './seo-canonical';
+import { buildExcludedPageIds } from './seo-canonical';
 import { getPageCrawlImage } from './page-images';
 
 export type SitemapImage = {
@@ -32,7 +32,7 @@ const img = (path: string, title: string, caption: string): SitemapImage => ({
  * (avoids Search Console “Submitted URL has redirect” noise).
  */
 export const pageSitemapEntries: PageSitemapEntry[] = pageIds
-	.filter((pageId) => !sitemapExcludedPageIds.has(pageId))
+	.filter((pageId) => !buildExcludedPageIds.has(pageId))
 	.map((pageId) => {
 		const meta = pageSitemapMeta[pageId];
 		const crawl = getPageCrawlImage(pageId);

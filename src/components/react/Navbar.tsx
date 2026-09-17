@@ -1,18 +1,28 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import I18nProvider from './I18nProvider';
 import LanguageSwitcher, { type LocaleMeta } from './LanguageSwitcher';
 
 type NavLink = {
 	id: string;
-	labelKey: string;
+	label: string;
 	edit?: string;
 	href: string;
+};
+
+type NavUiLabels = {
+	primaryAria: string;
+	mobileAria: string;
+	openMenu: string;
+	closeMenu: string;
+	buyShort: string;
+	buy: string;
 };
 
 type Props = {
 	locale: string;
 	siteName: string;
+	logoUrl: string;
+	logoAlt: string;
 	checkoutUrl: string;
 	currentPath: string;
 	homeHref: string;
@@ -20,23 +30,33 @@ type Props = {
 	locales: LocaleMeta[];
 	hrefForLocale: Record<string, string>;
 	links: NavLink[];
+	uiLabels: NavUiLabels;
 };
 
 const icons: Record<string, string> = {
+	home: 'M4.5 10.5L12 4.5l7.5 6v9.2a1.3 1.3 0 01-1.3 1.3H5.8A1.3 1.3 0 014.5 19.7V10.5zM9.5 20.5V13h5v7.5',
 	hacks:
 		'M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7L12 3.5zm0 2.2L6.8 8.5v6.9L12 18.3l5.2-2.9V8.5L12 5.7z',
-	esp: 'M12 5a7 7 0 100 14 7 7 0 000-14zm0 2.2a4.8 4.8 0 110 9.6 4.8 4.8 0 010-9.6zM12 10.2v2.4l1.8 1.1',
+	'palia-esp':
+		'M4.5 7.5h15M4.5 12h15M4.5 16.5h9M7.5 4.5v15',
+	features: 'M4.5 7.5h15M4.5 12h15M4.5 16.5h9M7.5 4.5v15',
+	'palia-aimbot':
+		'M12 4.5l1.7 4.8H19l-4 3.1 1.5 4.8L12 14.8 7.5 17.2 9 12.4 5 9.3h5.3L12 4.5z',
 	pricing:
 		'M7.5 7.2h9M7.5 12h9M7.5 16.8H14M5 4.8h14a1.2 1.2 0 011.2 1.2v12a1.2 1.2 0 01-1.2 1.2H5A1.2 1.2 0 013.8 18V6A1.2 1.2 0 015 4.8z',
 	updates:
 		'M12 4.2v3.2M12 16.6v3.2M4.2 12h3.2M16.6 12h3.2M7.1 7.1l2.3 2.3M14.6 14.6l2.3 2.3M16.9 7.1l-2.3 2.3M9.4 14.6l-2.3 2.3',
 	reviews:
 		'M12 4.5l1.8 4.9H19l-4.1 3.2 1.6 5L12 14.9 7.5 17.6l1.6-5L5 9.4h5.2L12 4.5z',
+	forum:
+		'M6.5 7.5h11a1.5 1.5 0 011.5 1.5v6a1.5 1.5 0 01-1.5 1.5H10l-3.5 3.5V9a1.5 1.5 0 011.5-1.5z',
 };
 
 function NavbarInner({
 	locale,
 	siteName,
+	logoUrl,
+	logoAlt,
 	checkoutUrl,
 	currentPath,
 	homeHref,
@@ -44,13 +64,15 @@ function NavbarInner({
 	locales,
 	hrefForLocale,
 	links,
+	uiLabels,
 }: Props) {
-	const { t } = useTranslation();
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 
 	const isActive = (href: string) => {
-		if (href === '/') return currentPath === '/' || currentPath === `/${locale}/`;
+		if (href === '/' || href === homeHref) {
+			return currentPath === '/' || currentPath === homeHref || currentPath === `/${locale}/`;
+		}
 		if (href === reviewsBasePath) return currentPath === href || currentPath.startsWith(href);
 		return currentPath === href || currentPath.startsWith(href);
 	};
@@ -86,24 +108,32 @@ function NavbarInner({
 		() =>
 			links.map((item) => ({
 				...item,
-				label: t(item.labelKey),
 				active: isActive(item.href),
 			})),
-		[links, t, currentPath, locale, reviewsBasePath],
+		[links, currentPath, locale, homeHref, reviewsBasePath],
 	);
 
 	return (
 		<header className={`site-header${scrolled || open ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`} data-nav>
 			<div className="shell site-header__bar">
 				<a className="site-brand" href={homeHref} data-edit="name">
-					{siteName}
+					<img
+						className="site-brand__logo"
+						src={logoUrl}
+						alt={logoAlt}
+						width={152}
+						height={102}
+						loading="eager"
+						decoding="async"
+					/>
+					<span className="site-brand__name">{siteName}</span>
 				</a>
-				<nav className="site-nav" aria-label={t('nav.primaryAria')}>
+				<nav className="site-nav" aria-label={uiLabels.primaryAria}>
 					{navLinks.map((item) => (
 						<a key={item.id} href={item.href} className={item.active ? 'is-active' : undefined}>
 							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 								<path
-									d={icons[item.id]}
+									d={icons[item.id] ?? icons.home}
 									stroke="currentColor"
 									strokeWidth="1.6"
 									strokeLinecap="round"
@@ -127,7 +157,7 @@ function NavbarInner({
 						href={checkoutUrl}
 						className="site-tools__buy"
 						rel="noopener noreferrer"
-						aria-label={t('cta.buyShort')}
+						aria-label={uiLabels.buyShort}
 					>
 						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 							<path
@@ -138,14 +168,14 @@ function NavbarInner({
 								strokeLinejoin="round"
 							/>
 						</svg>
-						<span data-edit="ctaBuyShort">{t('cta.buyShort')}</span>
+						<span data-edit="ctaBuyShort">{uiLabels.buyShort}</span>
 					</a>
 					<button
 						type="button"
 						className="site-menu"
 						aria-expanded={open}
 						aria-controls="site-nav-panel"
-						aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
+						aria-label={open ? uiLabels.closeMenu : uiLabels.openMenu}
 						onClick={() => setOpen((v) => !v)}
 					>
 						<span className="site-menu__bars" aria-hidden="true">
@@ -160,7 +190,7 @@ function NavbarInner({
 			{open ? (
 				<div className="site-panel" id="site-nav-panel">
 					<div className="shell site-panel__inner">
-						<nav className="site-panel__nav" aria-label={t('nav.mobileAria')}>
+						<nav className="site-panel__nav" aria-label={uiLabels.mobileAria}>
 							{navLinks.map((item) => (
 								<a
 									key={item.id}
@@ -170,7 +200,7 @@ function NavbarInner({
 								>
 									<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 										<path
-											d={icons[item.id]}
+											d={icons[item.id] ?? icons.home}
 											stroke="currentColor"
 											strokeWidth="1.6"
 											strokeLinecap="round"
@@ -190,7 +220,7 @@ function NavbarInner({
 								/>
 							</div>
 							<a href={checkoutUrl} className="site-panel__buy" rel="noopener noreferrer">
-								<span data-edit="ctaBuy">{t('cta.buy')}</span>
+								<span data-edit="ctaBuy">{uiLabels.buy}</span>
 							</a>
 						</div>
 					</div>

@@ -1,0 +1,220 @@
+---
+import ForumArticleCard from './ForumArticleCard.astro';
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getAllPostsForLocale, getForumBasePath } from '../data/forum/helpers';
+import { fillBrandTokens, siteConfig } from '../data/site';
+import { getT } from '../i18n/server';
+
+interface Props {
+	locale?: LocaleCode;
+	cheatsHref: string;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const { cheatsHref } = Astro.props;
+const t = getT(locale);
+
+const cards = getAllPostsForLocale(locale)
+	.slice(0, 6)
+	.map((post) => ({
+		category: post.category,
+		title: post.translation.title,
+		copy: post.translation.metaDescription,
+		href: post.canonicalPath,
+	}));
+
+const forumHref = getForumBasePath(locale);
+const readLabel = t('homeForums.readArticle');
+
+const forumSchema = {
+	'@type': 'ItemList',
+	'@id': `${siteConfig.url}/#home-forums`,
+	name: fillBrandTokens(t('homeForums.title')),
+	description: t('homeForums.lede'),
+	itemListElement: cards.map((card, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: card.title,
+		url: new URL(card.href, siteConfig.url).href,
+	})),
+};
+---
+
+<section class="home-forums" aria-labelledby="home-forums-title">
+	<div class="shell">
+		<header class="home-forums__head">
+			<div class="home-forums__intro">
+				<p class="home-forums__eyebrow">{t('homeForums.eyebrow')}</p>
+				<h2 id="home-forums-title">{fillBrandTokens(t('homeForums.title'))}</h2>
+				<p class="home-forums__lede">{t('homeForums.lede')}</p>
+			</div>
+			<a class="home-forums__all" href={forumHref}>
+				{t('homeForums.allForums')}
+				<span aria-hidden="true">→</span>
+			</a>
+		</header>
+
+		<div class="home-forums__grid">
+			{
+				cards.map((card) => (
+					<ForumArticleCard
+						category={card.category}
+						title={card.title}
+						copy={card.copy}
+						href={card.href}
+						readLabel={readLabel}
+					/>
+				))
+			}
+		</div>
+
+		<aside class="home-forums__product">
+			<div class="home-forums__product-copy">
+				<p class="home-forums__product-title">{fillBrandTokens(t('homeForums.productTitle'))}</p>
+				<p class="home-forums__product-lede">{t('homeForums.productLede')}</p>
+			</div>
+			<a class="home-forums__product-cta" href={cheatsHref}>
+				{t('homeForums.productCta')}
+			</a>
+		</aside>
+	</div>
+	<script type="application/ld+json" set:html={JSON.stringify(forumSchema)} />
+</section>
+
+<style>
+	.home-forums {
+		padding-block: clamp(2.75rem, 5vw, 4rem);
+		border-top: 1px solid var(--line-soft);
+		background: var(--bg);
+	}
+
+	.home-forums__head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.home-forums__eyebrow {
+		margin: 0 0 0.35rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-faint);
+	}
+
+	.home-forums__intro h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.55rem, 2.8vw, 2rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--ink);
+	}
+
+	.home-forums__lede {
+		margin: 0.55rem 0 0;
+		max-width: 36rem;
+		font-size: 0.9375rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.home-forums__all {
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-top: 0.35rem;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--ink-muted);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 0.15s ease;
+	}
+
+	.home-forums__all:hover {
+		color: var(--magenta-soft);
+	}
+
+	.home-forums__grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.home-forums__product {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 0.85rem;
+		padding: 1.15rem 1.25rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--bg-elevated) 88%, var(--bg-panel));
+	}
+
+	.home-forums__product-title {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--ink);
+	}
+
+	.home-forums__product-lede {
+		margin: 0.25rem 0 0;
+		font-size: 0.8125rem;
+		color: var(--ink-muted);
+	}
+
+	.home-forums__product-cta {
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.65rem;
+		padding: 0 1.25rem;
+		border-radius: 999px;
+		background: linear-gradient(90deg, var(--magenta-deep), var(--magenta), var(--magenta-soft));
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: #fff;
+		text-decoration: none;
+		box-shadow: 0 0.35rem 1.25rem color-mix(in srgb, var(--magenta) 28%, transparent);
+		transition:
+			filter 0.15s ease,
+			transform 0.15s ease;
+	}
+
+	.home-forums__product-cta:hover {
+		filter: brightness(1.06);
+		transform: translateY(-1px);
+		color: #fff;
+	}
+
+	@media (max-width: 900px) {
+		.home-forums__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.home-forums__head {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.home-forums__product {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.home-forums__product-cta {
+			width: 100%;
+		}
+	}
+</style>

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
-import { getBlogSitemapEntries } from '../data/blog/helpers';
+import { getBlogSitemapEntries } from '../data/forum/helpers';
 import { siteConfig } from '../data/site';
+import { INDEXABLE_NON_EN_LOCALES } from '../data/i18n/locale-indexing';
 import { i18nLocaleCodes, localeSitemapUrl } from '../data/sitemap-locale';
 import { latestPageLastmod } from '../data/sitemap-meta';
 import { renderSitemapIndexXml, sitemapResponseHeaders } from '../data/sitemap-xml';
@@ -9,7 +10,7 @@ export const prerender = true;
 
 /**
  * Primary sitemap index for Google Search Console — EN + 21 locale + image sitemaps.
- * Page URLs live in sitemap-en.xml (Features=/features/, Store=/pricing/, Status=/updates/).
+ * Page URLs live in sitemap-en.xml (Features=/features/, Store=/store/, Status=/status/).
  */
 export const GET: APIRoute = () => {
 	const pageLastmod = latestPageLastmod();
@@ -21,10 +22,12 @@ export const GET: APIRoute = () => {
 
 	const subSitemaps: { loc: string; lastmod: string }[] = [
 		{ loc: new URL('/sitemap-en.xml', siteConfig.url).href, lastmod: englishLastmod },
-		...i18nLocaleCodes.map((locale) => ({
-			loc: localeSitemapUrl(locale),
-			lastmod: pageLastmod,
-		})),
+		...(INDEXABLE_NON_EN_LOCALES
+			? i18nLocaleCodes.map((locale) => ({
+					loc: localeSitemapUrl(locale),
+					lastmod: pageLastmod,
+				}))
+			: []),
 		{ loc: new URL('/sitemap-images.xml', siteConfig.url).href, lastmod: pageLastmod },
 	];
 

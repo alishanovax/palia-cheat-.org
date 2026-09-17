@@ -13,56 +13,56 @@ const PAGES_EN = path.join(ROOT, 'scripts', 'i18n-data', 'pages-en.mjs');
 
 /** @type {Array<[RegExp|string, string]>} */
 const replacements = [
-	// Wrong publishers in prose (EXT.activision already links to escapefromtarkov.com)
-	['published by ${EXT.activision}', 'published by Battlestate Games (${EXT.tarkov})'],
-	['from ${EXT.activision}', 'from ${EXT.tarkov}'],
-	['via ${EXT.activision}', 'via ${EXT.tarkov}'],
+	// Wrong publishers in prose (EXT.activision already links to escapefrompalia.com)
+	['published by ${EXT.activision}', 'published by Battlestate Games (${EXT.palia})'],
+	['from ${EXT.activision}', 'from ${EXT.palia}'],
+	['via ${EXT.activision}', 'via ${EXT.palia}'],
 	['belong with ${EXT.activision}', 'belong with Battlestate Games'],
 	['${EXT.activision} terms', 'Battlestate Games terms'],
-	['${EXT.activision} season updates', '${EXT.tarkov} wipe and map updates'],
+	['${EXT.activision} season updates', '${EXT.palia} wipe and map updates'],
 
 	['PC & Controllers', 'Windows PC'],
 	['PC & Controller Guide', 'Windows PC Guide'],
 	['PC and controller cheats', 'Windows PC cheats'],
 
-	// BR / Fortnite lexicon → Tarkov
-	['vehicles, loot', 'PMCs, Scavs, loot'],
-	['notice vehicles before they push your position', 'spot PMCs and Scavs before they push your angle'],
+	// BR / Fortnite lexicon → Palia
+	['vehicles, loot', 'players, Scavs, loot'],
+	['notice vehicles before they push your position', 'spot players and Scavs before they push your angle'],
 	['Player, vehicle, and loot', 'Player, boss, and loot'],
 	[
 		'vehicle threat cues, supply-drop awareness markers, and loot or chest pins so only BR-critical',
-		'boss markers, extract cues, and loot pins so only raid-critical',
+		'boss markers, extract cues, and loot pins so only session-critical',
 	],
 	['Vehicle and supply-drop threat cues', 'Boss and extract awareness cues'],
 	['vehicle and supply-drop threat cues', 'boss and extract awareness cues'],
 	['loot or chest pins', 'loot and container pins'],
 	['Loot and chest markers', 'Loot and container markers'],
 	['loot and chest markers', 'loot and container markers'],
-	['chests worth the detour', 'high-value loot worth the detour'],
+	['chests worth the detour', 'rare resources worth the detour'],
 	['vehicles, and chests', 'bosses, and containers'],
 	['loot, vehicles, and chests', 'loot, bosses, and containers'],
-	['players, loot, and vehicles', 'PMCs, Scavs, and loot'],
-	['players, loot, vehicles', 'PMCs, Scavs, loot'],
+	['players, loot, and vehicles', 'players, Scavs, and loot'],
+	['players, loot, vehicles', 'players, Scavs, loot'],
 	['vehicle threat cues', 'boss threat cues'],
 	['vehicle pushes', 'flank pushes'],
 	['track vehicles and chests', 'track bosses and containers'],
-	['full BR loop', 'full raid loop'],
+	['full BR loop', 'full session loop'],
 	['BR rotations', 'map rotations'],
-	['BR-critical', 'raid-critical'],
+	['BR-critical', 'session-critical'],
 	['endgame circles', 'extract holds'],
-	['final circles', 'late-raid extracts'],
+	['final circles', 'late-session extracts'],
 	['final-circle scrims', 'extract camp fights'],
-	['before your first ranked block', 'before your first raid'],
+	['before your first ranked block', 'before your first session'],
 	['before ranked', 'before you queue'],
 	['reboot rounds', 'close-range scav fights'],
 	['Battle Pass', 'wipe progression'],
 	[
 		'long-range AR beams and close-quarters room clears without reopening menus every spawn',
-		'long-range DMR fights and dorms clears without reopening menus every raid',
+		'long-range DMR fights and dorms clears without reopening menus every session',
 	],
 	['assault rifles, SMGs, and snipers', 'ARs, SMGs, and bolt-actions'],
 	['AR / SMG / sniper', 'AR / SMG / bolt-action'],
-	['players, loot, and vehicles', 'PMCs, Scavs, and loot'],
+	['players, loot, and vehicles', 'players, Scavs, and loot'],
 	['for players, loot, and vehicles', 'for players, loot, and extracts'],
 
 	// Broken / truncated meta fragments
@@ -76,43 +76,43 @@ const replacements = [
 	['Best Hacks with ESP & ', 'ESP Soft Aim & Radar'],
 	['ESP, Soft Aim & ', 'ESP, Soft Aim & Radar'],
 	['with — learn', '— learn'],
-	['RBattlEye out for', 'Reach out for'],
-	['an BattlEye', 'a BattlEye'],
+	['REasy Anti-Cheat out for', 'Reach out for'],
+	['an Easy Anti-Cheat', 'a Easy Anti-Cheat'],
 	['After a Escape', 'After an Escape'],
 	['after a Escape', 'after an Escape'],
 
 	// Keyword stuffing / nonsense duplicates
-	['tarkov cheats & tarkov cheats', 'tarkov cheats'],
+	['palia cheats & palia cheats', 'palia cheats'],
 	[
-		'covering both tarkov cheats and tarkov cheats search intent',
-		'covering both “tarkov cheats” and “escape from tarkov cheats” search intent',
+		'covering both palia cheats and palia cheats search intent',
+		'covering both “palia cheats” and “escape from palia cheats” search intent',
 	],
 	[
-		'also searched as tarkov cheats and tarkov cheat.',
-		'built for Escape from Tarkov on Windows PC.',
+		'also searched as palia cheats and palia cheat.',
+		'built for Palia on Windows PC.',
 	],
 	[
-		'Tarkov cheats vs tarkov cheats — same stack, clear pages',
-		'How this Tarkov cheats pillar fits nearby pages',
+		'Palia cheats vs palia cheats — same stack, clear pages',
+		'How this Palia cheats pillar fits nearby pages',
 	],
 	[
-		'Searchers use tarkov cheats and tarkov cheats interchangeably. This pillar focuses on hacks language; the',
+		'Searchers use palia cheats and palia cheats interchangeably. This pillar focuses on hacks language; the',
 		'Use this pillar for the core product overview. For year-specific buying notes, see the',
 	],
 
 	// Point cannibal URLs at canonicals
-	['/tarkov-esp-hack/', '/tarkov-esp/'],
-	['/tarkov-aimbot-hack/', '/tarkov-aimbot/'],
-	['/best-tarkov-cheats/', '/tarkov-cheats/'],
-	['best Tarkov cheats guide', 'Tarkov cheats pillar'],
-	['best Tarkov cheats checklist', 'Tarkov cheats checklist'],
-	['best Tarkov cheats', 'Tarkov cheats'],
+	['/palia-esp-hack/', '/palia-esp/'],
+	['/palia-aimbot-hack/', '/palia-aimbot/'],
+	['/best-palia-cheats/', '/palia-cheats/'],
+	['best Palia cheats guide', 'Palia cheats pillar'],
+	['best Palia cheats checklist', 'Palia cheats checklist'],
+	['best Palia cheats', 'Palia cheats'],
 	[
-		'Prefer softer tracking? Read the <a href="/tarkov-soft-aim/">soft aim guide</a>. Want the search term most players use? See <a href="/tarkov-aimbot/">aimbot hack</a>.',
-		'Prefer softer tracking? Read the <a href="/tarkov-soft-aim/">soft aim guide</a>.',
+		'Prefer softer tracking? Read the <a href="/palia-soft-aim/">soft aim guide</a>. Want the search term most players use? See <a href="/palia-aimbot/">aimbot hack</a>.',
+		'Prefer softer tracking? Read the <a href="/palia-soft-aim/">soft aim guide</a>.',
 	],
-	['Related landings: <a href="/tarkov-cheat-download/">cheat download</a>, <a href="/tarkov-mod-menu/">mod menu</a>, <a href="/tarkov-aimbot/">aimbot hack</a>, <a href="/tarkov-esp/">ESP hack</a>.',
-		'Related landings: <a href="/tarkov-cheat-download/">cheat download</a>, <a href="/tarkov-mod-menu/">mod menu</a>, <a href="/tarkov-aimbot/">aimbot</a>, <a href="/tarkov-esp/">ESP</a>.'],
+	['Related landings: <a href="/palia-cheat-download/">cheat download</a>, <a href="/palia-cheat-menu/">mod menu</a>, <a href="/palia-aimbot/">aimbot hack</a>, <a href="/palia-esp/">ESP hack</a>.',
+		'Related landings: <a href="/palia-cheat-download/">cheat download</a>, <a href="/palia-cheat-menu/">mod menu</a>, <a href="/palia-aimbot/">aimbot</a>, <a href="/palia-esp/">ESP</a>.'],
 ];
 
 let src = readFileSync(PAGES_EN, 'utf8');

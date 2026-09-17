@@ -1,6 +1,6 @@
 import { customerReviews, siteConfig } from './site';
 import { reviewsSitemapImageMeta } from './brand-sitemap';
-import { absoluteImageUrl, crawlPhotoMeta, defaultCrawlImageSrc } from './page-images';
+import { absoluteImageUrl, crawlPhotoMeta, reviewsIndexImageSrc } from './page-images';
 
 export const reviewsBasePath = '/reviews/';
 
@@ -12,8 +12,8 @@ export function absoluteReviewUrl(slug?: string): string {
 	return new URL(slug ? getReviewPath(slug) : reviewsBasePath, siteConfig.url).href;
 }
 
-export function getReviewCrawlImage(slug: string, handle: string, caption: string) {
-	return crawlPhotoMeta(slug, `Tarkov Cheats review by @${handle}`, caption);
+export function getReviewCrawlImage(slug: string, _handle: string, _caption: string) {
+	return crawlPhotoMeta(slug);
 }
 
 /** English review routes for sitemap-en.xml — /reviews/ index + one URL per review. */
@@ -25,7 +25,7 @@ export function getReviewSitemapEntries() {
 
 	const indexMeta = reviewsSitemapImageMeta();
 	const indexImage = {
-		url: absoluteImageUrl(defaultCrawlImageSrc),
+		url: absoluteImageUrl(reviewsIndexImageSrc),
 		title: indexMeta.title,
 		caption: indexMeta.caption,
 	};

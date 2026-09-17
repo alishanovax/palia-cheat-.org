@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { absolutePageUrl, pageSitemapEntries } from '../data/page-sitemap';
-import { getBlogSitemapEntries } from '../data/blog/helpers';
+import { getBlogSitemapEntries } from '../data/forum/helpers';
 import { getReviewSitemapEntries } from '../data/reviews';
 import { getFaqSitemapEntries } from '../data/faq';
 import { hreflangLinksXml, resolvePageIdFromPath } from '../data/i18n/routing';

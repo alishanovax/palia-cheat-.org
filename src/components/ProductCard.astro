@@ -1,9 +1,9 @@
 ---
-import { tarkovImages } from '../data/tarkov';
+import { paliaImages } from '../data/palia';
 import { getUi } from '../data/i18n';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
-import { contentSrcSet, productMainSizes } from '../lib/responsive-images';
+import { contentImageSrc, contentSrcSet, productMainSizes } from '../lib/responsive-images';
 import { getT } from '../i18n/server';
 
 interface Props {
@@ -16,24 +16,15 @@ const ui = getUi(locale);
 const t = getT(locale);
 const { name = ui.product.title } = Astro.props;
 
-const productAlts = [
-	ui.images.espWallhack,
-	ui.images.aimbotCombat,
-	ui.images.headerArt,
-	ui.images.playerEsp,
-	ui.images.squadFight,
-	ui.images.cheatsPackage,
-] as const;
-
-const mainImage = tarkovImages.product[0];
-const mainAlt = productAlts[0] ?? mainImage.alt;
+const mainImage = paliaImages.product[0];
+const mainAlt = mainImage.alt;
 const monthlyPlan = productInfo.plans.find((plan) => plan.id === 'monthly') ?? productInfo.plans[0];
 ---
 
 <section class="product surface-card" id="product" aria-label={t('common.productDetails')}>
 	<figure class="product__figure media-frame">
 		<img
-			src={mainImage.src}
+			src={contentImageSrc(mainImage.src)}
 			srcset={contentSrcSet(mainImage.src)}
 			sizes={productMainSizes}
 			alt={mainAlt}

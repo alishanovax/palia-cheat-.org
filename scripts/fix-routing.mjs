@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Rebuild routing.ts and constants.mjs from clean Tarkov source. */
+/** Rebuild routing.ts and constants.mjs from clean Palia source. */
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,43 +13,43 @@ const REMOVE_IDS = [
 ];
 
 const REPLACEMENTS = [
-	['tarkov-esp', 'tarkov-esp'],
-	['tarkov-aimbot', 'tarkov-aimbot'],
-	['battleye', 'battleye'],
-	['undetected-tarkov-cheats', 'undetected-tarkov-cheats'],
-	['tarkov-wallhack', 'tarkov-wallhack'],
-	['tarkov-radar-hack', 'tarkov-radar-hack'],
-	['tarkov-cheats-2026', 'tarkov-cheats-2026'],
-	['battleye-bypass', 'battleye-bypass'],
-	['tarkovcheats.org', 'tarkovcheats.org'],
-	['trucos-tarkov', 'trucos-tarkov'],
-	['triche-tarkov', 'triche-tarkov'],
-	['tarkov-cheats', 'escape-from-tarkov-cheats'],
-	['cheats-tarkov', 'cheats-tarkov'],
-	['trucchi-tarkov', 'trucchi-tarkov'],
-	['cheaty-tarkov', 'cheaty-tarkov'],
-	['chity-tarkov', 'chity-tarkov'],
-	['chitov-tarkov', 'chitov-tarkov'],
-	['chitiv-tarkov', 'chitiv-tarkov'],
-	['cheatow-tarkov', 'cheatow-tarkov'],
-	['hile-tarkov', 'hile-tarkov'],
-	['tarkov-hile', 'tarkov-hile'],
-	['tarkov-esp-chity', 'tarkov-esp-chity'],
-	['tarkov-aimbot-chity', 'tarkov-aimbot-chity'],
-	['unentdeckte-tarkov-cheats', 'unentdeckte-escape-from-tarkov-cheats'],
-	['cheats-tarkov-indetectaveis', 'cheats-tarkov-indetectaveis'],
-	['trucchi-tarkov-indetectabili', 'trucchi-tarkov-indetectabili'],
-	['niewykrywalne-cheats-tarkov', 'niewykrywalne-cheats-tarkov'],
-	['nedecektiruemye-chity-tarkov', 'nedecektiruemye-chity-tarkov'],
-	['tespit-edilemeyen-tarkov-hileleri', 'tespit-edilemeyen-tarkov-hileleri'],
-	['nedecektovani-chity-tarkov', 'nedecektovani-chity-tarkov'],
-	['cheats-tarkov-nedetectabile', 'cheats-tarkov-nedetectabile'],
-	['basta-tarkov-cheats', 'basta-escape-from-tarkov-cheats'],
-	['battleye-bypass-trucos-tarkov', 'battleye-bypass-trucos-tarkov'],
-	['battleye-bypass-triche-tarkov', 'battleye-bypass-triche-tarkov'],
-	['battleye-bypass-cheats-tarkov', 'battleye-bypass-cheats-tarkov'],
-	['battleye-bypass-chity-tarkov', 'battleye-bypass-chity-tarkov'],
-	['battleye-bypass-tarkov', 'battleye-bypass'],
+	['palia-esp', 'palia-esp'],
+	['palia-aimbot', 'palia-aimbot'],
+	['eac', 'eac'],
+	['undetected-palia-cheats', 'undetected-palia-cheats'],
+	['palia-wallhack', 'palia-wallhack'],
+	['palia-teleport', 'palia-teleport'],
+	['palia-cheats-2026', 'palia-cheats-2026'],
+	['eac-bypass', 'eac-bypass'],
+	['paliacheats.org', 'paliacheats.org'],
+	['trucos-palia', 'trucos-palia'],
+	['triche-palia', 'triche-palia'],
+	['palia-cheats', 'escape-from-palia-cheats'],
+	['cheats-palia', 'cheats-palia'],
+	['trucchi-palia', 'trucchi-palia'],
+	['cheaty-palia', 'cheaty-palia'],
+	['chity-palia', 'chity-palia'],
+	['chitov-palia', 'chitov-palia'],
+	['chitiv-palia', 'chitiv-palia'],
+	['cheatow-palia', 'cheatow-palia'],
+	['hile-palia', 'hile-palia'],
+	['palia-hile', 'palia-hile'],
+	['palia-esp-chity', 'palia-esp-chity'],
+	['palia-aimbot-chity', 'palia-aimbot-chity'],
+	['unentdeckte-palia-cheats', 'unentdeckte-escape-from-palia-cheats'],
+	['cheats-palia-indetectaveis', 'cheats-palia-indetectaveis'],
+	['trucchi-palia-indetectabili', 'trucchi-palia-indetectabili'],
+	['niewykrywalne-cheats-palia', 'niewykrywalne-cheats-palia'],
+	['nedecektiruemye-chity-palia', 'nedecektiruemye-chity-palia'],
+	['tespit-edilemeyen-palia-hileleri', 'tespit-edilemeyen-palia-hileleri'],
+	['nedecektovani-chity-palia', 'nedecektovani-chity-palia'],
+	['cheats-palia-nedetectabile', 'cheats-palia-nedetectabile'],
+	['basta-palia-cheats', 'basta-escape-from-palia-cheats'],
+	['eac-bypass-trucos-palia', 'eac-bypass-trucos-palia'],
+	['eac-bypass-triche-palia', 'eac-bypass-triche-palia'],
+	['eac-bypass-cheats-palia', 'eac-bypass-cheats-palia'],
+	['eac-bypass-chity-palia', 'eac-bypass-chity-palia'],
+	['eac-bypass-palia', 'eac-bypass'],
 ];
 
 function apply(content) {
@@ -77,32 +77,32 @@ async function fixRouting() {
 	let content = await readFile(path.join(SRC, 'src/data/i18n/routing.ts'), 'utf8');
 	content = apply(content);
 	for (const id of REMOVE_IDS) content = removePageBlocks(content, id);
-	// Fix battleye key in englishPaths
-	content = content.replace(/\tbattleye: '/, "\t'battleye': '");
+	// Fix eac key in englishPaths
+	content = content.replace(/\teac: '/, "\t'eac': '");
 	await writeFile(path.join(ROOT, 'src/data/i18n/routing.ts'), content);
 	console.log('Fixed routing.ts');
 }
 
 async function fixConstants() {
-	const heroImages = `/** Hero image per page topic — keyword-rich escape-from-tarkov-cheats paths. */
+	const heroImages = `/** Hero image per page topic — keyword-rich escape-from-palia-cheats paths. */
 export const HERO_IMAGES = {
-	home: '/images/escape-from-tarkov-cheats-hero.webp',
-	'tarkov-esp': '/images/escape-from-tarkov-cheats-esp-wallhack.webp',
-	'tarkov-aimbot': '/images/escape-from-tarkov-cheats-aimbot-combat.webp',
-	features: '/images/escape-from-tarkov-cheats-package.webp',
-	pricing: '/images/escape-from-tarkov-cheats-cover.webp',
-	setup: '/images/tarkov-loadout-builder.webp',
-	updates: '/images/tarkov-header-art.webp',
-	faq: '/images/tarkov-squad-fight.webp',
-	support: '/images/escape-from-tarkov-cheats-package.webp',
-	undetected: '/images/tarkov-battle-royale-combat.webp',
-	wallhack: '/images/escape-from-tarkov-cheats-esp-wallhack.webp',
-	radar: '/images/tarkov-player-esp.webp',
-	'battleye': '/images/tarkov-reboot-van-fight.webp',
-	'cheats-2026': '/images/escape-from-tarkov-cheats-hero.webp',
-	privacy: '/images/escape-from-tarkov-cheats-aimbot-combat.webp',
-	refund: '/images/escape-from-tarkov-cheats-cover.webp',
-	terms: '/images/escape-from-tarkov-cheats-package.webp',
+	home: '/images/escape-from-palia-cheats-hero.webp',
+	'palia-esp': '/images/escape-from-palia-cheats-esp-wallhack.webp',
+	'palia-aimbot': '/images/escape-from-palia-cheats-aimbot-combat.webp',
+	features: '/images/escape-from-palia-cheats-package.webp',
+	pricing: '/images/escape-from-palia-cheats-cover.webp',
+	setup: '/images/palia-loadout-builder.webp',
+	updates: '/images/palia-header-art.webp',
+	faq: '/images/palia-squad-fight.webp',
+	support: '/images/escape-from-palia-cheats-package.webp',
+	undetected: '/images/palia-battle-royale-combat.webp',
+	wallhack: '/images/escape-from-palia-cheats-esp-wallhack.webp',
+	radar: '/images/palia-player-esp.webp',
+	'eac': '/images/palia-reboot-van-fight.webp',
+	'cheats-2026': '/images/escape-from-palia-cheats-hero.webp',
+	privacy: '/images/escape-from-palia-cheats-aimbot-combat.webp',
+	refund: '/images/escape-from-palia-cheats-cover.webp',
+	terms: '/images/escape-from-palia-cheats-package.webp',
 };`;
 
 	let content = await readFile(path.join(SRC, 'scripts/i18n-data/constants.mjs'), 'utf8');
@@ -112,12 +112,12 @@ export const HERO_IMAGES = {
 	}
 	content = content.replace(
 		/export const PAGE_IDS = \[[\s\S]*?\];/,
-		`export const PAGE_IDS = [\n\t'home', 'tarkov-esp', 'tarkov-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'battleye',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
+		`export const PAGE_IDS = [\n\t'home', 'palia-esp', 'palia-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
 	);
 	content = content.replace(/\/\*\* Hero image[\s\S]*?};/, heroImages);
 	content = content.replace(
 		/export type PageId = [^;]+;/,
-		"export type PageId = 'home' | 'tarkov-esp' | 'tarkov-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'battleye' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
+		"export type PageId = 'home' | 'palia-esp' | 'palia-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
 	);
 	content = content.replace(/operatorEsp/g, 'playerEsp');
 	content = content.replace(/extractFight/g, 'rebootFight');

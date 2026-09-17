@@ -1,5 +1,5 @@
 {
-	"name": "tarkov-cheats",
+	"name": "palia-cheats",
 	"type": "module",
 	"version": "1.0.0",
 	"engines": {
@@ -7,8 +7,8 @@
 	},
 	"scripts": {
 		"dev": "astro dev",
-		"sync:brand": "node scripts/sync-brand.mjs && node scripts/sync-cannibal-redirects.mjs",
-		"prebuild": "node scripts/sync-brand.mjs && node scripts/sync-cannibal-redirects.mjs",
+		"sync:brand": "node scripts/sync-brand.mjs && node scripts/sync-cannibal-redirects.mjs && node scripts/sync-path-redirects.mjs",
+		"prebuild": "node scripts/sync-brand.mjs && node scripts/sync-cannibal-redirects.mjs && node scripts/sync-path-redirects.mjs && node scripts/validate-cannibal-routes.mjs",
 		"build": "astro build",
 		"postbuild": "node scripts/strip-brand-studio.mjs",
 		"build:validate": "npm run sync:brand && astro build && node scripts/strip-brand-studio.mjs && npm run validate:sitemaps",
@@ -16,13 +16,18 @@
 		"dev:status": "astro dev status",
 		"dev:logs": "astro dev logs",
 		"optimize:images": "node scripts/optimize-responsive-images.mjs",
-		"fetch:images": "node scripts/fetch-tarkov-images.mjs",
+		"fetch:images": "node scripts/fetch-palia-images.mjs",
+		"import:gameplay": "node scripts/import-palia-gameplay.mjs && node scripts/ensure-image-variants.mjs",
+		"ensure:variants": "node scripts/ensure-image-variants.mjs",
+		"generate:forum": "node scripts/generate-forum-posts.mjs",
 		"generate:brand": "node scripts/generate-brand-assets.mjs",
 		"preview": "astro preview",
-		"validate:sitemaps": "node scripts/validate-sitemaps.mjs && node scripts/audit-sitemap-deep.mjs",
+		"validate:sitemaps": "node scripts/validate-cannibal-routes.mjs && node scripts/validate-sitemaps.mjs && node scripts/audit-sitemap-deep.mjs",
+		"test:rich-results": "node scripts/test-rich-results.mjs",
 		"generate:i18n": "node scripts/generate-i18n-content.mjs",
+		"generate:translations": "node scripts/generate-translation-json.mjs",
 		"deploy": "npm run build && wrangler deploy",
-		"pages:deploy": "wrangler pages deploy dist --project-name=tarkovcheats",
+		"pages:deploy": "wrangler pages deploy dist --project-name=paliacheats",
 		"astro": "astro"
 	},
 	"dependencies": {

@@ -5,28 +5,28 @@
  */
 export const brand = {
 	/** Public brand name (nav, footer, H1 hero, schema Organization) */
-	name: 'Tarkov Cheats',
+	name: 'Palia Cheats',
 	/** Short product label if needed */
-	shortName: 'Tarkov',
+	shortName: 'Palia',
 	/** Canonical origin — no trailing slash */
-	url: 'https://tarkovcheats.org',
+	url: 'https://paliacheats.org',
 	locale: 'en',
 	market: 'Worldwide',
-	supportEmail: 'support@tarkovcheats.org',
-	checkoutUrl: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fescape-from-tarkov',
+	supportEmail: 'support@paliacheats.org',
+	checkoutUrl: 'https://zadeyo.com/go/ALISHA?to=%2Fproducts%2Fpalia',
 
 	/** Game this template instance targets */
-	game: 'Escape from Tarkov',
+	game: 'Palia',
 	/** Anti-cheat name used in Status / FAQ copy */
-	antiCheat: 'BattlEye',
+	antiCheat: 'Easy Anti-Cheat',
 
-	logo: '/images/tarkov-cheats-logo.webp',
-	logoRaster: '/images/tarkov-cheats-logo.png',
-	logoRasterWidth: 512,
-	logoRasterHeight: 512,
-	logoAlt: 'Tarkov Cheats logo',
-	defaultOgImage: '/images/tarkov-cheats-hero-1024w.webp',
-	heroImage: '/images/tarkov-cheats-hero-1024w.webp',
+	logo: '/images/palia-logo.webp',
+	logoRaster: '/images/palia-logo.png',
+	logoRasterWidth: 608,
+	logoRasterHeight: 406,
+	logoAlt: 'Palia Cheats',
+	defaultOgImage: '/images/palia-gameplay-hero-night-1024w.webp',
+	heroImage: '/images/palia-gameplay-hero-night-1024w.webp',
 
 	plans: [
 		{ id: 'monthly', label: 'Monthly', price: 35, duration: 'P30D' },
@@ -40,12 +40,12 @@ export const brand = {
 	 * Edit in Brand Studio → Colors (tones are fully customizable).
 	 */
 	theme: {
-		accent: '#5311ee',
-		bg: '#0a0811',
-		soft: '#c3aef4',
-		deep: '#4907df',
-		hover: '#a07bf4',
-		panel: '#0a080c',
+		accent: '#8b5cf6',
+		bg: '#0D0A14',
+		soft: '#a78bfa',
+		deep: '#6d28d9',
+		hover: '#7c3aed',
+		panel: '#0F0C18',
 	},
 
 	/**
@@ -53,16 +53,14 @@ export const brand = {
 	 * Keep 5–8 terms.
 	 */
 	keywords: {
-		primary: 'tarkov cheats',
+		primary: 'palia cheats',
 		list: [
-			'tarkov cheats',
-			'escape from tarkov cheats',
-			'tarkov esp',
-			'tarkov aimbot',
-			'tarkov wallhack',
-			'tarkov hacks',
-			'undetected tarkov cheats',
-			'best tarkov cheats',
+			'buy palia cheats',
+			'palia cheats for pc',
+			'palia cheat menu',
+			'best palia cheats',
+			'palia premium cheats',
+			'palia cheats price',
 		] as const,
 	},
 
@@ -72,61 +70,66 @@ export const brand = {
 	 */
 	seo: {
 		/** Titles ≤60 chars; descriptions ~140–160 (Google SERP display). */
-		/** Home = brand hub. Money URL /tarkov-cheats/ owns the head term. */
-		homeTitle: 'Tarkov Cheats | Official Windows PC Site',
+		/** Home = brand hub. Money URL /cheats/ owns the head term. */
+		homeTitle: '{brand} | {game} Cheats Hub for Windows PC',
 		homeDescription:
-			'Official Tarkov Cheats site for Windows PC. Compare features, store plans, and live status — then buy ESP, soft aim, and radar in one license.',
-		featuresTitle: '{game} Features | {brand}',
+			'{brand} hub for {game} on Windows PC — features, setup, live status, and store plans. Open Cheats when you are ready to buy.',
+		featuresTitle: '{game} Cheat Features | ESP & Wallhack | {brand}',
 		featuresDescription:
-			'Everything in one {game} license for Windows PC — ESP, soft aim, radar, loot tools, and patch updates after {antiCheat}. See what is included.',
-		storeTitle: '{game} Store | {brand}',
+			'Full {game} cheat feature list for Windows PC — resource ESP, wallhack, fishing tools, teleport bookmarks, hunting aimbot, and {antiCheat} patch maintenance.',
+		storeTitle: '{game} Cheats Store | Monthly & Lifetime | {brand}',
 		storeDescription:
-			'Monthly and lifetime {game} plans for Windows PC. Same ESP, aimbot, and radar features on both. Instant delivery after payment checkout.',
-		statusTitle: '{game} Status | {brand}',
+			'Compare monthly and lifetime {game} cheat plans for Windows PC. Same ESP, wallhack, fishing tools, and cheat menu on every plan with instant digital delivery.',
+		statusTitle: '{game} Cheat Status | {antiCheat} Updates | {brand}',
 		statusDescription:
-			'Live undetected status for {brand} after {game} or {antiCheat} patches. Check here before you queue a raid on Windows PC today.',
-		/** Money page meta — primary target for "tarkov cheats". */
-		previewTitle: 'Tarkov Cheats | Undetected ESP & Aimbot',
+			'Live status for {brand} after {game} or {antiCheat} patches. Check maintenance notes here before you log in on Windows PC.',
+		/** Money page meta — primary target for "palia cheats". */
+		previewTitle: 'Buy Undetected {primaryKeyword} | {brand} Store',
 		previewDescription:
-			'Buy undetected tarkov cheats for Escape from Tarkov on Windows PC. ESP, soft aim, radar, and BattlEye patch updates in one license with instant delivery.',
-		setupTitle: '{game} Setup | {brand}',
+			'Buy {primaryKeyword} for Windows PC — resource ESP, wallhack, fishing tools, teleport, and {antiCheat} maintenance. Monthly from $35 with instant license delivery.',
+		setupTitle: '{game} Cheats Setup Guide | Install on PC | {brand}',
 		setupDescription:
-			'Install and launch {brand} on Windows PC after checkout. Short setup steps so you can raid faster. Follow each step in order before your first match.',
-		supportTitle: '{game} Support | {brand}',
+			'Install and launch {brand} on Windows PC after checkout. Short setup steps so you can play faster. Follow each step in order before your first session.',
+		supportTitle: '{game} Cheats Support & Billing Help | {brand}',
 		supportDescription:
 			'Get help with {brand} on Windows PC. Email {email} with your order ID for setup, delivery, or billing help after you buy.',
-		faqTitle: '{game} FAQ | {brand}',
+		faqTitle: '{game} Cheats FAQ | Delivery & Setup | {brand}',
 		faqDescription:
-			'Short answers about {brand} for Escape from Tarkov — delivery, setup, {antiCheat} updates, refunds, and Windows PC system notes before you buy.',
-		reviewsTitle: '{brand} Reviews | Buyer Feedback',
+			'Short answers about {brand} for {game} — license delivery, ESP setup, {antiCheat} updates, refunds, and Windows PC requirements before you buy.',
+		reviewsTitle: '{brand} Buyer Reviews | ESP & Fishing Tools',
 		reviewsDescription:
-			'Buyer reviews for {brand} — ESP, soft aim, radar, and patch updates for Escape from Tarkov on Windows PC. Real feedback from license holders.',
-		blogTitle: '{game} Intel | {brand}',
-		blogDescription:
-			'Guides and notes for {game} — raid tips, ESP, aimbot, loot routes, and {antiCheat} update coverage for Windows PC players who raid.',
+			'Real buyer reviews for {brand} on Windows PC — ESP, wallhack, fishing tools, teleport, and patch-day updates from license holders in Kilima and Bahari Bay.',
+		forumTitle: '{game} Forum | Setup Guides & Discussions',
+		forumDescription:
+			'{game} forum — setup guides, fishing ESP tips, and buyer discussions. Sign up to post and read community threads.',
 	},
 
 	/** On-page marketing copy (tokens allowed) */
 	copy: {
-		tagline: 'Undetected {primaryKeyword} — ESP, aimbot, and radar for PC',
+		tagline: '{brand} — {game} tools for Windows PC',
 		summary:
-			'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
-		heroLede: 'Undetected ESP, soft aim, and radar for Escape from Tarkov on Windows PC.',
-		blogLabel: 'Tarkov Intel',
-		ctaBuy: 'Get Access',
-		ctaBuyShort: 'Buy',
-		featuresIntro: 'Everything included in one license for {game} on Windows PC.',
-		storeIntro: 'Pick a plan. Same features on both. Instant delivery after payment.',
-		statusIntro: 'Check here after a {game} or {antiCheat} patch before you raid.',
+			'{brand} is a premium {game} package for Windows PC. Resource ESP, fishing tools, teleport, skill automation, and {antiCheat} maintenance after patches.',
+		heroLede:
+			'Browse {game} on Windows PC — compare features, setup guides, live status, and plans before checkout.',
+		forumLabel: 'Palia Forum',
+		ctaBuy: 'Buy Now',
+		ctaBuyShort: 'Buy Now',
+		featuresIntro:
+			'Everything in one {brand} license for Windows PC — ESP, wallhack, fishing tools, teleport, and skill automation.',
+		storeIntro:
+			'Monthly $35 or lifetime $150. Same ESP, wallhack, and cheat menu on every plan.',
+		statusIntro:
+			'Live status after a {game} or {antiCheat} patch. Check here before you log in.',
 		previewIntro:
-			'{brand} for Escape from Tarkov — ESP wallhack, soft aim, 2D radar, and BattlEye rebuilds after patches.',
-		setupIntro: 'Install {brand} on Windows PC after you buy. Follow these short steps.',
-		supportIntro: 'Need help with {brand}? Email {email} with your order ID.',
-		faqIntro: 'Short answers about delivery, setup, updates, and refunds.',
-		reviewsIntro: 'Feedback from {brand} buyers — ESP, soft aim, radar, and support.',
-		chipEsp: 'ESP / wallhack',
+			'Buy {primaryKeyword} for Windows PC — resource ESP, wallhack, fishing tools, teleport, and undetected cheat menu from $35.',
+		setupIntro:
+			'Set up {brand} on Windows PC after checkout. Follow the setup guide to activate your license.',
+		supportIntro: 'Email {email} with your order ID for setup or billing help.',
+		faqIntro: 'Short answers about delivery, setup, and support for {brand}.',
+		reviewsIntro: 'Buyer feedback on {brand} — ESP, fishing tools, and patch-day updates.',
+		chipEsp: 'ESP',
 		chipAim: 'Soft aim',
-		chipRadar: '2D radar',
+		chipRadar: 'Wallhack',
 		chipUpdates: 'Patch updates',
 		navPreview: 'Cheats',
 		navFeatures: 'Features',
@@ -143,40 +146,45 @@ export const brand = {
 	sitemap: {
 		/** YYYY-MM-DD — Brand Studio can bump this on save to refresh crawl dates */
 		contentLastmod: '2026-08-13',
-		blogImageTitle: '{brand} blog',
-		blogImageCaption: 'Tips and updates for {primaryKeyword}',
+		blogImageTitle: '{brand} forum',
+		blogImageCaption: 'Palia cheats guides and community discussions',
 		reviewsImageTitle: '{brand} reviews',
 		reviewsImageCaption: 'What buyers say about {primaryKeyword}',
 		images: [
 			{
-				src: '/images/tarkov-cheats-esp.webp',
-				title: 'ESP overlay in Escape from Tarkov',
-				caption: 'Player ESP boxes and distance readouts during a raid',
+				src: '/images/palia-gameplay-kilima-panorama-1024w.webp',
+				title: 'Wide panorama of Kilima Village roofs and stone paths',
+				caption: 'Wide panorama of Kilima Village roofs and stone paths',
 			},
 			{
-				src: '/images/tarkov-cheats-wallhack.webp',
-				title: 'Wallhack visibility for Tarkov raids',
-				caption: 'PMC and Scav outlines through walls and terrain',
+				src: '/images/palia-gameplay-homestead.webp',
+				title: 'Player homestead with fenced crop plots and dirt paths',
+				caption: 'Player homestead with fenced crop plots and dirt paths',
 			},
 			{
-				src: '/images/tarkov-cheats-aimbot.webp',
-				title: 'Soft aim assist for Tarkov',
-				caption: 'Configurable soft aim FOV and bone priority',
+				src: '/images/palia-gameplay-ore-mining.webp',
+				title: 'Ore node with distance readouts during a mining swing',
+				caption: 'Ore node with distance readouts during a mining swing',
 			},
 			{
-				src: '/images/tarkov-cheats-aimbot-view.webp',
-				title: 'Aimbot view in Tarkov Cheats',
-				caption: 'In-menu aimbot controls for Windows PC',
+				src: '/images/palia-gameplay-bahari-landscape.webp',
+				title: 'Bahari Bay cliffs and coastline under open sky',
+				caption: 'Bahari Bay cliffs and coastline under open sky',
 			},
 			{
-				src: '/images/tarkov-cheats-radar.webp',
-				title: '2D radar threat overlay',
-				caption: 'Radar cues for flanks near extracts',
+				src: '/images/palia-gameplay-housing-interior.webp',
+				title: 'Decorated housing interior with furniture and windows',
+				caption: 'Decorated housing interior with furniture and windows',
 			},
 			{
-				src: '/images/tarkov-cheats-raid.webp',
-				title: 'Tarkov Cheats license plans',
-				caption: 'Monthly and lifetime plans for Windows PC',
+				src: '/images/palia-gameplay-kilima-village.webp',
+				title: 'Kilima Village square with market stalls and walkways',
+				caption: 'Kilima Village square with market stalls and walkways',
+			},
+			{
+				src: '/images/palia-gameplay-esp-overlay.webp',
+				title: 'In-game overlay with resource markers on a village bridge',
+				caption: 'In-game overlay with resource markers on a village bridge',
 			},
 		],
 	},

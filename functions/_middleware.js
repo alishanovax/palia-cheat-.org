@@ -1,13 +1,14 @@
 import CANNIBAL_REDIRECTS from './cannibal-redirects.json';
+import PATH_REDIRECTS from './path-redirects.json' with { type: 'json' };
 
-const CANONICAL_ORIGIN = 'https://tarkovcheats.org';
-const APEX_HOST = 'tarkovcheats.org';
-const WWW_HOST = 'www.tarkovcheats.org';
+const CANONICAL_ORIGIN = 'https://paliacheats.org';
+const APEX_HOST = 'paliacheats.org';
+const WWW_HOST = 'www.paliacheats.org';
 
 /** Legacy domains → canonical apex (301). */
 const LEGACY_HOSTS = new Set([
-	'besttarkovcheats.com',
-	'www.besttarkovcheats.com',
+	'bestpaliacheats.com',
+	'www.bestpaliacheats.com',
 	'fortnitehack.net',
 	'www.fortnitehack.net',
 	'fortnitecheats.xyz',
@@ -26,85 +27,7 @@ const LEGACY_HOSTS = new Set([
 	'www.warzonescheats.xyz',
 ]);
 
-// Keep in sync with public/_redirects (which preserves query strings by default, as we do below).
-const PATH_REDIRECTS = {
-	'/sitemap-0.xml': '/sitemap.xml',
-	'/sitemap-index.xml': '/sitemap.xml',
-	'/sitemap.xml/': '/sitemap.xml',
-	'/sitemap-en.xml/': '/sitemap-en.xml',
-	'/sitemap-i18n.xml/': '/sitemap-i18n.xml',
-	'/sitemap-images.xml/': '/sitemap-images.xml',
-	// Exact-match keyword → pillar (not homepage)
-	'/escape-from-tarkov-cheats': '/tarkov-cheats/',
-	'/escape-from-tarkov-cheats/': '/tarkov-cheats/',
-	// Cannibalization → canonical landings (money URL = /tarkov-cheats/)
-	'/tarkov-esp-hack': '/tarkov-esp/',
-	'/tarkov-esp-hack/': '/tarkov-esp/',
-	'/tarkov-aimbot-hack': '/tarkov-aimbot/',
-	'/tarkov-aimbot-hack/': '/tarkov-aimbot/',
-	'/best-tarkov-cheats': '/tarkov-cheats/',
-	'/best-tarkov-cheats/': '/tarkov-cheats/',
-	'/tarkov-cheats-2026': '/tarkov-cheats/',
-	'/tarkov-cheats-2026/': '/tarkov-cheats/',
-	'/undetected-tarkov-cheats': '/tarkov-cheats/',
-	'/undetected-tarkov-cheats/': '/tarkov-cheats/',
-	'/tarkov-mod-menu': '/tarkov-cheats/',
-	'/tarkov-mod-menu/': '/tarkov-cheats/',
-	'/tarkov-unlock-all': '/tarkov-cheats/',
-	'/tarkov-unlock-all/': '/tarkov-cheats/',
-	'/tarkov-soft-aim': '/tarkov-aimbot/',
-	'/tarkov-soft-aim/': '/tarkov-aimbot/',
-	'/tarkov-wallhack': '/tarkov-esp/',
-	'/tarkov-wallhack/': '/tarkov-esp/',
-	'/tarkov-cheat-download': '/setup/',
-	'/tarkov-cheat-download/': '/setup/',
-	'/battleye-bypass': '/updates/',
-	'/battleye-bypass/': '/updates/',
-	'/warzone-cheats': '/tarkov-cheats/',
-	'/warzone-cheats/': '/tarkov-cheats/',
-	'/warzone-hacks': '/tarkov-cheats/',
-	'/warzone-hacks/': '/tarkov-cheats/',
-	'/warzone-esp': '/tarkov-esp/',
-	'/warzone-esp/': '/tarkov-esp/',
-	'/warzone-aimbot': '/tarkov-aimbot/',
-	'/warzone-aimbot/': '/tarkov-aimbot/',
-	'/ricochet-bypass': '/updates/',
-	'/ricochet-bypass/': '/updates/',
-	'/fortnite-aimbot': '/tarkov-aimbot/',
-	'/fortnite-aimbot/': '/tarkov-aimbot/',
-	'/fortnite-esp': '/tarkov-esp/',
-	'/fortnite-esp/': '/tarkov-esp/',
-	'/fortnite-hacks': '/tarkov-cheats/',
-	'/fortnite-hacks/': '/tarkov-cheats/',
-	'/eac-bypass': '/updates/',
-	'/eac-bypass/': '/updates/',
-	'/eac-bypass-fortnite': '/updates/',
-	'/eac-bypass-fortnite/': '/updates/',
-	'/blog/patch-notes-buffs-nerfs-vaults': '/blog/tarkov-patch-notes-guide/',
-	'/blog/patch-notes-buffs-nerfs-vaults/': '/blog/tarkov-patch-notes-guide/',
-	'/blog/chapter-7-season-3-skin-leaks-vbucks': '/blog/tarkov-skin-leaks-guide/',
-	'/blog/chapter-7-season-3-skin-leaks-vbucks/': '/blog/tarkov-skin-leaks-guide/',
-	'/blog/hammer-ar-s-tier-data-analysis': '/blog/tarkov-weapon-tier-list/',
-	'/blog/hammer-ar-s-tier-data-analysis/': '/blog/tarkov-weapon-tier-list/',
-	'/blog/zero-build-meta-broken-aggressive-strategies': '/blog/tarkov-scav-run-aggressive-strategies/',
-	'/blog/zero-build-meta-broken-aggressive-strategies/': '/blog/tarkov-scav-run-aggressive-strategies/',
-	'/blog/fncs-meta-watch-tournament-drops': '/blog/tarkov-tournament-meta-guide/',
-	'/blog/fncs-meta-watch-tournament-drops/': '/blog/tarkov-tournament-meta-guide/',
-	'/blog/secret-loot-routes-full-gold': '/blog/tarkov-loot-routes-guide/',
-	'/blog/secret-loot-routes-full-gold/': '/blog/tarkov-loot-routes-guide/',
-	'/blog/bugha-settings-pro-setup': '/blog/tarkov-pro-settings-guide/',
-	'/blog/bugha-settings-pro-setup/': '/blog/tarkov-pro-settings-guide/',
-	'/blog/creative-warmup-maps-pros-use': '/blog/tarkov-warmup-maps-ranked/',
-	'/blog/creative-warmup-maps-pros-use/': '/blog/tarkov-warmup-maps-ranked/',
-	'/reviews/tarkov-esp-zero-build-review-buildsr4k': '/reviews/tarkov-esp-scav-run-review-buildsr4k/',
-	'/reviews/tarkov-esp-zero-build-review-buildsr4k/': '/reviews/tarkov-esp-scav-run-review-buildsr4k/',
-	'/reviews/tarkov-radar-hack-review-vanlifefn': '/reviews/tarkov-radar-hack-review-vanlifeeft/',
-	'/reviews/tarkov-radar-hack-review-vanlifefn/': '/reviews/tarkov-radar-hack-review-vanlifeeft/',
-	'/reviews/tarkov-radar-hack-review-vanlifewz': '/reviews/tarkov-radar-hack-review-vanlifeeft/',
-	'/reviews/tarkov-radar-hack-review-vanlifewz/': '/reviews/tarkov-radar-hack-review-vanlifeeft/',
-	'/reviews/tarkov-controller-soft-aim-review-ctrl-player99': '/reviews/tarkov-soft-aim-review-ctrl-player99/',
-	'/reviews/tarkov-controller-soft-aim-review-ctrl-player99/': '/reviews/tarkov-soft-aim-review-ctrl-player99/',
-};
+// Auto-generated from public/_redirects via scripts/sync-path-redirects.mjs (npm run sync:brand).
 
 const SECURITY_HEADERS = {
 	'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',

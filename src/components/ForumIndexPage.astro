@@ -1,0 +1,368 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import SiteFooter from './SiteFooter.astro';
+import { forumUi, type LocaleCode, defaultLocale } from '../data/i18n/locales';
+import {
+	absoluteForumUrl,
+	getAllPostsForLocale,
+	getForumBasePath,
+	getForumIndexHreflangAlternates,
+} from '../data/forum/helpers';
+import { forumLabel, siteConfig } from '../data/site';
+import { brandSeo, seoPageTitle } from '../data/site-core';
+import { seoDescription } from '../data/brand';
+import { getLocalizedPath } from '../data/i18n/routing';
+import { getT } from '../i18n/server';
+import ForumAuth from './react/ForumAuth';
+import ForumArticleCard from './ForumArticleCard.astro';
+
+interface Props {
+	locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+const ui = forumUi[locale];
+const t = getT(locale);
+const posts = getAllPostsForLocale(locale);
+const canonicalPath = getForumBasePath(locale);
+const canonicalURL = absoluteForumUrl(locale);
+const hreflangAlternates = getForumIndexHreflangAlternates(locale);
+const homeHref = getLocalizedPath('home', locale);
+
+const pageTitle = locale === defaultLocale ? seoPageTitle(brandSeo.forumTitle) : ui.forumTitle;
+const pageDescription =
+	locale === defaultLocale ? seoDescription(brandSeo.forumDescription) : ui.forumDescription;
+
+const articleListSchema = {
+	'@type': 'CollectionPage',
+	'@id': `${canonicalURL}#collection`,
+	name: ui.forumH1,
+	description: pageDescription,
+	url: canonicalURL,
+	inLanguage: locale,
+	isPartOf: { '@id': `${siteConfig.url}/#website` },
+	mainEntity: {
+		'@type': 'ItemList',
+		itemListElement: posts.map((post, i) => ({
+			'@type': 'ListItem',
+			position: i + 1,
+			url: absoluteForumUrl(locale, post.translation.slug),
+			name: post.translation.title,
+		})),
+	},
+};
+---
+
+<Layout
+	title={pageTitle}
+	description={pageDescription}
+	canonicalPath={canonicalPath}
+	hreflangAlternates={hreflangAlternates}
+	locale={locale}
+	ogImage={siteConfig.defaultOgImage}
+	ogImageAlt={ui.forumH1}
+	breadcrumbs={[{ label: ui.home, href: homeHref }, { label: ui.forumH1 }]}
+	extraGraph={[articleListSchema]}
+>
+	<Navbar locale={locale} />
+	<main class="blog">
+		<div class="shell blog__inner">
+		<header class="blog__hero">
+			<p class="blog__eyebrow" data-edit="forumLabel">{forumLabel}</p>
+			<h1>{ui.forumH1}</h1>
+			<p class="blog__intro">{ui.forumIntro}</p>
+		</header>
+
+		<section class="blog__list" aria-label={ui.allPosts}>
+			{
+				posts.map((post) => (
+					<ForumArticleCard
+						category={post.category}
+						title={post.translation.title}
+						copy={post.translation.metaDescription}
+						href={post.canonicalPath}
+						readLabel={t('homeForums.readArticle')}
+					/>
+				))
+			}
+		</section>
+
+		<ForumAuth client:load cheatsHref={getLocalizedPath('hacks', locale)} />
+		</div>
+	</main>
+	<SiteFooter locale={locale} />
+</Layout>
+
+<style>
+	.blog {
+		padding: 2.5rem 0 4rem;
+	}
+
+	.blog__inner {
+		display: grid;
+		gap: 0;
+	}
+	.blog__hero {
+		margin-bottom: 2.5rem;
+	}
+	.blog__eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--magenta-soft);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 0.75rem;
+	}
+	.blog__hero h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(2.2rem, 5vw, 3.4rem);
+		line-height: 1.05;
+	}
+	.blog__intro {
+		max-width: 42rem;
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 1.05rem;
+	}
+	.blog__list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+	@media (max-width: 960px) {
+		.blog__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 760px) {
+		.blog__list {
+			grid-template-columns: 1fr;
+			gap: 0.85rem;
+		}
+	}
+
+</style>
+
+<style is:global>
+	/* React island — scoped Astro styles do not apply to client:load components */
+	.forum-auth {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.forum-auth__bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.forum-auth__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.forum-auth__welcome {
+		font-size: 0.9rem;
+		color: var(--ink-muted);
+	}
+
+	.forum-auth__btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.45rem 1rem;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: var(--bg-elevated);
+		color: var(--ink);
+		font-family: inherit;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		line-height: 1.2;
+		cursor: pointer;
+	}
+
+	.forum-auth__btn--primary {
+		background: var(--magenta);
+		border-color: var(--magenta);
+		color: #fff;
+	}
+
+	.forum-auth__btn--ghost {
+		background: transparent;
+	}
+
+	.forum-auth__btn--full {
+		width: 100%;
+		margin-top: 0.5rem;
+	}
+
+	.forum-auth__buy {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.45rem 1rem;
+		border-radius: 999px;
+		background: #fff;
+		color: #09090b;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		line-height: 1.2;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.forum-auth__comments h2 {
+		margin: 0 0 1rem;
+		font-size: 1.25rem;
+	}
+
+	.forum-auth__gate {
+		padding: 1.25rem;
+		border: 1px dashed var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		color: var(--ink-muted);
+		text-align: center;
+		line-height: 1.55;
+	}
+
+	.forum-auth__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.forum-auth__comment {
+		padding: 1rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		background: var(--bg-panel);
+	}
+
+	.forum-auth__comment--positive {
+		border-left: 3px solid var(--ok);
+	}
+
+	.forum-auth__comment--negative {
+		border-left: 3px solid var(--warn);
+	}
+
+	.forum-auth__comment--neutral {
+		border-left: 3px solid var(--ink-faint);
+	}
+
+	.forum-auth__comment-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.35rem;
+		font-size: 0.8rem;
+		color: var(--ink-muted);
+	}
+
+	.forum-auth__comment p {
+		margin: 0;
+		font-size: 0.92rem;
+		line-height: 1.5;
+	}
+
+	.forum-auth__overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		background: rgba(4, 3, 6, 0.75);
+		backdrop-filter: blur(4px);
+	}
+
+	.forum-auth__modal {
+		position: relative;
+		width: min(100%, 22rem);
+		padding: 1.5rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md, 0.75rem);
+		background: var(--bg-elevated);
+	}
+
+	.forum-auth__modal h3 {
+		margin: 0 0 0.35rem;
+	}
+
+	.forum-auth__modal form {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.forum-auth__modal label {
+		display: grid;
+		gap: 0.3rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--ink-muted);
+	}
+
+	.forum-auth__modal input {
+		padding: 0.55rem 0.75rem;
+		border: 1px solid var(--line);
+		border-radius: 0.5rem;
+		background: var(--bg);
+		color: var(--ink);
+		font-size: 0.9rem;
+	}
+
+	.forum-auth__close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		width: 2rem;
+		height: 2rem;
+		border: none;
+		background: transparent;
+		color: var(--ink-muted);
+		font-size: 1.25rem;
+		cursor: pointer;
+	}
+
+	.forum-auth__switch {
+		margin: 1rem 0 0;
+		font-size: 0.85rem;
+		color: var(--ink-muted);
+		text-align: center;
+	}
+
+	.forum-auth__switch button {
+		border: none;
+		background: none;
+		color: var(--magenta-soft);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	@media (max-width: 520px) {
+		.forum-auth__bar {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.forum-auth__actions {
+			justify-content: flex-start;
+		}
+
+		.forum-auth__buy {
+			text-align: center;
+		}
+	}
+</style>

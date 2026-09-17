@@ -8,34 +8,34 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.resolve(ROOT, '..', 'amansand');
 
 const UI_REPLACEMENTS = [
-	['Tarkov Cheats', 'Tarkov Cheats'],
-	['Tarkov cheats', 'Tarkov cheats'],
-	['Tarkov Cheats', 'Tarkov Cheats'],
-	['Escape from Tarkov', 'Escape from Tarkov'],
-	['Escape from Tarkov', 'Escape from Tarkov'],
-	['Call of Duty', 'Escape from Tarkov'],
-	['Tarkov PC', 'Escape from Tarkov PC'],
-	['for Tarkov', 'for Escape from Tarkov'],
-	['Tarkov ', 'Escape from Tarkov '],
-	['tarkov ', 'tarkov '],
-	['BattlEye maintenance', 'BattlEye maintenance'],
-	['BattlEye anti-cheat', 'BattlEye anti-cheat'],
-	['BattlEye', 'BattlEye anti-cheat'],
+	['Palia Cheats', 'Palia Cheats'],
+	['Palia cheats', 'Palia cheats'],
+	['Palia Cheats', 'Palia Cheats'],
+	['Palia', 'Palia'],
+	['Palia', 'Palia'],
+	['Call of Duty', 'Palia'],
+	['Palia PC', 'Palia PC'],
+	['for Palia', 'for Palia'],
+	['Palia ', 'Palia '],
+	['palia ', 'palia '],
+	['EAC maintenance', 'EAC maintenance'],
+	['Easy Anti-Cheat', 'Easy Anti-Cheat'],
+	['Easy Anti-Cheat', 'Easy Anti-Cheat'],
 	['operatorEsp', 'playerEsp'],
 	['extractFight', 'rebootFight'],
 	['alMazrah', 'battleRoyaleIsland'],
-	['PMCs', 'players'],
+	['players', 'players'],
 	['operator', 'player'],
-	['PMCs', 'Players'],
+	['players', 'Players'],
 	['Operator', 'Player'],
 	['Al Mazrah', 'Verdansk'],
 	['Verdansk', 'Verdansk'],
 	['scav-run', 'scav-run'],
 	['extract', 'extract'],
-	['tarkovcheats.org', 'tarkovcheats.org'],
-	['Trucos Tarkov', 'Trucos Escape from Tarkov'],
-	['Triches Tarkov', 'Triches Escape from Tarkov'],
-	['Cheats Tarkov', 'Cheats Escape from Tarkov'],
+	['paliacheats.org', 'paliacheats.org'],
+	['Trucos Palia', 'Trucos Palia'],
+	['Triches Palia', 'Triches Palia'],
+	['Cheats Palia', 'Cheats Palia'],
 ];
 
 function apply(content) {
@@ -52,18 +52,18 @@ for (const file of ['ui-strings-part1.mjs', 'ui-strings-part2.mjs']) {
 	console.log('Fixed', file);
 }
 
-// Fix pages-en battleye key
+// Fix pages-en eac key
 let pagesEn = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), 'utf8');
-pagesEn = pagesEn.replace(/\tbattleye: \{/, "\t'battleye': {");
-pagesEn = pagesEn.replace(/Escape from Tarkov Tarkov/g, 'Escape from Tarkov');
-pagesEn = pagesEn.replace(/for Escape from Tarkov Tarkov/g, 'for Escape from Tarkov');
+pagesEn = pagesEn.replace(/\teac: \{/, "\t'eac': {");
+pagesEn = pagesEn.replace(/Palia Palia/g, 'Palia');
+pagesEn = pagesEn.replace(/for Palia Palia/g, 'for Palia');
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), pagesEn);
 
 // Fix pages-i18n
 let pagesI18n = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), 'utf8');
 pagesI18n = apply(pagesI18n);
-pagesI18n = pagesI18n.replace(/'battleye'/g, "'battleye'");
-pagesI18n = pagesI18n.replace(/battleye:/g, "'battleye':");
+pagesI18n = pagesI18n.replace(/'eac'/g, "'eac'");
+pagesI18n = pagesI18n.replace(/eac:/g, "'eac':");
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), pagesI18n);
 
 // Fix generate-i18n pages count

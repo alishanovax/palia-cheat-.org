@@ -3,7 +3,9 @@
  * XML endpoints stay generated; this only supplies brand-aware strings / dates.
  */
 import { brand, fillBrandTokens } from './brand';
+import { descriptiveAlt } from './palia';
 import type { PageId } from './i18n/routing';
+import { pageSitemapImageLabels, reviewsIndexImageSrc } from './page-images';
 
 export type BrandSitemapImage = {
 	src: string;
@@ -12,66 +14,16 @@ export type BrandSitemapImage = {
 };
 
 const defaultImages: BrandSitemapImage[] = [
-	{
-		src: '/images/tarkov-cheats-esp.webp',
-		title: 'tarkov cheats esp',
-		caption: 'tarkov cheats esp wallhack',
-	},
-	{
-		src: '/images/tarkov-cheats-wallhack.webp',
-		title: 'tarkov cheats wallhack',
-		caption: 'tarkov cheats wallhack esp',
-	},
-	{
-		src: '/images/tarkov-cheats-aimbot.webp',
-		title: 'tarkov cheats aimbot',
-		caption: 'tarkov cheats aimbot soft aim',
-	},
-	{
-		src: '/images/tarkov-cheats-aimbot-view.webp',
-		title: 'tarkov cheats aimbot',
-		caption: 'tarkov cheats aimbot view',
-	},
-	{
-		src: '/images/tarkov-cheats-radar.webp',
-		title: 'tarkov cheats radar',
-		caption: 'tarkov cheats radar hack',
-	},
-	{
-		src: '/images/tarkov-cheats-raid.webp',
-		title: 'tarkov cheats',
-		caption: 'tarkov cheats in raid',
-	},
-];
-
-/** Per-page image title/caption templates for the English urlset. */
-const pageImageTemplates: Record<PageId, { title: string; caption: string }> = {
-	home: { title: '{brand} hero — ESP and aimbot in Tarkov', caption: 'Homepage preview of {primaryKeyword} on Windows PC' },
-	'tarkov-esp': { title: '{primaryKeyword} ESP overlay', caption: 'Player ESP boxes and distance with {primaryKeyword}' },
-	'tarkov-aimbot': { title: '{primaryKeyword} aimbot view', caption: 'Aimbot and soft aim controls in {primaryKeyword}' },
-	features: { title: '{primaryKeyword} features', caption: 'ESP, soft aim, and radar included with {primaryKeyword}' },
-	pricing: { title: '{primaryKeyword} store plans', caption: 'Monthly and lifetime {primaryKeyword} plans' },
-	setup: { title: '{primaryKeyword} setup', caption: 'Install {primaryKeyword} on Windows PC after checkout' },
-	updates: { title: '{primaryKeyword} live status', caption: 'Check {primaryKeyword} after a game or BattlEye patch' },
-	faq: { title: '{primaryKeyword} FAQ', caption: 'Common questions about {primaryKeyword}' },
-	support: { title: '{primaryKeyword} support', caption: 'Help with your {primaryKeyword} license' },
-	undetected: { title: 'Undetected {primaryKeyword}', caption: 'Status notes for {primaryKeyword} after patches' },
-	wallhack: { title: '{primaryKeyword} wallhack', caption: 'Through-wall visibility with {primaryKeyword}' },
-	radar: { title: '{primaryKeyword} radar', caption: '2D radar map cues in {primaryKeyword}' },
-	battleye: { title: '{antiCheat} and {primaryKeyword}', caption: '{primaryKeyword} rebuilds after a BattlEye update' },
-	'cheats-2026': { title: '{primaryKeyword} overview', caption: '{primaryKeyword} for Escape from Tarkov on PC' },
-	hacks: { title: '{primaryKeyword}', caption: '{primaryKeyword} ESP, aimbot, and radar package' },
-	'cheat-download': { title: '{primaryKeyword} download', caption: 'Get {primaryKeyword} after you buy' },
-	'mod-menu': { title: '{primaryKeyword} menu', caption: 'In-game menu for {primaryKeyword}' },
-	'soft-aim': { title: '{primaryKeyword} soft aim', caption: 'Soft aim settings in {primaryKeyword}' },
-	'best-cheats': { title: 'Best {primaryKeyword}', caption: 'Why players pick {primaryKeyword}' },
-	'aimbot-hack': { title: '{primaryKeyword} aimbot', caption: 'Aimbot tools in {primaryKeyword}' },
-	'esp-hack': { title: '{primaryKeyword} ESP', caption: 'ESP tools in {primaryKeyword}' },
-	'unlock-all': { title: '{primaryKeyword} unlock guide', caption: 'Unlock tips with {primaryKeyword}' },
-	privacy: { title: '{brand} privacy', caption: 'Privacy info for {primaryKeyword}' },
-	refund: { title: '{brand} refunds', caption: 'Refund info for {primaryKeyword}' },
-	terms: { title: '{brand} terms', caption: 'Terms for {primaryKeyword}' },
-};
+	'/images/palia-cheats-esp.webp',
+	'/images/palia-cheats-wallhack.webp',
+	'/images/palia-cheats-aimbot.webp',
+	'/images/palia-cheats-aimbot-view.webp',
+	'/images/palia-cheats-radar.webp',
+	'/images/palia-gameplay-kilima-village.webp',
+].map((src) => {
+	const caption = descriptiveAlt(src);
+	return { src, title: caption, caption };
+});
 
 const sitemapDefaults = {
 	contentLastmod: '2026-08-10',
@@ -136,13 +88,7 @@ export function resolvedSitemapImages(): BrandSitemapImage[] {
 	}));
 }
 
-export function pageSitemapImageLabels(pageId: PageId): { title: string; caption: string } {
-	const tpl = pageImageTemplates[pageId];
-	return {
-		title: fillBrandTokens(tpl.title),
-		caption: fillBrandTokens(tpl.caption),
-	};
-}
+export { pageSitemapImageLabels };
 
 export function blogSitemapImageMeta() {
 	return {
@@ -152,10 +98,8 @@ export function blogSitemapImageMeta() {
 }
 
 export function reviewsSitemapImageMeta() {
-	return {
-		title: fillBrandTokens(brandSitemap.reviewsImageTitle),
-		caption: fillBrandTokens(brandSitemap.reviewsImageCaption),
-	};
+	const caption = descriptiveAlt(reviewsIndexImageSrc);
+	return { title: caption, caption };
 }
 
-export { sitemapDefaults, pageImageTemplates };
+export { sitemapDefaults };

@@ -1,42 +1,85 @@
-/** Descriptive image alts — Google rejects empty or keyword-only alts. */
+/** Descriptive image alts — Palia gameplay screenshots for SEO. */
+
 export const DESCRIPTIVE_IMAGE_ALTS = {
-	hero: 'Tarkov Cheats hero — ESP and aimbot overlay in Escape from Tarkov',
-	espWallhack: 'Wallhack outlines showing PMCs and Scavs through walls',
-	aimbotCombat: 'Soft aim assist overlay during an Escape from Tarkov raid',
-	squadFight: 'Tarkov Cheats combat overlay during a squad fight',
-	playerEsp: 'Player ESP boxes and distance readouts in a Tarkov raid',
-	headerArt: 'Aimbot view and bone priority controls for Tarkov',
-	cheatsPackage: '2D radar threat overlay for Escape from Tarkov',
-	rebootFight: 'Aimbot assist during a Tarkov firefight',
-	battleRoyale: 'Tarkov Cheats in-raid overview for Windows PC',
-	battleRoyaleIsland: 'ESP markers for loot and extracts in Tarkov',
+
+	hero: 'Palia Kilima Village at dusk — Palia cheats ESP and teleport on Windows PC',
+
+	espWallhack: 'Palia players mining ore with resource ESP and wallhack overlays',
+
+	aimbotCombat: 'Bahari Bay autumn landscape — fishing and hunting aimbot routes in Palia',
+
+	squadFight: 'Palia Bahari Bay vista with teleport bookmarks and ESP markers',
+
+	playerEsp: 'Kilima Village gameplay — resource ESP and fast travel for Palia cheats',
+
+	headerArt: 'Palia housing interior with cheat menu and skill automation tools',
+
+	cheatsPackage: 'Palia homestead plot with farming ESP and housing automation',
+
+	rebootFight: 'Kilima Village session with Palia cheats resource markers',
+
+	battleRoyale: 'Palia cheats in-session overview for Windows PC',
+
+	battleRoyaleIsland: 'Bahari Bay landscape with ore and fish node ESP in Palia',
+
 };
 
+
+
 /** Page-level image alt by pageId (EN source of truth). */
+
 export const PAGE_IMAGE_ALTS = {
-	home: 'Tarkov Cheats homepage hero — ESP and aimbot for Escape from Tarkov',
-	'tarkov-esp': 'Tarkov ESP player boxes and distance readouts in a raid',
-	'tarkov-aimbot': 'Tarkov aimbot and soft aim controls on Windows PC',
-	features: 'Tarkov Cheats features — ESP, soft aim, and radar screenshots',
-	pricing: 'Tarkov Cheats store plans for monthly and lifetime licenses',
-	setup: 'Tarkov Cheats setup guide screenshot for Windows PC',
-	updates: 'Tarkov Cheats live status after BattlEye and game patches',
-	faq: 'Tarkov Cheats FAQ — delivery, setup, and update answers',
-	support: 'Tarkov Cheats support page for license and setup help',
-	undetected: 'Tarkov Cheats undetected status overview for Windows PC',
-	wallhack: 'Tarkov wallhack visibility through walls in a raid',
-	radar: 'Tarkov 2D radar overlay showing nearby threats',
-	battleye: 'Tarkov Cheats maintenance after a BattlEye patch',
-	'cheats-2026': 'Tarkov Cheats product overview for Escape from Tarkov',
-	hacks: 'Tarkov Cheats product page — ESP, aimbot, and radar',
-	'cheat-download': 'Tarkov Cheats download and install delivery flow',
-	'mod-menu': 'Tarkov Cheats in-game menu controls',
-	'soft-aim': 'Tarkov soft aim FOV and smoothness settings',
-	'best-cheats': 'Tarkov Cheats overview for Escape from Tarkov on PC',
-	'aimbot-hack': 'Tarkov aimbot hack controls and bone priority',
-	'esp-hack': 'Tarkov ESP hack boxes and loot markers',
-	'unlock-all': 'Tarkov Cheats license features overview',
-	privacy: 'Tarkov Cheats privacy policy page',
-	refund: 'Tarkov Cheats refund policy page',
-	terms: 'Tarkov Cheats terms of use page',
+
+	home: 'Palia Kilima Village gameplay — buy Palia cheats with ESP and teleport',
+
+	'palia-esp': 'Palia ore mining with resource ESP boxes and distance readouts',
+
+	'palia-aimbot': 'Bahari Bay hunting routes with soft aim for Palia wildlife',
+
+	features: 'Palia housing interior — cheat menu, ESP, and automation tools',
+
+	pricing: 'Palia homestead plot — buy Palia cheats monthly or lifetime',
+
+	setup: 'Palia housing interior — setup cheat menu after checkout',
+
+	updates: 'Kilima Village gameplay — Palia cheats status after EAC patches',
+
+	faq: 'Palia homestead — FAQ about buying Palia cheats on Windows PC',
+
+	support: 'Kilima Village — Palia cheats support and license help',
+
+	undetected: 'Kilima Village — undetected Palia cheats status overview',
+
+	wallhack: 'Palia ore mining with wallhack resource markers through terrain',
+
+	radar: 'Bahari Bay landscape — teleport bookmarks and map ESP',
+
+	eac: 'Kilima Village — EAC maintenance for Palia cheats after patches',
+
+	'cheats-2026': 'Palia homestead — 2026 Palia cheats buyer guide',
+
+	hacks: 'Palia ore mining — buy Palia cheats with ESP and fishing tools',
+
+	'cheat-download': 'Palia homestead — instant Palia cheats license delivery',
+
+	'mod-menu': 'Palia housing interior — in-game cheat menu controls',
+
+	'soft-aim': 'Bahari Bay — soft aim settings for hunting and fishing',
+
+	'best-cheats': 'Palia homestead — best Palia cheats comparison',
+
+	'aimbot-hack': 'Bahari Bay — hunting aimbot controls for Palia',
+
+	'esp-hack': 'Palia ore mining — ESP hack resource markers',
+
+	'unlock-all': 'Palia housing interior — real cheat tools vs unlock-all scams',
+
+	privacy: 'Kilima Village — Palia Cheats privacy policy',
+
+	refund: 'Palia homestead — Palia Cheats refund policy',
+
+	terms: 'Kilima Village — Palia Cheats terms of use',
+
 };
+
+

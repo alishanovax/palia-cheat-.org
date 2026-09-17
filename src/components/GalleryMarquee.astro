@@ -1,0 +1,171 @@
+---
+import { contentImageSrc, contentSrcSet } from '../lib/responsive-images';
+
+export type MarqueeSlide = {
+	src: string;
+	alt: string;
+};
+
+interface Props {
+	slides: MarqueeSlide[];
+	label?: string;
+}
+
+const { slides, label = 'Gameplay gallery' } = Astro.props;
+
+const prepared = slides.map((slide) => ({
+	src: contentImageSrc(slide.src),
+	srcSet: contentSrcSet(slide.src),
+	alt: slide.alt.trim(),
+}));
+---
+
+{
+	prepared.length > 0 && (
+		<div class="gallery-marquee" data-gallery-marquee aria-label={label}>
+			<div class="gallery-marquee__track">
+				<ul class="gallery-marquee__row">
+					{prepared.map((slide) => (
+						<li>
+							<figure class="gallery-marquee__item">
+								<img
+									src={slide.src}
+									srcset={slide.srcSet}
+									sizes="(max-width: 900px) 72vw, 480px"
+									alt={slide.alt}
+									width="800"
+									height="500"
+									loading="lazy"
+									decoding="async"
+								/>
+							</figure>
+						</li>
+					))}
+				</ul>
+				<ul class="gallery-marquee__row" aria-hidden="true">
+					{prepared.map((slide) => (
+						<li>
+							<figure class="gallery-marquee__item">
+								<img
+									src={slide.src}
+									srcset={slide.srcSet}
+									sizes="(max-width: 900px) 72vw, 480px"
+									alt=""
+									width="800"
+									height="500"
+									loading="lazy"
+									decoding="async"
+									tabindex="-1"
+								/>
+							</figure>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+	)
+}
+
+<style>
+	.gallery-marquee {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+	}
+
+	.gallery-marquee__track {
+		display: flex;
+		width: max-content;
+		animation: gallery-marquee-scroll 80s linear infinite;
+		will-change: transform;
+	}
+
+	.gallery-marquee:hover .gallery-marquee__track,
+	.gallery-marquee:focus-within .gallery-marquee__track {
+		animation-play-state: paused;
+	}
+
+	.gallery-marquee__row {
+		display: flex;
+		gap: 0.85rem;
+		margin: 0;
+		padding: 0.25rem 0.85rem 0.25rem 0;
+		list-style: none;
+	}
+
+	.gallery-marquee__row > li {
+		flex: 0 0 auto;
+		width: min(32rem, 72vw);
+	}
+
+	.gallery-marquee__item {
+		margin: 0;
+		overflow: hidden;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-elevated);
+		aspect-ratio: 16 / 10;
+	}
+
+	.gallery-marquee__item img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@keyframes gallery-marquee-scroll {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (max-width: 760px) {
+		.gallery-marquee {
+			mask-image: none;
+			-webkit-mask-image: none;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: none;
+		}
+
+		.gallery-marquee::-webkit-scrollbar {
+			display: none;
+		}
+
+		.gallery-marquee__track {
+			animation: none;
+		}
+
+		.gallery-marquee__row[aria-hidden='true'] {
+			display: none;
+		}
+
+		.gallery-marquee__row {
+			padding-inline: var(--page-gutter, 1rem);
+		}
+
+		.gallery-marquee__row > li {
+			width: min(22rem, 82vw);
+			scroll-snap-align: start;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.gallery-marquee__track {
+			animation: none;
+		}
+
+		.gallery-marquee {
+			overflow-x: auto;
+			scrollbar-width: thin;
+		}
+
+		.gallery-marquee__row[aria-hidden='true'] {
+			display: none;
+		}
+	}
+</style>

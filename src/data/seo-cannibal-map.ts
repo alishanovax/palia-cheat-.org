@@ -1,19 +1,28 @@
 /**
- * Near-duplicate pageIds → stronger pillars.
- * Kept free of routing imports to avoid circular deps with localizeInternalHref.
+ * Near-duplicate pageIds → stronger pillars (edge 301 only).
+ * Do not add src/pages routes for these — sync-cannibal-redirects.mjs + Workers middleware.
+ * Weaker URLs redirect to the nav-linked pillar so Google gets one target per topic.
  */
 export const cannibalRedirectTargets = {
-	'best-cheats': 'hacks',
+	'esp-hack': 'palia-esp',
+	'aimbot-hack': 'palia-aimbot',
+	'soft-aim': 'palia-aimbot',
+	/** EAC maintenance → live status pillar */
+	eac: 'updates',
+	/** Year-stamped buyer guide → cheats money page */
 	'cheats-2026': 'hacks',
-	undetected: 'hacks',
-	'mod-menu': 'hacks',
-	'unlock-all': 'hacks',
-	'aimbot-hack': 'tarkov-aimbot',
-	'soft-aim': 'tarkov-aimbot',
-	'esp-hack': 'tarkov-esp',
-	wallhack: 'tarkov-esp',
+	/** Unlock-all searches → features (what the license includes) */
+	'unlock-all': 'features',
+	/** Delivery / download intent → setup pillar */
 	'cheat-download': 'setup',
-	battleye: 'updates',
+	/** In-game menu toggles → features list */
+	'mod-menu': 'features',
+	/** “Best cheats” comparisons → money page */
+	'best-cheats': 'hacks',
+	/** Wallhack intent → ESP pillar (one visibility URL) */
+	wallhack: 'palia-esp',
+	/** Undetected maintenance → status pillar */
+	undetected: 'updates',
 } as const;
 
 export type CannibalPageId = keyof typeof cannibalRedirectTargets;

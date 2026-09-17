@@ -2,11 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
-import { customerReviewStats, customerReviews, productInfo, siteConfig } from '../../../data/site';
+import {
+	customerReviewStats,
+	customerReviews,
+	productInfo,
+	productSchemaId,
+	siteConfig,
+} from '../../../data/site';
 import { getSelfHreflangAlternates } from '../../../data/i18n/routing';
 import { getReviewPath, getReviewCrawlImage, reviewsBasePath } from '../../../data/reviews';
 import type { CustomerReview } from '../../../data/site';
-import { contentSrcSet, productMainSizes } from '../../../lib/responsive-images';
+import { contentImageSrc, contentSrcSet, productMainSizes } from '../../../lib/responsive-images';
 
 export function getStaticPaths() {
 	return customerReviews.map((review) => ({
@@ -54,15 +60,7 @@ const extraGraph: Record<string, unknown>[] = [
 			worstRating: '1',
 		},
 		reviewBody: review.text,
-		itemReviewed: {
-			'@type': 'Product',
-			'@id': `${siteConfig.url}/#product`,
-			name: productInfo.name,
-			description: productInfo.summary,
-			image: photo.url,
-			brand: { '@type': 'Brand', name: productInfo.brand },
-			url: `${siteConfig.url}/`,
-		},
+		itemReviewed: { '@id': productSchemaId },
 		publisher: { '@id': `${siteConfig.url}/#organization` },
 	},
 ];
@@ -74,7 +72,7 @@ const extraGraph: Record<string, unknown>[] = [
 	canonicalPath={canonicalPath}
 	hreflangAlternates={hreflangAlternates}
 	ogImage={photo.src}
-	ogImageAlt={`${siteConfig.name} review by @${review.handle}`}
+	ogImageAlt={photo.caption}
 	type="article"
 	locale="en"
 	breadcrumbs={[
@@ -99,15 +97,14 @@ const extraGraph: Record<string, unknown>[] = [
 			<article class="review-detail">
 				<figure class="review-detail__media">
 					<img
-						src={photo.src}
+						src={contentImageSrc(photo.src)}
 						srcset={contentSrcSet(photo.src)}
-						sizes={productMainSizes}
-						alt={`${siteConfig.name} review by @${review.handle}`}
-						width="1280"
-						height="720"
-						loading="eager"
+						sizes="(max-width: 768px) 100vw, 224px"
+						alt={photo.caption}
+						width="640"
+						height="480"
+						loading="lazy"
 						decoding="async"
-						fetchpriority="high"
 					/>
 				</figure>
 				<header class="review-detail__head">
@@ -134,7 +131,7 @@ const extraGraph: Record<string, unknown>[] = [
 					<a href={siteConfig.checkoutUrl} class="review-detail__buy" rel="noopener noreferrer">
 						Buy {siteConfig.name} — ${productInfo.plans[0].price}
 					</a>
-					<a href="/pricing/" class="review-detail__link-btn">Compare pricing</a>
+					<a href="/store/" class="review-detail__link-btn">Compare pricing</a>
 					<a href="/" class="review-detail__link-btn">{siteConfig.name} home</a>
 				</div>
 			</article>
@@ -209,17 +206,19 @@ const extraGraph: Record<string, unknown>[] = [
 
 	.review-detail__media {
 		margin: 0 0 1.35rem;
+		width: min(100%, 14rem);
 		border-radius: var(--radius-md, 0.75rem);
 		overflow: hidden;
 		border: 1px solid var(--line-soft);
 		background: var(--bg-elevated);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 	}
 
 	.review-detail__media img {
 		display: block;
 		width: 100%;
 		height: auto;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 4 / 3;
 		object-fit: cover;
 	}
 

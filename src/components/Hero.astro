@@ -3,7 +3,9 @@ import HeroApp from './react/Hero';
 import type { LocaleCode } from '../data/i18n/locales';
 import { defaultLocale } from '../data/i18n/locales';
 import { productInfo, siteConfig } from '../data/site';
+import { getLocalizedPath } from '../data/i18n/routing';
 import { heroWidth, heroHeight, heroSrcSet, heroSizes, heroSrc } from '../lib/responsive-images';
+import { getT } from '../i18n/server';
 
 interface Props {
 	locale?: LocaleCode;
@@ -11,20 +13,46 @@ interface Props {
 
 const locale = Astro.props.locale ?? defaultLocale;
 const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo.plans[0];
+const t = getT(locale);
+
+const heroCopy = {
+	title: t('hero.title'),
+	subtitle: t('hero.subtitle'),
+	ctaCheats: t('hero.viewCheats'),
+	plansCta: t('hero.viewPlans'),
+	imageAlt: t('hero.imageAlt', { brand: siteConfig.name }),
+	trustPillsAria: t('trustPills.aria'),
+	chips: {
+		chipEsp: t('hero.chipEsp'),
+		chipAim: t('hero.chipAim'),
+		chipRadar: t('hero.chipRadar'),
+		chipUpdates: t('hero.chipUpdates'),
+	},
+	trustPills: {
+		fastUpdates: t('trustPills.fastUpdates'),
+		secureCheckout: t('trustPills.secureCheckout'),
+		easySetup: t('trustPills.easySetup'),
+		premiumSupport: t('trustPills.premiumSupport'),
+		instantDelivery: t('trustPills.instantDelivery'),
+		eacMaintenance: t('trustPills.eacMaintenance'),
+	},
+};
 ---
 
 <HeroApp
 	client:load
 	locale={locale}
 	siteName={siteConfig.name}
-	checkoutUrl={siteConfig.checkoutUrl}
+	cheatsHref={getLocalizedPath('hacks', locale)}
+	storeHref={getLocalizedPath('pricing', locale)}
 	monthlyPrice={monthly.price}
 	heroSrc={heroSrc}
 	heroSrcSet={heroSrcSet}
 	heroSizes={heroSizes}
 	heroWidth={heroWidth}
 	heroHeight={heroHeight}
-	useBrandHero={locale === 'en'}
+	useBrandHero={true}
+	copy={heroCopy}
 />
 
 <style is:global>
@@ -32,8 +60,7 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 		--hero-pad-y: clamp(1rem, 2vw, 1.75rem);
 		--hero-stack: clamp(0.5rem, 1.1vw, 0.75rem);
 		/*
-		 * Bar is a bit shorter than the native 1024/409 (~2.5:1) art.
-		 * Image stays undistorted via object-fit: cover (crops edges, no squash).
+		 * Wide hero bar — gameplay art crops with object-fit: cover (no squash).
 		 */
 		--hero-ratio: 3.15 / 1;
 		position: relative;
@@ -41,7 +68,7 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 		display: grid;
 		align-items: center;
 		overflow: hidden;
-		background: #050506;
+		background: #0d0a14;
 		aspect-ratio: var(--hero-ratio);
 		width: 100%;
 		height: auto;
@@ -63,10 +90,9 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 	}
 
 	.hero__media img {
-		/* Cover = keep proportions; crop top/bottom of the shorter bar */
 		object-fit: cover;
-		/* Prefer a bit higher in the frame so the USEC head stays in view */
-		object-position: right 28%;
+		/* Character on the right; headline on the left */
+		object-position: 62% center;
 		image-rendering: auto;
 		transform: translateZ(0);
 		animation: hero-in 0.9s ease-out both;
@@ -79,10 +105,10 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 		pointer-events: none;
 		background: linear-gradient(
 			90deg,
-			rgba(5, 5, 6, 0.78) 0%,
-			rgba(5, 5, 6, 0.52) 34%,
-			rgba(5, 5, 6, 0.18) 58%,
-			transparent 74%
+			rgba(13, 10, 20, 0.88) 0%,
+			rgba(13, 10, 20, 0.62) 38%,
+			rgba(13, 10, 20, 0.22) 62%,
+			transparent 78%
 		);
 	}
 
@@ -132,6 +158,33 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
 		line-height: 1.5;
 		color: color-mix(in srgb, #fff 74%, var(--ink-muted));
+	}
+
+	.hero__ghost {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		min-height: 2.75rem;
+		padding: 0 1.15rem;
+		border: 1px solid color-mix(in srgb, var(--magenta) 45%, var(--line));
+		border-radius: var(--radius-pill);
+		background: color-mix(in srgb, var(--magenta) 12%, transparent);
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--ink);
+		text-decoration: none;
+		box-shadow: 0 0 24px color-mix(in srgb, var(--magenta) 18%, transparent);
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.hero__ghost:hover {
+		border-color: var(--magenta-soft);
+		background: color-mix(in srgb, var(--magenta) 20%, transparent);
+		transform: translateY(-2px);
 	}
 
 	.hero__actions {
@@ -243,6 +296,57 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 		color: var(--magenta-soft);
 	}
 
+	.hero__pills {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 3;
+		padding-block: 0.55rem 0.7rem;
+		pointer-events: none;
+	}
+
+	.hero__pills-track {
+		padding-inline: var(--page-gutter);
+	}
+
+	.hero__pills-list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.hero__pills-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.4rem 0.8rem;
+		border: 1px solid color-mix(in srgb, #fff 14%, var(--magenta) 20%);
+		border-radius: var(--radius-pill);
+		background: color-mix(in srgb, rgba(13, 10, 20, 0.78) 88%, var(--magenta) 10%);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: color-mix(in srgb, #fff 92%, var(--ink-muted));
+		white-space: nowrap;
+		pointer-events: auto;
+		box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+	}
+
+	.hero__pills-dot {
+		width: 0.38rem;
+		height: 0.38rem;
+		border-radius: 999px;
+		background: var(--magenta-soft);
+		box-shadow: 0 0 8px color-mix(in srgb, var(--magenta-soft) 55%, transparent);
+	}
+
 	@keyframes rise {
 		from {
 			opacity: 0;
@@ -297,7 +401,7 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 
 		.hero__media img {
 			object-fit: cover;
-			object-position: 78% 10%;
+			object-position: center 30%;
 		}
 
 		.hero__veil {
@@ -316,9 +420,26 @@ const monthly = productInfo.plans.find((p) => p.id === 'monthly') ?? productInfo
 			min-height: clamp(18.5rem, 56svh, 28rem);
 			display: flex;
 			align-items: flex-end;
-			padding-block: 1.35rem 1.2rem;
-			padding-bottom: max(1.2rem, env(safe-area-inset-bottom, 0px));
+			padding-block: 1.35rem 3.75rem;
+			padding-bottom: max(3.75rem, calc(3.25rem + env(safe-area-inset-bottom, 0px)));
 			box-sizing: border-box;
+		}
+
+		.hero__pills {
+			padding-bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
+		}
+
+		.hero__pills-list {
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			overflow-x: auto;
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+			padding-block: 0.15rem;
+		}
+
+		.hero__pills-list::-webkit-scrollbar {
+			display: none;
 		}
 
 		.hero__copy {

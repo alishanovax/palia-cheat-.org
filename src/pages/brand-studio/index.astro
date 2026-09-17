@@ -56,8 +56,8 @@ const seoDefaults = {
 	reviewsTitle: '{brand} Reviews | Buyer Feedback',
 	reviewsDescription:
 		'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
-	blogTitle: '{game} Intel | {brand}',
-	blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+	forumTitle: '{game} Intel | {brand}',
+	forumDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
 };
 
 const copyDefaults = {
@@ -65,7 +65,7 @@ const copyDefaults = {
 	summary:
 		'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
 	heroLede: 'Hacks and cheats available -- 0% detection.',
-	blogLabel: '{game} Intel',
+	forumLabel: '{game} Intel',
 	ctaBuy: 'Buy now',
 	ctaBuyShort: 'Buy',
 	featuresIntro: 'Everything included in one license for {game} on Windows PC.',
@@ -176,7 +176,7 @@ const product: Field[] = [
 	{
 		name: 'game',
 		label: 'Game',
-		tip: 'What: The game this template instance is for. | Why: Fills {game} in titles, FAQs, Status copy, and SEO titles like "Tarkov Features | Brand". | Example: Fortnite, Apex Legends, Marathon',
+		tip: 'What: The game this template instance is for. | Why: Fills {game} in titles, FAQs, Status copy, and SEO titles like "Palia Features | Brand". | Example: Fortnite, Apex Legends, Marathon',
 		value: brand.game,
 		required: true,
 		maxlength: 80,
@@ -184,7 +184,7 @@ const product: Field[] = [
 	{
 		name: 'antiCheat',
 		label: 'Anti-cheat',
-		tip: 'What: The game anti-cheat system name. | Why: Status / FAQ text mentions rebuilds after this anti-cheat patches. Use {antiCheat} token. | Example: Easy Anti-Cheat, BattlEye, BattlEye',
+		tip: 'What: The game anti-cheat system name. | Why: Status / FAQ text mentions rebuilds after this anti-cheat patches. Use {antiCheat} token. | Example: Easy Anti-Cheat, Easy Anti-Cheat, Easy Anti-Cheat',
 		value: brand.antiCheat,
 		required: true,
 		maxlength: 80,
@@ -319,7 +319,7 @@ const seoFields: Field[] = [
 	{
 		name: 'statusDescription',
 		label: 'Status description',
-		tip: 'What: Meta description for Status. | Why: Mention {antiCheat} and patch checks. | Example: Live status for Marathon Hacks after Marathon or BattlEye patches...',
+		tip: 'What: Meta description for Status. | Why: Mention {antiCheat} and patch checks. | Example: Live status for Marathon Hacks after Marathon or EAC patches...',
 		value: seo.statusDescription,
 		textarea: true,
 		rows: 2,
@@ -420,18 +420,18 @@ const seoFields: Field[] = [
 		span: true,
 	},
 	{
-		name: 'blogTitle',
+		name: 'forumTitle',
 		label: 'Blog title',
 		tip: 'What: Title for Blog / Intel index. | Why: Content hub searches. | Example: {game} Intel | {brand}',
-		value: seo.blogTitle,
+		value: seo.forumTitle,
 		maxlength: 70,
 		span: true,
 	},
 	{
-		name: 'blogDescription',
+		name: 'forumDescription',
 		label: 'Blog description',
 		tip: 'What: Meta description for Blog. | Why: Guides and patch notes. | Example: Guides and notes for {game}...',
-		value: seo.blogDescription,
+		value: seo.forumDescription,
 		textarea: true,
 		rows: 2,
 		maxlength: 160,
@@ -493,10 +493,10 @@ const copyFields: Field[] = [
 		span: true,
 	},
 	{
-		name: 'blogLabel',
+		name: 'forumLabel',
 		label: 'Blog / intel label',
-		tip: 'What: Nav label for blog or intel section. | Why: Shown in navigation when blog is enabled. | Example: Marathon Intel, Tarkov Intel',
-		value: copy.blogLabel,
+		tip: 'What: Nav label for blog or intel section. | Why: Shown in navigation when blog is enabled. | Example: Marathon Intel, Palia Forum',
+		value: copy.forumLabel,
 		required: true,
 		maxlength: 80,
 		span: true,
@@ -767,15 +767,15 @@ const seoMoreFields = seoFields.filter((f) =>
 const seoAuditRows = [
 	{ page: 'Home', path: '/', fields: 'homeTitle / homeDescription', status: 'Live · permanent' },
 	{ page: 'Features', path: '/features/', fields: 'featuresTitle / Description + intro', status: 'Live · permanent' },
-	{ page: 'Store', path: '/pricing/', fields: 'storeTitle / Description + intro', status: 'Live · permanent' },
+	{ page: 'Store', path: '/store/', fields: 'storeTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Status', path: '/updates/', fields: 'statusTitle / Description + intro', status: 'Live · permanent' },
-	{ page: 'Preview', path: '/tarkov-cheats/', fields: 'previewTitle / Description + intro', status: 'Live · permanent' },
+	{ page: 'Preview', path: '/cheats/', fields: 'previewTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Setup', path: '/setup/', fields: 'setupTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Support', path: '/support/', fields: 'supportTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'FAQ index', path: '/faq/', fields: 'faqTitle / Description + intro', status: 'Live · permanent' },
 	{ page: 'Reviews index', path: '/reviews/', fields: 'reviewsTitle / Description + intro', status: 'Live · permanent' },
-	{ page: 'Blog index', path: '/blog/', fields: 'blogTitle / blogDescription', status: 'Live · EN permanent' },
-	{ page: 'Keyword landings', path: '/tarkov-esp/ …', fields: 'content.generated.ts', status: 'Manual file' },
+	{ page: 'Blog index', path: '/forum/', fields: 'forumTitle / forumDescription', status: 'Live · EN permanent' },
+	{ page: 'Keyword landings', path: '/palia-esp/ …', fields: 'content.generated.ts', status: 'Manual file' },
 	{ page: 'FAQ answers', path: '/faq/[slug]/', fields: 'site.ts faqs', status: 'Manual file' },
 	{ page: 'Review posts', path: '/reviews/[slug]/', fields: 'site.ts reviews', status: 'Manual file' },
 ] as const;
@@ -1528,8 +1528,8 @@ const sections = [
 					reviewsTitle: '{brand} Reviews | Buyer Feedback',
 					reviewsDescription:
 						'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
-					blogTitle: '{game} Intel | {brand}',
-					blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+					forumTitle: '{game} Intel | {brand}',
+					forumDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
 				};
 
 				const copyTemplates = {
@@ -1537,7 +1537,7 @@ const sections = [
 					summary:
 						'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
 					heroLede: 'Hacks and cheats available -- 0% detection.',
-					blogLabel: '{game} Intel',
+					forumLabel: '{game} Intel',
 					ctaBuy: 'Buy now',
 					ctaBuyShort: 'Buy',
 					featuresIntro: 'Everything included in one license for {game} on Windows PC.',
@@ -1751,14 +1751,14 @@ const sections = [
 						const paths = {
 							home: '/',
 							features: '/features/',
-							store: '/pricing/',
+							store: '/store/',
 							status: '/updates/',
-							preview: '/tarkov-cheats/',
+							preview: '/cheats/',
 							setup: '/setup/',
 							support: '/support/',
 							faq: '/faq/',
 							reviews: '/reviews/',
-							blog: '/blog/',
+							blog: '/forum/',
 						};
 						const path = paths[activeSerp] || '/';
 						serpUrl.textContent = (u || 'example.com') + path;
@@ -2323,12 +2323,12 @@ const sections = [
 						faqDescription: fd.get('faqDescription'),
 						reviewsTitle: fd.get('reviewsTitle'),
 						reviewsDescription: fd.get('reviewsDescription'),
-						blogTitle: fd.get('blogTitle'),
-						blogDescription: fd.get('blogDescription'),
+						forumTitle: fd.get('forumTitle'),
+						forumDescription: fd.get('forumDescription'),
 						tagline: fd.get('tagline'),
 						summary: fd.get('summary'),
 						heroLede: fd.get('heroLede'),
-						blogLabel: fd.get('blogLabel'),
+						forumLabel: fd.get('forumLabel'),
 						ctaBuy: fd.get('ctaBuy'),
 						ctaBuyShort: fd.get('ctaBuyShort'),
 						featuresIntro: fd.get('featuresIntro'),

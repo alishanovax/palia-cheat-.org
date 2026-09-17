@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import I18nProvider from './I18nProvider';
 
 type FooterLink = { labelKey: string; href: string };
+type GuideLink = { label: string; href: string };
 
 type Props = {
 	locale: string;
@@ -9,10 +10,11 @@ type Props = {
 	supportEmail: string;
 	shareUrl: string;
 	explore: FooterLink[];
+	guides?: GuideLink[];
 	help: FooterLink[];
 };
 
-function SiteFooterInner({ siteName, supportEmail, shareUrl, explore, help }: Props) {
+function SiteFooterInner({ siteName, supportEmail, shareUrl, explore, guides = [], help }: Props) {
 	const { t } = useTranslation();
 	const year = new Date().getFullYear();
 	const encodedUrl = encodeURIComponent(shareUrl);
@@ -61,6 +63,18 @@ function SiteFooterInner({ siteName, supportEmail, shareUrl, explore, help }: Pr
 						))}
 					</ul>
 				</div>
+				{guides.length > 0 ? (
+					<div>
+						<p className="site-footer__label">Guides</p>
+						<ul>
+							{guides.map((link) => (
+								<li key={link.href}>
+									<a href={link.href}>{link.label}</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				) : null}
 				<div>
 					<p className="site-footer__label">{t('footer.help')}</p>
 					<ul>

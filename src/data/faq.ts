@@ -1,7 +1,17 @@
-import { seoFaqs, siteConfig, type FaqItem } from './site';
+import { indexedFaqs, seoFaqs, siteConfig, type FaqItem } from './site';
 import { crawlPhotoMeta } from './page-images';
 
 export const faqBasePath = '/faq/';
+
+/**
+ * High-intent FAQ slugs kept indexable (max 4) — rest are noindex.
+ * FAQPage JSON-LD: indexed /faq/{slug}/ only. Homepage #faq uses hub-only questions (no overlap).
+ */
+export const indexedFaqSlugs = new Set(indexedFaqs.map((item) => item.slug));
+
+export function isFaqIndexable(slug: string): boolean {
+	return indexedFaqSlugs.has(slug);
+}
 
 export function getFaqPath(slug: string): string {
 	return `${faqBasePath}${slug}/`;
@@ -28,14 +38,14 @@ export function getRelatedFaqs(slug: string, count = 4): FaqItem[] {
 }
 
 export function getFaqCrawlImage(item: FaqItem) {
-	return crawlPhotoMeta(item.slug, item.question, item.seoDescription);
+	return crawlPhotoMeta(item.slug);
 }
 
 /** English FAQ answer routes for sitemap-en.xml — every URL includes a crawl photo. */
 export function getFaqSitemapEntries() {
 	const lastmod = '2026-08-11';
 
-	return seoFaqs.map((item) => {
+	return seoFaqs.filter((item) => isFaqIndexable(item.slug)).map((item) => {
 		const photo = getFaqCrawlImage(item);
 		return {
 			path: getFaqPath(item.slug),

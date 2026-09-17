@@ -21,6 +21,8 @@ interface Props {
 	ogImage?: string;
 	ogImageAlt?: string;
 	noindex?: boolean;
+	/** When noindex is true, allow follow (default: nofollow). */
+	robotsFollow?: boolean;
 	type?: 'website' | 'article';
 	breadcrumbs?: Crumb[];
 	locale?: LocaleCode;
@@ -39,6 +41,7 @@ const {
 	ogImage = siteConfig.defaultOgImage,
 	ogImageAlt = title,
 	noindex = false,
+	robotsFollow = false,
 	type = 'website',
 	breadcrumbs,
 	locale = defaultLocale,
@@ -58,7 +61,11 @@ const ogImageType = ogImage.endsWith('.webp') ? 'image/webp' : 'image/png';
 const ogImageWidth = ogImageIsLogo ? '512' : '1920';
 const ogImageHeight = ogImageIsLogo ? '512' : '1080';
 const twitterCard = ogImageIsLogo ? 'summary' : 'summary_large_image';
-const robots = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
+const robots = noindex
+	? robotsFollow
+		? 'noindex, follow'
+		: 'noindex, nofollow'
+	: 'index, follow, max-image-preview:large';
 const siteDescription = `${productInfo.tagline}. ${productInfo.summary}`;
 const localeMeta = localeMap[locale];
 const ogLocaleAlternates = locales.filter((l) => l.code !== locale);
@@ -162,7 +169,7 @@ if (aboutNode) {
 ---
 
 <!doctype html>
-<html lang={locale} dir={localeMeta.dir} style={brandThemeInlineStyle()}>
+<html lang={locale} dir="ltr" style={brandThemeInlineStyle()}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

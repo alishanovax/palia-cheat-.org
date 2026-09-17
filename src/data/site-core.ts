@@ -13,24 +13,25 @@ export function seoPageTitle(template: string): string {
 export { brand, fillBrandTokens, seoDescription, seoTitle };
 
 const copyDefaults = {
-	tagline: 'Undetected {primaryKeyword} — ESP, aimbot, and radar for PC',
+	tagline: 'Buy {primaryKeyword} — ESP, wallhack, and cheat menu for PC',
 	summary:
-		'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
-	heroLede: 'Hacks and cheats available — 0% detection.',
-	blogLabel: '{game} Intel',
-	ctaBuy: 'Buy now',
-	ctaBuyShort: 'Buy',
-	featuresIntro: 'Everything included in one license for {game} on Windows PC.',
-	storeIntro: 'Pick a plan. Same features on both. Instant delivery after payment.',
-	statusIntro: 'Check here after a {game} or {antiCheat} patch before you play.',
-	previewIntro: 'A quick look at {brand} — ESP, aimbot, radar, and updates after patches.',
-	setupIntro: 'Install {brand} on Windows PC after you buy. Follow these short steps.',
-	supportIntro: 'Need help with {brand}? Email {email} with your order ID.',
-	faqIntro: 'Short answers about delivery, setup, updates, and refunds.',
-	reviewsIntro: 'Real feedback from {brand} buyers — ESP, soft aim, radar, and support.',
-	chipEsp: 'ESP / wallhack',
+		'{brand} is a palia cheats package for Windows PC. Resource ESP, wallhack, fishing tools, and {antiCheat} maintenance after patches.',
+	heroLede: 'Buy palia cheats for PC — resource ESP, wallhack, and cheat menu from $35.',
+	forumLabel: 'Palia Forum',
+	ctaBuy: 'Buy Now',
+	ctaBuyShort: 'Buy Now',
+	featuresIntro:
+		'Palia cheats features — ESP, wallhack, fishing tools, teleport, and automation in one license.',
+	storeIntro: 'Buy palia cheats — monthly or lifetime. Same features on every plan.',
+	statusIntro: 'Palia cheats status after a {game} or {antiCheat} patch.',
+	previewIntro: 'Buy palia cheats for PC — ESP, wallhack, fishing tools, and cheat menu.',
+	setupIntro: 'Set up palia cheats on Windows PC after checkout.',
+	supportIntro: 'Palia cheats support — email {email} with your order ID.',
+	faqIntro: 'FAQ about buying palia cheats — delivery, ESP, wallhack, and refunds.',
+	reviewsIntro: 'Palia cheats reviews — ESP, wallhack, fishing tools, and support.',
+	chipEsp: 'ESP',
 	chipAim: 'Soft aim',
-	chipRadar: '2D radar',
+	chipRadar: 'Wallhack',
 	chipUpdates: 'Patch updates',
 	navPreview: 'Preview',
 	navFeatures: 'Features',
@@ -42,18 +43,19 @@ const copyDefaults = {
 const seoDefaults = {
 	homeTitle: '{brand} | Undetected {primaryKeyword}',
 	homeDescription:
-		'{primaryKeyword} for Windows PC — ESP, aimbot, and radar with {antiCheat} maintenance. Compare plans and buy.',
+		'Buy {primaryKeyword} for Windows PC — resource ESP, fishing tools, teleport, and cheat menu from $35. Instant delivery.',
 	featuresTitle: '{game} Features | {brand}',
 	featuresDescription:
-		'Everything in one {game} license for Windows PC — ESP, aimbot, radar, and patch updates.',
+		'Full {game} cheats feature list — resource ESP, wallhack, fishing tools, teleport, and skill automation on Windows PC.',
 	storeTitle: '{game} Store | {brand}',
-	storeDescription: 'Monthly and lifetime {game} plans. Same features. Instant delivery after payment.',
+	storeDescription:
+		'{game} cheats pricing — $35 monthly or $150 lifetime. Same ESP, wallhack, and cheat menu on every plan.',
 	statusTitle: '{game} Status | {brand}',
 	statusDescription:
-		'Live status for {brand} after {game} or {antiCheat} patches. Check before you queue.',
+		'Undetected {brand} status after {game} or {antiCheat} patches. Check before you log in on Windows PC.',
 	previewTitle: '{game} Preview | {brand}',
 	previewDescription:
-		'Quick preview of {brand} — ESP, aimbot, radar, and updates after {game} patches.',
+		'Buy {primaryKeyword} for PC — cheat menu with ESP, fishing tools, teleport, and automation from $35.',
 	setupTitle: '{game} Setup | {brand}',
 	setupDescription: 'Install and launch {brand} on Windows PC. Short setup steps after you buy.',
 	supportTitle: '{game} Support | {brand}',
@@ -62,9 +64,9 @@ const seoDefaults = {
 	faqDescription: 'Short answers about {brand} — delivery, setup, updates, and refunds.',
 	reviewsTitle: '{brand} Reviews | Buyer Feedback',
 	reviewsDescription:
-		'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
-	blogTitle: '{game} Intel | {brand}',
-	blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+		'Real buyer reviews for {brand} — resource ESP, fishing tools, teleport, and support on Windows PC.',
+	forumTitle: '{game} Intel | {brand}',
+	forumDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
 } as const;
 
 type SeoShape = typeof seoDefaults;
@@ -104,7 +106,12 @@ export const siteConfig = {
 export const seoKeywords = brand.keywords.list;
 
 /** Blog eyebrow / title suffix */
-export const blogLabel = fillBrandTokens(brandCopy.blogLabel);
+export const forumLabel = fillBrandTokens(brandCopy.forumLabel);
+
+/** Canonical commercial URL — single Product schema node lives here (EN only). */
+export const productCanonicalPath = '/cheats/' as const;
+export const productCanonicalUrl = new URL(productCanonicalPath, brand.url).href;
+export const productSchemaId = `${productCanonicalUrl}#product`;
 
 export const productInfo = {
 	name: brand.name,
@@ -124,25 +131,26 @@ export const productInfo = {
 	heroLede: fillBrandTokens(brandCopy.heroLede),
 	features: {
 		esp: [
-			'PMC and Scav ESP / wallhack',
-			'Player gear and threat cues',
-			'Loot and extract markers',
-			'Distance readouts',
-			'Toggleable ESP categories',
-			'Corpse and container highlights',
+			'Resource node ESP — ore, wood, and forage',
+			'Fishing spot and rare fish ESP',
+			'Insect and bug location highlights',
+			'Player position markers in multiplayer',
+			'Distance readouts on all nodes',
+			'Toggleable ESP categories per skill',
 		],
 		aimbot: [
-			'Soft aim and aimbot controls',
-			'Smoothness and FOV settings',
-			'Bone priority',
-			'Hotkeys mid-raid',
-			'Per-weapon profiles',
+			'Hunting aim assist for Bahari wildlife',
+			'Smoothness and FOV tuning',
+			'Bone priority for clean kills',
+			'Hotkeys mid-session',
+			'Per-weapon hunting profiles',
 		],
-		radar: ['2D radar overlay', 'Adjustable range', 'Works in PMC raids and Scav runs'],
+		radar: ['Teleport between Kilima and Bahari', 'Freecam for exploration', 'Saved coordinate bookmarks'],
 		general: [
 			fillBrandTokens('{antiCheat} maintenance after patches'),
+			'Skill automation and AFK grinding',
 			'Digital delivery after checkout',
-			'Setup guide and support',
+			'Setup guide and forum support',
 		],
 	},
 } as const;

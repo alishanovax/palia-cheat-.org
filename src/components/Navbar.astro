@@ -9,7 +9,8 @@ import {
 import { defaultLocale, locales, type LocaleCode } from '../data/i18n/locales';
 import { reviewsBasePath } from '../data/reviews';
 import { siteConfig } from '../data/site';
-import { getBlogLocaleSwitchHref, isBlogPath } from '../data/blog/helpers';
+import { getForumBasePath, getForumLocaleSwitchHref, isForumPath } from '../data/forum/helpers';
+import { getT } from '../i18n/server';
 
 interface Props {
 	locale?: LocaleCode;
@@ -17,10 +18,11 @@ interface Props {
 }
 
 const { locale = defaultLocale, pageId: pageIdProp } = Astro.props;
+const t = getT(locale);
 const pathContext = resolvePageContextFromPath(Astro.url.pathname);
 const pageId = pageIdProp ?? pathContext.pageId ?? 'home';
 const current = Astro.url.pathname;
-const onBlog = isBlogPath(current);
+const onBlog = isForumPath(current);
 
 const pageContext = onBlog
 	? pathContext
@@ -30,7 +32,7 @@ const pageContext = onBlog
 		};
 
 function localeSwitchHref(targetLocale: LocaleCode): string {
-	if (onBlog) return getBlogLocaleSwitchHref(current, targetLocale);
+	if (onBlog) return getForumLocaleSwitchHref(current, targetLocale);
 	return getPageLocaleSwitchHref(pageContext, targetLocale);
 }
 
@@ -47,18 +49,31 @@ const localeMetas = locales.map((l) => ({
 }));
 
 const links = [
-	{ id: 'hacks', labelKey: 'nav.preview', edit: 'navPreview', href: getLocalizedPath('hacks', locale) },
-	{ id: 'esp', labelKey: 'nav.features', edit: 'navFeatures', href: getLocalizedPath('features', locale) },
-	{ id: 'pricing', labelKey: 'nav.store', edit: 'navStore', href: getLocalizedPath('pricing', locale) },
-	{ id: 'updates', labelKey: 'nav.status', edit: 'navStatus', href: getLocalizedPath('updates', locale) },
-	{ id: 'reviews', labelKey: 'nav.reviews', edit: 'navReviews', href: reviewsBasePath },
+	{ id: 'home', label: t('nav.home'), edit: 'navHome', href: getLocalizedPath('home', locale) },
+	{ id: 'hacks', label: t('nav.preview'), edit: 'navPreview', href: getLocalizedPath('hacks', locale) },
+	{ id: 'features', label: t('nav.features'), edit: 'navFeatures', href: getLocalizedPath('features', locale) },
+	{ id: 'pricing', label: t('nav.store'), edit: 'navStore', href: getLocalizedPath('pricing', locale) },
+	{ id: 'updates', label: t('nav.status'), edit: 'navStatus', href: getLocalizedPath('updates', locale) },
+	{ id: 'forum', label: t('nav.forum'), edit: 'navForum', href: getForumBasePath(locale) },
+	{ id: 'reviews', label: t('nav.reviews'), edit: 'navReviews', href: reviewsBasePath },
 ];
+
+const uiLabels = {
+	primaryAria: t('nav.primaryAria'),
+	mobileAria: t('nav.mobileAria'),
+	openMenu: t('nav.openMenu'),
+	closeMenu: t('nav.closeMenu'),
+	buyShort: t('cta.buyShort'),
+	buy: t('cta.buy'),
+};
 ---
 
 <NavbarApp
 	client:load
 	locale={locale}
 	siteName={siteConfig.name}
+	logoUrl={siteConfig.logo}
+	logoAlt={siteConfig.logoAlt}
 	checkoutUrl={siteConfig.checkoutUrl}
 	currentPath={current}
 	homeHref={getLocalizedPath('home', locale)}
@@ -66,6 +81,7 @@ const links = [
 	locales={localeMetas}
 	hrefForLocale={hrefForLocale}
 	links={links}
+	uiLabels={uiLabels}
 />
 
 <style is:global>
@@ -73,12 +89,16 @@ const links = [
 		overflow: hidden;
 	}
 
+	.site-header .lang-switcher {
+		position: relative;
+	}
+
 	.site-header .lang-switcher__toggle {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
 		height: 2.15rem;
-		padding: 0 0.75rem;
+		padding: 0 0.65rem 0 0.75rem;
 		border: 1px solid var(--line-soft);
 		border-radius: 999px;
 		background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
@@ -86,7 +106,6 @@ const links = [
 		font-size: 0.75rem;
 		font-weight: 600;
 		letter-spacing: 0.02em;
-		list-style: none;
 		cursor: pointer;
 		transition:
 			color 0.15s ease,
@@ -94,8 +113,21 @@ const links = [
 			border-color 0.15s ease;
 	}
 
-	.site-header .lang-switcher__toggle::-webkit-details-marker {
-		display: none;
+	.site-header .lang-switcher__current {
+		max-width: 6.5rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.site-header .lang-switcher__chevron {
+		flex-shrink: 0;
+		opacity: 0.65;
+		transition: transform 0.18s ease;
+	}
+
+	.site-header .lang-switcher__chevron.is-open {
+		transform: rotate(180deg);
 	}
 
 	.site-header .lang-switcher__toggle:hover {
@@ -111,17 +143,60 @@ const links = [
 	}
 
 	.site-header .lang-switcher__panel {
+		position: absolute;
 		right: 0;
 		left: auto;
 		top: calc(100% + 0.45rem);
-		min-width: 15rem;
+		min-width: 16rem;
 		max-height: min(70vh, 22rem);
-		overflow: auto;
+		overflow-y: auto;
+		overflow-x: hidden;
+		overscroll-behavior: contain;
+		padding: 0.5rem;
 		background: var(--bg-elevated);
 		border: 1px solid var(--line);
 		border-radius: var(--radius-md);
 		box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
 		z-index: 120;
+		scrollbar-width: thin;
+		scrollbar-color: var(--line) transparent;
+	}
+
+	.site-header .lang-switcher__note {
+		margin: 0 0 0.5rem;
+		padding: 0.45rem 0.55rem;
+		border-radius: 0.5rem;
+		background: color-mix(in srgb, var(--bg) 60%, transparent);
+		color: var(--ink-muted);
+		font-size: 0.7rem;
+		line-height: 1.4;
+	}
+
+	.site-header .lang-switcher__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.site-header .lang-switcher__link {
+		display: grid;
+		gap: 0.1rem;
+		padding: 0.5rem 0.6rem;
+		border-radius: 0.5rem;
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.site-header .lang-switcher__native {
+		font-size: 0.84rem;
+		font-weight: 700;
+	}
+
+	.site-header .lang-switcher__region {
+		font-size: 0.68rem;
+		color: var(--ink-faint);
 	}
 
 	.site-header .lang-switcher__link {
@@ -174,15 +249,28 @@ const links = [
 	}
 
 	.site-header__bar {
+		position: relative;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-end;
 		min-height: var(--header-h);
 		gap: 0.75rem;
 	}
 
+	@media (min-width: 1025px) {
+		.site-nav {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1;
+		}
+	}
+
 	.site-brand {
 		display: none;
+		align-items: center;
+		gap: 0.5rem;
 		min-width: 0;
 		flex: 1 1 auto;
 		margin-right: 0.5rem;
@@ -197,6 +285,20 @@ const links = [
 		text-overflow: ellipsis;
 	}
 
+	.site-brand__logo {
+		width: auto;
+		height: 1.65rem;
+		max-width: 5.25rem;
+		flex-shrink: 0;
+		object-fit: contain;
+		border-radius: 0;
+	}
+
+	.site-brand__name {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
 	.site-brand:hover {
 		color: var(--magenta-soft);
 	}
@@ -204,8 +306,10 @@ const links = [
 	.site-nav {
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
-		gap: 0.1rem;
+		justify-content: center;
+		flex-wrap: nowrap;
+		gap: 0.08rem;
+		max-width: min(52rem, calc(100vw - 17.5rem));
 		padding: 0.22rem;
 		border: 1px solid var(--line-soft);
 		border-radius: 999px;
@@ -216,10 +320,12 @@ const links = [
 	.site-nav a {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.38rem;
-		padding: 0.4rem 0.8rem;
+		flex: 0 1 auto;
+		min-width: 0;
+		gap: 0.28rem;
+		padding: 0.38rem 0.5rem;
 		border-radius: 999px;
-		font-size: 0.8125rem;
+		font-size: clamp(0.72rem, 0.72vw, 0.8125rem);
 		font-weight: 500;
 		letter-spacing: -0.01em;
 		color: var(--ink-muted);
@@ -227,6 +333,12 @@ const links = [
 		transition:
 			color 0.15s ease,
 			background 0.15s ease;
+	}
+
+	.site-nav a span {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.site-nav a svg {
@@ -254,11 +366,12 @@ const links = [
 	}
 
 	.site-tools {
+		position: relative;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
 		gap: 0.45rem;
-		margin-left: auto;
 		min-width: 0;
 	}
 
@@ -420,7 +533,7 @@ const links = [
 		}
 
 		.site-brand {
-			display: block;
+			display: flex;
 			flex: 1 1 auto;
 			min-width: 0;
 			max-width: none;

@@ -16,9 +16,9 @@ const bad = [
 	'Activision',
 	'soft aim, and .',
 	'ESP, Soft Aim,',
-	'best-tarkov-cheats',
-	'tarkov-esp-hack',
-	'tarkov-aimbot-hack',
+	'best-palia-cheats',
+	'palia-esp-hack',
+	'palia-aimbot-hack',
 ];
 console.log('--- pages-en leftovers ---');
 for (const b of bad) {
@@ -37,21 +37,21 @@ for (const b of [
 	'vehicles before',
 	'Controllers',
 	'Battle Pass',
-	'RBattlEye',
+	'REasy Anti-Cheat',
 	'soft aim, and .',
-	'best-tarkov-cheats',
-	'tarkov-esp-hack',
+	'best-palia-cheats',
+	'palia-esp-hack',
 ]) {
 	const n = en.split(b).length - 1;
 	if (n) console.log(`${b}: ${n}`);
 }
 
-const blog = readFileSync('src/data/blog/posts.generated.ts', 'utf8');
+const blog = readFileSync('src/data/forum/posts.generated.ts', 'utf8');
 const reps = [
 	['V-Bucks', 'roubles'],
 	['Item Shop', 'Flea Market'],
 	['Battle Pass', 'wipe progression'],
-	['FNCS', 'Tarkov tournament'],
+	['FNCS', 'Palia tournament'],
 	['Hammer AR', 'M4A1'],
 	['mythics', 'meta guns'],
 	['island codes', 'offline practice maps'],
@@ -59,18 +59,18 @@ const reps = [
 	['creative 1v1s', 'aim training'],
 	['Epic health', 'Battlestate status'],
 	['Epic terms', 'Battlestate Games terms'],
-	["Epic's BattlEye", 'BattlEye'],
-	['Epic patch', 'Tarkov patch'],
+	["Epic's Easy Anti-Cheat", 'Easy Anti-Cheat'],
+	['Epic patch', 'Palia patch'],
 	['EliteFN', 'a Fortnite cheat shop'],
 	['GhostWare', 'a slim cheat vendor'],
 	['CheatVault', 'another cheat shop'],
-	['/tarkov-aimbot-hack/', '/tarkov-aimbot/'],
-	['/tarkov-esp-hack/', '/tarkov-esp/'],
-	['/best-tarkov-cheats/', '/tarkov-cheats/'],
-	['best Tarkov cheats', 'Tarkov cheats'],
+	['/palia-aimbot-hack/', '/palia-aimbot/'],
+	['/palia-esp-hack/', '/palia-esp/'],
+	['/best-palia-cheats/', '/palia-cheats/'],
+	['best Palia cheats', 'Palia cheats'],
 	['hot drops', 'hot spawns'],
-	['ranked grinders', 'raid grinders'],
-	['before Ranked', 'before a raid'],
+	['ranked grinders', 'session grinders'],
+	['before Ranked', 'before a session'],
 ];
 let s = blog;
 let n = 0;
@@ -80,5 +80,5 @@ for (const [a, b] of reps) {
 		n += 1;
 	}
 }
-writeFileSync('src/data/blog/posts.generated.ts', s);
+writeFileSync('src/data/forum/posts.generated.ts', s);
 console.log('blog patterns fixed:', n);

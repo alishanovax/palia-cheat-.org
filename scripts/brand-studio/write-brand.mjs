@@ -31,14 +31,14 @@ const SEO_KEYS = [
 	'faqDescription',
 	'reviewsTitle',
 	'reviewsDescription',
-	'blogTitle',
-	'blogDescription',
+	'forumTitle',
+	'forumDescription',
 ];
 const COPY_KEYS = [
 	'tagline',
 	'summary',
 	'heroLede',
-	'blogLabel',
+	'forumLabel',
 	'ctaBuy',
 	'ctaBuyShort',
 	'featuresIntro',
@@ -71,32 +71,32 @@ const SITEMAP_TEXT_KEYS = [
 
 const DEFAULT_SITEMAP_IMAGES = [
 	{
-		src: '/images/tarkov-esp-player-tags.webp',
+		src: '/images/palia-esp-resource-tags.webp',
 		title: '{primaryKeyword} ESP',
 		caption: 'See players with {primaryKeyword}',
 	},
 	{
-		src: '/images/tarkov-wallhack-skeleton.webp',
+		src: '/images/palia-wallhack-overlay.webp',
 		title: '{primaryKeyword} wallhack',
 		caption: 'See through walls with {primaryKeyword}',
 	},
 	{
-		src: '/images/tarkov-aimbot-sniper.webp',
+		src: '/images/palia-aimbot-hunting.webp',
 		title: '{primaryKeyword} aimbot',
 		caption: 'Aimbot in {primaryKeyword}',
 	},
 	{
-		src: '/images/tarkov-aimbot-skeleton.webp',
+		src: '/images/palia-aimbot-overlay.webp',
 		title: '{primaryKeyword} aimbot view',
 		caption: 'Aimbot bone view in {primaryKeyword}',
 	},
 	{
-		src: '/images/tarkov-esp-radar.webp',
+		src: '/images/palia-esp-radar.webp',
 		title: '{primaryKeyword} radar',
 		caption: 'Radar map in {primaryKeyword}',
 	},
 	{
-		src: '/images/tarkov-cheats-combat.webp',
+		src: '/images/palia-cheats-gameplay.webp',
 		title: '{primaryKeyword} in a fight',
 		caption: 'Fight view with {primaryKeyword}',
 	},
@@ -364,10 +364,10 @@ export function validateBrandPayload(body) {
 	const lifetime = price(b.lifetimePrice ?? b.lifetime);
 	const monthlyLabel = soft(b.monthlyLabel, 'Monthly', 40);
 	const lifetimeLabel = soft(b.lifetimeLabel, 'Lifetime', 40);
-	const logo = assetPath(b.logo ?? '/images/tarkov-cheats-logo.webp');
-	const logoRaster = assetPath(b.logoRaster ?? '/images/tarkov-cheats-logo.png');
-	const defaultOgImage = assetPath(b.defaultOgImage ?? '/images/tarkov-cheats-combat.webp');
-	const heroImage = assetPath(b.heroImage ?? '/images/tarkov-hero-banner.webp');
+	const logo = assetPath(b.logo ?? '/images/palia-cheats-logo.webp');
+	const logoRaster = assetPath(b.logoRaster ?? '/images/palia-cheats-logo.png');
+	const defaultOgImage = assetPath(b.defaultOgImage ?? '/images/palia-cheats-gameplay.webp');
+	const heroImage = assetPath(b.heroImage ?? '/images/palia-hero-banner.webp');
 	const logoAlt = soft(b.logoAlt, `${name || 'Brand'} logo`, 120);
 	const logoW = price(b.logoRasterWidth ?? 512) ?? 512;
 	const logoH = price(b.logoRasterHeight ?? 512) ?? 512;
@@ -437,8 +437,8 @@ export function validateBrandPayload(body) {
 		reviewsTitle: '{brand} Reviews | Buyer Feedback',
 		reviewsDescription:
 			'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
-		blogTitle: '{game} Intel | {brand}',
-		blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+		forumTitle: '{game} Intel | {brand}',
+		forumDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
 	};
 	/** @type {Record<string, string>} */
 	const seo = {};
@@ -453,7 +453,7 @@ export function validateBrandPayload(body) {
 		summary:
 			'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
 		heroLede: 'Hacks and cheats available -- 0% detection.',
-		blogLabel: '{game} Intel',
+		forumLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
 		featuresIntro: 'Everything included in one license for {game} on Windows PC.',
@@ -610,15 +610,15 @@ export function renderBrandTs(data) {
 		reviewsTitle: '{brand} Reviews | Buyer Feedback',
 		reviewsDescription:
 			'Real buyer reviews for {brand} — ESP, soft aim, radar, and patch updates on Windows PC.',
-		blogTitle: '{game} Intel | {brand}',
-		blogDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
+		forumTitle: '{game} Intel | {brand}',
+		forumDescription: 'Guides and notes for {game} — meta tips, ESP, aimbot, and {antiCheat} updates.',
 	};
 	const copyDefaults = {
 		tagline: 'Undetected {primaryKeyword} — ESP, aimbot, and radar for PC',
 		summary:
 			'{brand} is an undetected {game} cheat package for Windows PC. Includes ESP, soft aim, and radar, with {antiCheat} maintenance after patches.',
 		heroLede: 'Hacks and cheats available — 0% detection.',
-		blogLabel: '{game} Intel',
+		forumLabel: '{game} Intel',
 		ctaBuy: 'Buy now',
 		ctaBuyShort: 'Buy',
 		featuresIntro: 'Everything included in one license for {game} on Windows PC.',
@@ -766,8 +766,8 @@ ${kw},
 		faqDescription: '${e(seo.faqDescription)}',
 		reviewsTitle: '${e(seo.reviewsTitle)}',
 		reviewsDescription: '${e(seo.reviewsDescription)}',
-		blogTitle: '${e(seo.blogTitle)}',
-		blogDescription: '${e(seo.blogDescription)}',
+		forumTitle: '${e(seo.forumTitle)}',
+		forumDescription: '${e(seo.forumDescription)}',
 	},
 
 	/** On-page marketing copy (tokens allowed) */
@@ -775,7 +775,7 @@ ${kw},
 		tagline: '${e(copy.tagline)}',
 		summary: '${e(copy.summary)}',
 		heroLede: '${e(copy.heroLede)}',
-		blogLabel: '${e(copy.blogLabel)}',
+		forumLabel: '${e(copy.forumLabel)}',
 		ctaBuy: '${e(copy.ctaBuy)}',
 		ctaBuyShort: '${e(copy.ctaBuyShort)}',
 		featuresIntro: '${e(copy.featuresIntro)}',

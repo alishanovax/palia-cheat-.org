@@ -5,7 +5,7 @@ import {
 	resolvePageContextFromPath,
 	type PageId,
 } from '../data/i18n/routing';
-import { getBlogLocaleSwitchHref, isBlogPath } from '../data/blog/helpers';
+import { getForumLocaleSwitchHref, isForumPath } from '../data/forum/helpers';
 
 interface Props {
 	pageId?: PageId;
@@ -14,7 +14,7 @@ interface Props {
 
 const { pageId: pageIdFallback, currentLocale } = Astro.props;
 const pathname = Astro.url.pathname;
-const onBlog = isBlogPath(pathname);
+const onBlog = isForumPath(pathname);
 const pathContext = resolvePageContextFromPath(pathname);
 const pageContext = onBlog
 	? pathContext
@@ -25,7 +25,7 @@ const pageContext = onBlog
 
 function localeSwitchHref(targetLocale: LocaleCode): string {
 	if (onBlog) {
-		return getBlogLocaleSwitchHref(pathname, targetLocale);
+		return getForumLocaleSwitchHref(pathname, targetLocale);
 	}
 	return getPageLocaleSwitchHref(pageContext, targetLocale);
 }

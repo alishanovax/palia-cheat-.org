@@ -1,10 +1,33 @@
-import { useTranslation } from 'react-i18next';
 import I18nProvider from './I18nProvider';
+
+type HeroCopy = {
+	title: string;
+	subtitle: string;
+	ctaCheats: string;
+	plansCta: string;
+	imageAlt: string;
+	trustPillsAria: string;
+	chips: {
+		chipEsp: string;
+		chipAim: string;
+		chipRadar: string;
+		chipUpdates: string;
+	};
+	trustPills: {
+		fastUpdates: string;
+		secureCheckout: string;
+		easySetup: string;
+		premiumSupport: string;
+		instantDelivery: string;
+		eacMaintenance: string;
+	};
+};
 
 type Props = {
 	locale: string;
 	siteName: string;
-	checkoutUrl: string;
+	cheatsHref: string;
+	storeHref: string;
 	monthlyPrice: number;
 	heroSrc: string;
 	heroSrcSet: string;
@@ -13,6 +36,7 @@ type Props = {
 	heroHeight: number;
 	/** When true, use brand EN hero keys; otherwise localized hero.* */
 	useBrandHero?: boolean;
+	copy: HeroCopy;
 };
 
 const chipKeys = [
@@ -20,6 +44,15 @@ const chipKeys = [
 	{ key: 'chipAim', icon: 'aim' },
 	{ key: 'chipRadar', icon: 'radar' },
 	{ key: 'chipUpdates', icon: 'updates' },
+] as const;
+
+const trustPillKeys = [
+	'fastUpdates',
+	'secureCheckout',
+	'easySetup',
+	'premiumSupport',
+	'instantDelivery',
+	'eacMaintenance',
 ] as const;
 
 function ChipIcon({ icon }: { icon: string }) {
@@ -68,22 +101,17 @@ function ChipIcon({ icon }: { icon: string }) {
 
 function HeroInner({
 	siteName,
-	checkoutUrl,
-	monthlyPrice,
+	cheatsHref,
+	storeHref,
 	heroSrc,
 	heroSrcSet,
 	heroSizes,
 	heroWidth,
 	heroHeight,
 	useBrandHero = true,
+	copy,
 }: Props) {
-	const { t } = useTranslation();
-	const title = useBrandHero ? t('hero.title') : t('hero.accent');
-	const subtitle = useBrandHero ? t('hero.subtitle') : t('hero.subtitle');
-	const ctaBuy = useBrandHero ? t('cta.buy') : t('hero.buyNow');
-	const priceFrom = t('hero.priceFrom');
-	const priceLabel = priceFrom ? `${priceFrom} $${monthlyPrice}` : `$${monthlyPrice}`;
-	const imageAlt = t('hero.imageAlt', { brand: siteName });
+	const { title, subtitle, ctaCheats, plansCta, imageAlt, trustPillsAria, chips, trustPills } = copy;
 
 	return (
 		<section className="hero" aria-label={title}>
@@ -110,20 +138,19 @@ function HeroInner({
 						{subtitle}
 					</p>
 					<div className="hero__actions">
-						<a className="hero__buy" href={checkoutUrl} rel="noopener noreferrer">
+						<a className="hero__buy" href={cheatsHref}>
 							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 								<path
-									d="M4.5 6.5h2.1l1.2 9.2h9.4l1.8-6.6H8.1M9.2 19.2a.9.9 0 100-1.8.9.9 0 000 1.8zm7.4 0a.9.9 0 100-1.8.9.9 0 000 1.8z"
+									d="M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7L12 3.5zm0 2.2L6.8 8.5v6.9L12 18.3l5.2-2.9V8.5L12 5.7z"
 									stroke="currentColor"
-									strokeWidth="1.7"
-									strokeLinecap="round"
+									strokeWidth="1.6"
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span className="hero__buy-label" data-edit={useBrandHero ? 'ctaBuy' : undefined}>
-								{ctaBuy}
-							</span>
-							<span className="hero__buy-price">{priceLabel}</span>
+							<span className="hero__buy-label">{ctaCheats}</span>
+						</a>
+						<a className="hero__ghost" href={storeHref}>
+							{plansCta}
 						</a>
 					</div>
 					<ul className="hero__features">
@@ -132,7 +159,21 @@ function HeroInner({
 								<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
 									<ChipIcon icon={chip.icon} />
 								</svg>
-								<span data-edit={useBrandHero ? chip.key : undefined}>{t(`hero.${chip.key}`)}</span>
+								<span data-edit={useBrandHero ? chip.key : undefined}>
+									{chips[chip.key]}
+								</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+			<div className="hero__pills">
+				<div className="shell hero__pills-track">
+					<ul className="hero__pills-list" aria-label={trustPillsAria}>
+						{trustPillKeys.map((key) => (
+							<li key={key} className="hero__pills-item">
+								<span className="hero__pills-dot" aria-hidden="true" />
+								{trustPills[key]}
 							</li>
 						))}
 					</ul>

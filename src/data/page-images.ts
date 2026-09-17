@@ -1,48 +1,46 @@
 import { siteConfig } from './site';
-import { tarkovImages } from './tarkov';
+import { descriptiveAlt, paliaImages } from './palia';
 import { pageIds, type PageId } from './i18n/routing';
-import { pageSitemapImageLabels } from './brand-sitemap';
 
-/** Rotating product screenshots for FAQ / review detail URLs. */
+/** Rotating Palia gameplay shots for FAQ / review detail URLs. */
 export const crawlPhotoPool = [
-	tarkovImages.espWallhack,
-	tarkovImages.aimbotCombat,
-	tarkovImages.aimbotSkeleton,
-	tarkovImages.playerEsp,
-	tarkovImages.cheatsCombat,
-	'/images/tarkov-cheats-esp.webp',
+	paliaImages.espWallhack,
+	paliaImages.playerEsp,
+	paliaImages.aimbotCombat,
+	paliaImages.aimbotSkeleton,
+	paliaImages.cover,
+	paliaImages.espOverlay,
 ] as const;
 
 /**
- * One primary crawl/OG photo per product page.
- * Prefer compressed WebP screenshots so Google can fetch them quickly.
+ * One primary crawl/OG photo per product page — Palia gameplay screenshots.
  */
 export const pageImageSrcById: Record<PageId, string> = {
-	home: '/images/tarkov-cheats-hero-1024w.webp',
-	'tarkov-esp': tarkovImages.playerEsp,
-	'tarkov-aimbot': tarkovImages.aimbotCombat,
-	features: tarkovImages.aimbotSkeleton,
-	pricing: tarkovImages.cheatsCombat,
-	setup: tarkovImages.playerEsp,
-	updates: '/images/tarkov-cheats-hero-1024w.webp',
-	faq: tarkovImages.aimbotSkeleton,
-	support: tarkovImages.cheatsCombat,
-	undetected: tarkovImages.espWallhack,
-	wallhack: tarkovImages.espWallhack,
-	radar: tarkovImages.playerEsp,
-	battleye: tarkovImages.aimbotCombat,
-	'cheats-2026': '/images/tarkov-cheats-hero-1024w.webp',
-	hacks: tarkovImages.cheatsCombat,
-	'cheat-download': tarkovImages.cheatsCombat,
-	'mod-menu': tarkovImages.playerEsp,
-	'soft-aim': tarkovImages.aimbotSkeleton,
-	'best-cheats': '/images/tarkov-cheats-hero-1024w.webp',
-	'aimbot-hack': tarkovImages.aimbotSkeleton,
-	'esp-hack': tarkovImages.espWallhack,
-	'unlock-all': tarkovImages.playerEsp,
-	privacy: tarkovImages.aimbotCombat,
-	refund: tarkovImages.cheatsCombat,
-	terms: tarkovImages.aimbotSkeleton,
+	home: '/images/palia-gameplay-hero-night-1024w.webp',
+	'palia-esp': '/images/palia-cheats-esp.webp',
+	'palia-aimbot': '/images/palia-cheats-aimbot.webp',
+	features: '/images/palia-gameplay-housing-interior.webp',
+	pricing: '/images/palia-gameplay-esp-overlay.webp',
+	setup: '/images/palia-gameplay-housing-interior.webp',
+	updates: '/images/palia-gameplay-kilima-village.webp',
+	faq: '/images/palia-gameplay-homestead.webp',
+	support: '/images/palia-gameplay-kilima-village.webp',
+	undetected: '/images/palia-gameplay-kilima-village.webp',
+	wallhack: '/images/palia-cheats-wallhack.webp',
+	radar: '/images/palia-cheats-radar.webp',
+	eac: '/images/palia-gameplay-kilima-village.webp',
+	'cheats-2026': '/images/palia-gameplay-homestead.webp',
+	hacks: '/images/palia-gameplay-esp-overlay.webp',
+	'cheat-download': '/images/palia-gameplay-homestead.webp',
+	'mod-menu': '/images/palia-gameplay-housing-interior.webp',
+	'soft-aim': '/images/palia-gameplay-bahari-landscape.webp',
+	'best-cheats': '/images/palia-gameplay-homestead.webp',
+	'aimbot-hack': '/images/palia-gameplay-bahari-landscape.webp',
+	'esp-hack': '/images/palia-gameplay-ore-mining.webp',
+	'unlock-all': '/images/palia-gameplay-housing-interior.webp',
+	privacy: '/images/palia-gameplay-kilima-village.webp',
+	refund: '/images/palia-gameplay-homestead.webp',
+	terms: '/images/palia-gameplay-kilima-village.webp',
 };
 
 for (const pageId of pageIds) {
@@ -66,37 +64,41 @@ export function getPageCrawlImage(pageId: PageId): {
 	caption: string;
 } {
 	const src = pageImageSrcById[pageId];
-	const labels = pageSitemapImageLabels(pageId);
+	const caption = descriptiveAlt(src);
 	return {
 		src,
 		url: absoluteImageUrl(src),
-		title: labels.title,
-		caption: labels.caption,
+		title: caption,
+		caption,
 	};
+}
+
+/** Per-page sitemap / OG labels — derived from the screenshot, not SEO copy. */
+export function pageSitemapImageLabels(pageId: PageId): { title: string; caption: string } {
+	const caption = descriptiveAlt(pageImageSrcById[pageId]);
+	return { title: caption, caption };
 }
 
 /** Stable pick from the photo pool (FAQ answers, reviews, etc.). */
 export function pickCrawlPhoto(seed: string): string {
 	let hash = 0;
-	for (let i = 0; i < seed.length; i += 1) {
-		hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-	}
-	return crawlPhotoPool[hash % crawlPhotoPool.length];
+	for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+	return crawlPhotoPool[Math.abs(hash) % crawlPhotoPool.length];
 }
 
-export function crawlPhotoMeta(
-	seed: string,
-	title: string,
-	caption: string,
-): { src: string; url: string; title: string; caption: string } {
+export const defaultCrawlImageSrc = pageImageSrcById.home;
+
+/** Reviews index hero / OG image — sharp Palia gameplay (not compressed overlay art). */
+export const reviewsIndexImageSrc = paliaImages.kilimaPanorama;
+
+/** Stable crawl photo + metadata for FAQ and review detail pages. */
+export function crawlPhotoMeta(seed: string) {
 	const src = pickCrawlPhoto(seed);
+	const caption = descriptiveAlt(src);
 	return {
 		src,
 		url: absoluteImageUrl(src),
-		title,
+		title: caption,
 		caption,
 	};
 }
-
-/** Default large social / SERP image when a page has no specific asset. */
-export const defaultCrawlImageSrc = pageImageSrcById.home;

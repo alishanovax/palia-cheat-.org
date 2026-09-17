@@ -7,8 +7,9 @@ import { brandCopy, brandSeo, seoPageTitle } from '../../data/site-core';
 import { seoDescription } from '../../data/brand';
 import { getSelfHreflangAlternates } from '../../data/i18n/routing';
 import { getReviewPath, reviewsBasePath } from '../../data/reviews';
-import { defaultCrawlImageSrc } from '../../data/page-images';
-import { contentSrcSet, productMainSizes } from '../../lib/responsive-images';
+import { descriptiveAlt } from '../../data/palia';
+import { reviewsIndexImageSrc } from '../../data/page-images';
+import { contentImageSrc, contentSrcSet } from '../../lib/responsive-images';
 
 const title = seoPageTitle(brandSeo.reviewsTitle);
 const description = seoDescription(brandSeo.reviewsDescription);
@@ -55,8 +56,8 @@ const extraGraph: Record<string, unknown>[] = [
 	description={description}
 	canonicalPath={reviewsBasePath}
 	hreflangAlternates={hreflangAlternates}
-	ogImage={defaultCrawlImageSrc}
-	ogImageAlt={fillBrandTokens('{brand} customer reviews')}
+	ogImage={reviewsIndexImageSrc}
+	ogImageAlt={descriptiveAlt(reviewsIndexImageSrc)}
 	locale="en"
 	breadcrumbs={[
 		{ label: 'Home', href: '/' },
@@ -73,22 +74,20 @@ const extraGraph: Record<string, unknown>[] = [
 				<span aria-current="page">Reviews</span>
 			</nav>
 
-			<figure class="reviews-index__media">
-				<img
-					src={defaultCrawlImageSrc}
-					srcset={contentSrcSet(defaultCrawlImageSrc)}
-					sizes={productMainSizes}
-					alt={fillBrandTokens('{brand} customer reviews')}
-					width="1280"
-					height="720"
-					loading="eager"
-					decoding="async"
-					fetchpriority="high"
-				/>
-			</figure>
-
 			<header class="reviews-index__head">
-				<div>
+				<figure class="reviews-index__media">
+					<img
+						src={contentImageSrc(reviewsIndexImageSrc)}
+						srcset={contentSrcSet(reviewsIndexImageSrc)}
+						sizes="(max-width: 768px) min(100vw, 14rem), 11rem"
+						alt={descriptiveAlt(reviewsIndexImageSrc)}
+						width="1024"
+						height="576"
+						loading="lazy"
+						decoding="async"
+					/>
+				</figure>
+				<div class="reviews-index__head-main">
 					<h1 data-edit="navReviews">{siteConfig.name} reviews</h1>
 					<p class="reviews-index__intro" data-edit="reviewsIntro">{reviewsIntro}</p>
 				</div>
@@ -131,14 +130,14 @@ const extraGraph: Record<string, unknown>[] = [
 			<section class="reviews-index__cta" aria-label={`Buy ${siteConfig.name}`}>
 				<h2>Ready to try {siteConfig.name}?</h2>
 				<p>
-					ESP, soft aim, and radar in one package for Windows PC — with {productInfo.game} patch
+					ESP, wallhack, and soft aim in one package for Windows PC — with {productInfo.game} patch
 					maintenance after updates.
 				</p>
 				<div class="reviews-index__cta-row">
 					<a href={siteConfig.checkoutUrl} class="reviews-index__buy" rel="noopener noreferrer">
 						Buy Now — ${productInfo.plans[0].price}
 					</a>
-					<a href="/pricing/" class="reviews-index__link-btn">Compare pricing</a>
+					<a href="/store/" class="reviews-index__link-btn">Compare pricing</a>
 				</div>
 			</section>
 		</div>
@@ -159,17 +158,20 @@ const extraGraph: Record<string, unknown>[] = [
 
 	.reviews-index__media {
 		margin: 0;
+		width: 11rem;
+		flex-shrink: 0;
 		border-radius: var(--radius-md, 0.75rem);
 		overflow: hidden;
 		border: 1px solid var(--line-soft);
 		background: var(--bg-elevated);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 	}
 
 	.reviews-index__media img {
 		display: block;
 		width: 100%;
 		height: auto;
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 4 / 3;
 		object-fit: cover;
 	}
 
@@ -193,13 +195,16 @@ const extraGraph: Record<string, unknown>[] = [
 	}
 
 	.reviews-index__head {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: start;
 		gap: 1rem 1.5rem;
 		padding-bottom: 1.15rem;
 		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.reviews-index__head-main {
+		min-width: 0;
 	}
 
 	.reviews-index__head h1 {
@@ -443,6 +448,15 @@ const extraGraph: Record<string, unknown>[] = [
 	}
 
 	@media (max-width: 680px) {
+		.reviews-index__head {
+			grid-template-columns: 1fr;
+		}
+
+		.reviews-index__media {
+			width: 100%;
+			max-width: 14rem;
+		}
+
 		.reviews-index__grid {
 			grid-template-columns: 1fr;
 		}
