@@ -3,13 +3,81 @@
  * Generates functions/path-redirects.json from public/_redirects (301 rules only).
  * Used by Cloudflare middleware so PATH_REDIRECTS stays in sync with static redirects.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REDIRECTS = path.join(ROOT, 'public/_redirects');
 const JSON_OUT = path.join(ROOT, 'functions/path-redirects.json');
+const CANNIBAL_REDIRECTS = path.join(ROOT, 'functions/cannibal-redirects.json');
+const REVIEW_REDIRECTS = path.join(ROOT, 'functions/review-slug-redirects.json');
+const MAX_STATIC_REDIRECTS = 100;
+
+function pair(from, to) {
+	const bare = from.replace(/\/$/, '');
+	const target = to.endsWith('/') ? to : `${to}/`;
+	return {
+		[bare]: target,
+		[`${bare}/`]: target,
+	};
+}
+
+function redirectPairs(map) {
+	return Object.fromEntries(
+		Object.entries(map).flatMap(([from, to]) => {
+			const p = pair(from, to);
+			return Object.entries(p);
+		}),
+	);
+}
+
+/** Legacy FAQ slugs → short slugs. */
+const FAQ_SLUG_REDIRECTS = redirectPairs({
+	'/faq/how-are-licenses-delivered': '/faq/delivery',
+	'/faq/how-to-contact-support': '/faq/contact',
+	'/faq/where-to-check-updates': '/faq/updates',
+	'/faq/kilima-and-bahari-bay-support': '/faq/kilima',
+	'/faq/esp-wallhack-teleport-or-aimbot': '/faq/included',
+	'/faq/what-are-palia-cheats': '/faq/about',
+	'/faq/are-palia-cheats-undetected-in-2026': '/faq/undetected',
+	'/faq/buy-undetected-palia-cheats-windows-pc': '/faq/buy',
+	'/faq/what-is-a-palia-wallhack': '/faq/wallhack',
+	'/faq/does-palia-cheats-include-teleport': '/faq/teleport',
+	'/faq/eac-anti-cheat-and-palia-cheats': '/faq/eac',
+});
+
+/** Legacy forum slugs → short slugs. */
+const FORUM_SLUG_REDIRECTS = redirectPairs({
+	'/forum/setup-guide': '/forum/setup',
+	'/forum/aimbot-settings': '/forum/aimbot',
+	'/forum/fishing-esp': '/forum/fishing',
+	'/forum/buyers-guide': '/forum/buyers',
+	'/forum/cheat-menu': '/forum/menu',
+	'/forum/kilima-esp': '/forum/kilima',
+	'/forum/bahari-teleport': '/forum/bahari',
+	'/forum/premium-vs-free': '/forum/premium',
+});
+
+function readJsonRedirects(file) {
+	if (!existsSync(file)) return {};
+	try {
+		return JSON.parse(readFileSync(file, 'utf8'));
+	} catch {
+		return {};
+	}
+}
+
+function countStatic301Rules(src) {
+	let count = 0;
+	for (const line of src.split('\n')) {
+		const trimmed = line.trim();
+		if (!trimmed || trimmed.startsWith('#')) continue;
+		const parts = trimmed.split(/\s+/);
+		if (parts.length >= 3 && parts[2] === '301' && !parts[0].includes('*')) count += 1;
+	}
+	return count;
+}
 
 /** Middleware-only redirects (not in _redirects or trailing-slash helpers). */
 const MIDDLEWARE_EXTRA = {
@@ -34,14 +102,16 @@ const MIDDLEWARE_EXTRA = {
 	'/forum/bugha-settings-pro-setup/': '/forum/palia-pro-settings-guide/',
 	'/forum/creative-warmup-maps-pros-use': '/forum/palia-warmup-maps-ranked/',
 	'/forum/creative-warmup-maps-pros-use/': '/forum/palia-warmup-maps-ranked/',
-	'/reviews/palia-esp-zero-build-review-buildsr4k': '/reviews/palia-esp-scav-run-review-buildsr4k/',
-	'/reviews/palia-esp-zero-build-review-buildsr4k/': '/reviews/palia-esp-scav-run-review-buildsr4k/',
-	'/reviews/palia-teleport-review-vanlifefn': '/reviews/palia-teleport-review-vanlifeeft/',
-	'/reviews/palia-teleport-review-vanlifefn/': '/reviews/palia-teleport-review-vanlifeeft/',
-	'/reviews/palia-teleport-review-vanlifewz': '/reviews/palia-teleport-review-vanlifeeft/',
-	'/reviews/palia-teleport-review-vanlifewz/': '/reviews/palia-teleport-review-vanlifeeft/',
-	'/reviews/palia-controller-soft-aim-review-ctrl-player99': '/reviews/palia-soft-aim-review-ctrl-player99/',
-	'/reviews/palia-controller-soft-aim-review-ctrl-player99/': '/reviews/palia-soft-aim-review-ctrl-player99/',
+	...redirectPairs({
+		'/forum/how-to-use-palia-cheats-setup-guide': '/forum/setup',
+		'/forum/palia-aimbot-settings-ban-risk': '/forum/aimbot',
+		'/forum/palia-fishing-esp-best-settings': '/forum/fishing',
+		'/forum/buy-palia-cheats-buyers-guide-2026': '/forum/buyers',
+		'/forum/palia-cheat-menu-full-feature-list': '/forum/menu',
+		'/forum/palia-resource-esp-kilima-village-guide': '/forum/kilima',
+		'/forum/palia-teleport-bahari-bay-coordinates': '/forum/bahari',
+		'/forum/palia-premium-cheats-vs-free-trainers': '/forum/premium',
+	}),
 };
 
 function parseRedirects(src) {
@@ -61,8 +131,25 @@ function parseRedirects(src) {
 }
 
 const redirectsSrc = readFileSync(REDIRECTS, 'utf8');
+const static301Count = countStatic301Rules(redirectsSrc);
+if (static301Count > MAX_STATIC_REDIRECTS) {
+	throw new Error(
+		`public/_redirects has ${static301Count} 301 rules (max ${MAX_STATIC_REDIRECTS} on Cloudflare). ` +
+			'Move extras to functions/path-redirects.json via sync-path-redirects.mjs.',
+	);
+}
+
 const fromRedirects = parseRedirects(redirectsSrc);
-const merged = { ...fromRedirects, ...MIDDLEWARE_EXTRA };
+const merged = {
+	...fromRedirects,
+	...readJsonRedirects(CANNIBAL_REDIRECTS),
+	...MIDDLEWARE_EXTRA,
+	...FAQ_SLUG_REDIRECTS,
+	...FORUM_SLUG_REDIRECTS,
+	...readJsonRedirects(REVIEW_REDIRECTS),
+};
 
 writeFileSync(JSON_OUT, `${JSON.stringify(merged, null, 2)}\n`);
-console.log(`Synced ${Object.keys(merged).length} path redirects → functions/path-redirects.json`);
+console.log(
+	`Synced ${Object.keys(merged).length} path redirects → functions/path-redirects.json (${static301Count} static _redirects 301 rules)`,
+);
