@@ -9,14 +9,6 @@ import {
 	type PageId,
 } from '../data/i18n/routing';
 
-/** Commercial and guide landings under the /cheats/ pillar in breadcrumbs. */
-const CHEATS_PILLAR_CHILD_IDS = new Set<PageId>([
-	'palia-esp',
-	'palia-aimbot',
-	'features',
-	'pricing',
-	'radar',
-]);
 import { descriptiveAlt, paliaImages } from '../data/palia';
 import GalleryMarquee from '../components/GalleryMarquee.astro';
 import { contentImageSrc, contentSrcSet } from '../lib/responsive-images';
@@ -99,9 +91,6 @@ const normalizedGallery = gallery
 	.filter((item) => Boolean(item.src) && Boolean(item.alt));
 
 const breadcrumbs: { label: string; href?: string }[] = [{ label: ui.nav.home, href: homeHref }];
-if (pageId && CHEATS_PILLAR_CHILD_IDS.has(pageId)) {
-	breadcrumbs.push({ label: t('nav.preview'), href: getLocalizedPath('hacks', locale) });
-}
 breadcrumbs.push({ label: heading });
 
 const bannerImageSrc = contentImageSrc(heroImage);

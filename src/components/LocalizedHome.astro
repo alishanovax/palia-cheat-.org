@@ -5,11 +5,13 @@ import Hero from '../components/Hero.astro';
 import HomeShowcase from '../components/HomeShowcase.astro';
 import ProductDeals from '../components/ProductDeals.astro';
 import HomeReviews from '../components/HomeReviews.astro';
+import HomePurchaseOptions from '../components/HomePurchaseOptions.astro';
 import HomeForums from '../components/HomeForums.astro';
 import HomeSeo from '../components/HomeSeo.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getLocaleContent, getPageContent } from '../data/i18n';
 import { getLocalizedPath } from '../data/i18n/routing';
+import { getForumBasePath } from '../data/forum/helpers';
 import { isLocaleIndexed } from '../data/i18n/locale-indexing';
 import type { LocaleCode } from '../data/i18n/locales';
 import { homeSeo, siteConfig } from '../data/site';
@@ -32,18 +34,18 @@ const description = pageIndexed ? (locale === 'en' ? enHome.description : home.d
 const canonicalPath = getLocalizedPath('home', locale);
 
 const homeLinks = {
-	cheats: getLocalizedPath('hacks', locale),
-	esp: getLocalizedPath('palia-esp', locale),
-	aimbot: getLocalizedPath('palia-aimbot', locale),
+	cheats: getLocalizedPath('features', locale),
+	esp: getLocalizedPath('features', locale),
+	aimbot: getLocalizedPath('features', locale),
 	updates: getLocalizedPath('updates', locale),
 	features: getLocalizedPath('features', locale),
 	pricing: getLocalizedPath('pricing', locale),
 	faq: getLocalizedPath('faq', locale),
 	support: getLocalizedPath('support', locale),
-	setup: getLocalizedPath('setup', locale),
+	setup: getLocalizedPath('features', locale),
 	teleport: getLocalizedPath('radar', locale),
-	wallhack: getLocalizedPath('palia-esp', locale),
-	forum: '/forum/',
+	wallhack: getLocalizedPath('features', locale),
+	forum: getForumBasePath(locale),
 	refunds: getLocalizedPath('refund', locale),
 };
 const homeCrawl = getPageCrawlImage('home');
@@ -74,6 +76,12 @@ const homeCrawl = getPageCrawlImage('home');
 			<HomeSeo locale={locale} links={homeLinks} />
 		</div>
 		<HomeReviews locale={locale} />
+		<HomePurchaseOptions
+			locale={locale}
+			storeHref={homeLinks.pricing}
+			featuresHref={homeLinks.features}
+			cheatsHref={homeLinks.cheats}
+		/>
 		<SiteFooter locale={locale} />
 	</main>
 </Layout>

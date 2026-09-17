@@ -1,0 +1,132 @@
+---
+import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
+import { getT } from '../i18n/server';
+
+interface Props {
+	locale?: LocaleCode;
+	storeHref: string;
+	featuresHref: string;
+	cheatsHref: string;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const { storeHref, featuresHref, cheatsHref } = Astro.props;
+const t = getT(locale);
+---
+
+<section class="purchase-options" aria-labelledby="purchase-options-title">
+	<div class="shell">
+		<div class="purchase-options__card">
+			<h2 id="purchase-options-title">{t('purchaseOptions.title')}</h2>
+			<p class="purchase-options__lede">
+				{t('purchaseOptions.ledeBefore', { game: siteConfig.game })}
+				<a href={cheatsHref}>{t('purchaseOptions.ledeLink')}</a>
+				{t('purchaseOptions.ledeAfter')}
+			</p>
+			<div class="purchase-options__actions">
+				<a class="purchase-options__primary" href={storeHref}>{t('purchaseOptions.ctaPrimary')}</a>
+				<a class="purchase-options__secondary" href={featuresHref}>{t('purchaseOptions.ctaSecondary')}</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.purchase-options {
+		padding-block: 0 clamp(2.5rem, 5vw, 3.5rem);
+		background: var(--bg);
+	}
+
+	.purchase-options__card {
+		padding: clamp(1.5rem, 3vw, 2rem);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--radius-md);
+		background: var(--bg-panel);
+	}
+
+	.purchase-options__card h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1.2;
+		color: var(--ink);
+	}
+
+	.purchase-options__lede {
+		margin: 0.85rem 0 0;
+		max-width: 42rem;
+		font-size: 0.975rem;
+		line-height: 1.6;
+		color: var(--ink-muted);
+	}
+
+	.purchase-options__lede a {
+		color: var(--magenta-soft);
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.purchase-options__lede a:hover {
+		color: var(--magenta);
+		text-decoration: underline;
+	}
+
+	.purchase-options__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-top: 1.25rem;
+	}
+
+	.purchase-options__primary,
+	.purchase-options__secondary {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.75rem;
+		padding: 0.7rem 1.2rem;
+		border-radius: var(--radius-sm);
+		font-size: 0.9rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease,
+			transform 0.15s ease;
+	}
+
+	.purchase-options__primary {
+		border: none;
+		background: linear-gradient(90deg, var(--magenta-deep), var(--magenta), var(--magenta-soft));
+		color: #fff;
+		box-shadow: 0 0.35rem 1.25rem color-mix(in srgb, var(--magenta) 24%, transparent);
+	}
+
+	.purchase-options__primary:hover {
+		filter: brightness(1.06);
+		transform: translateY(-1px);
+		color: #fff;
+	}
+
+	.purchase-options__secondary {
+		border: 1px solid var(--line);
+		background: var(--bg-elevated);
+		color: var(--ink);
+	}
+
+	.purchase-options__secondary:hover {
+		border-color: var(--magenta-soft);
+		color: var(--magenta-soft);
+	}
+
+	@media (max-width: 520px) {
+		.purchase-options__primary,
+		.purchase-options__secondary {
+			width: 100%;
+		}
+	}
+</style>

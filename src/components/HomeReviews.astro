@@ -9,7 +9,10 @@ interface Props {
 }
 
 const locale = Astro.props.locale ?? defaultLocale;
-const reviews = customerReviews.map((review) => ({
+const reviews = [...customerReviews]
+	.sort((a, b) => (a.date < b.date ? 1 : -1))
+	.slice(0, 24)
+	.map((review) => ({
 	slug: review.slug,
 	handle: review.handle,
 	text: review.text,

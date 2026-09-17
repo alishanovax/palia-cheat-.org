@@ -58,19 +58,19 @@ export function latestPageLastmod(): string {
 
 /**
  * Expected URL counts for sitemap validation.
- * Product pages = 14 PageIds (11 cannibal URLs excluded — they 301 to pillars).
- * EN supplemental: forum (9) + reviews (11) + indexed FAQ slugs (4).
+ * Product pages = 10 PageIds (15 cannibal URLs excluded — they 301 to pillars).
+ * EN supplemental: forum (9) + reviews (106) + indexed FAQ slugs (4) = 119.
  */
 export const SITEMAP_COUNTS = {
-	productPages: 14,
-	englishPages: 14,
-	enSupplemental: 24,
+	productPages: 10,
+	englishPages: 10,
+	enSupplemental: 119,
 	i18nLocales: 21,
-	pagesPerLocale: 14,
+	pagesPerLocale: 10,
 	/** Non-EN locale URLs — 0 until INDEXABLE_NON_EN_LOCALES is true */
 	i18nUrls: 0,
-	totalIndexablePages: 14 + 24,
-	totalSitemapUrls: 14 + 24,
+	totalIndexablePages: 10 + 119,
+	totalSitemapUrls: 10 + 119,
 	/** EN + x-default when non-EN locales are noindex */
 	hreflangLinksPerUrl: 2,
 	/** sitemap.xml (index): EN + images (locale sitemaps when INDEXABLE_NON_EN_LOCALES) */

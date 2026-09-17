@@ -21,8 +21,8 @@ export const buildExcludedPageIds = new Set<PageId>(cannibalPageIds as PageId[])
 export const sitemapExcludedPageIds = buildExcludedPageIds;
 
 /** Primary commercial landing for the head term "palia cheats". */
-export const MONEY_PAGE_ID = 'hacks' as const satisfies PageId;
-export const MONEY_PATH = '/cheats/' as const;
+export const MONEY_PAGE_ID = 'home' as const satisfies PageId;
+export const MONEY_PATH = '/' as const;
 
 export function getCannibalTarget(pageId: PageId): PageId {
 	return getCannibalTargetId(pageId) as PageId;

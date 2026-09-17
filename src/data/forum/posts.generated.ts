@@ -11,7 +11,7 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": true,
     "translations": {
       "en": {
-        "slug": "how-to-use-palia-cheats-setup-guide",
+        "slug": "setup",
         "title": "How to Use Palia Cheats — Full Setup Guide",
         "metaDescription": "Step-by-step instructions to download, install, and use Palia cheats on Windows PC. Loader setup, cheat menu toggles, and first-session tips from $35.",
         "h1": "How to Use Palia Cheats — Complete Setup Instructions",
@@ -58,9 +58,9 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": true,
     "translations": {
       "en": {
-        "slug": "palia-aimbot-settings-ban-risk",
+        "slug": "aimbot",
         "title": "Palia Aimbot Settings — What Level and Ban Risk",
-        "metaDescription": "Learn safe Palia aimbot settings for hunting in Bahari Bay. What smoothness level to use, why low settings feel safer, and when to disable aimbot.",
+        "metaDescription": "Learn safe Palia aimbot settings for hunting in Bahari Bay. What smoothness level to use, why you will not get banned at low settings, and when to disable aimbot.",
         "h1": "Palia Aimbot Settings: What Level and Why You Will Not Get Banned",
         "intro": "Hunting aimbot is one of the most popular Palia cheat modules. This thread explains which settings keep you safe in multiplayer and which levels draw attention from other players or anti-cheat.",
         "keywords": [
@@ -98,7 +98,7 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": false,
     "translations": {
       "en": {
-        "slug": "palia-fishing-esp-best-settings",
+        "slug": "fishing",
         "title": "Palia Fishing ESP — Best Settings for Gold Farming",
         "metaDescription": "Configure Palia fishing ESP to find rare fish in Bahari Bay. Best filter settings, distance tuning, and gold-per-hour tips with Palia premium cheats.",
         "h1": "Palia Fishing ESP — Best Settings for Rare Fish",
@@ -131,7 +131,7 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": true,
     "translations": {
       "en": {
-        "slug": "buy-palia-cheats-buyers-guide-2026",
+        "slug": "buyers",
         "title": "Buy Palia Cheats — 2026 Buyers Guide",
         "metaDescription": "Where to buy Palia cheats safely in 2026. Compare palia cheats price, features, delivery speed, and red flags before you purchase premium Palia cheats for PC.",
         "h1": "Buy Palia Cheats — Complete 2026 Buyers Guide",
@@ -148,7 +148,7 @@ export const blogPosts: BlogPostDefinition[] = [
             "h2": "What a good Palia cheats provider includes",
             "paragraphs": [
               "Look for instant delivery, a clear feature list (ESP, teleport, cheat menu), and post-patch status updates. Avoid sites that promise \"100% undetected forever\" with no maintenance log.",
-              "Our <a href=\"/cheats/\">palia cheats page</a> lists every module in one $35 license. Monthly and lifetime plans include the same features — pick based on how long you plan to play."
+              "Our <a href=\"/features/\">features page</a> lists every module in one $35 license. Monthly and lifetime plans include the same features — pick based on how long you plan to play."
             ]
           }
         ]
@@ -164,7 +164,7 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": false,
     "translations": {
       "en": {
-        "slug": "palia-cheat-menu-full-feature-list",
+        "slug": "menu",
         "title": "Palia Cheat Menu — Full Feature List Explained",
         "metaDescription": "Every toggle in the Palia cheat menu explained — resource ESP, teleport, skill automation, hunting aimbot, and freecam. Best palia cheat menu for PC.",
         "h1": "Palia Cheat Menu — Every Feature Explained",
@@ -197,9 +197,9 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": false,
     "translations": {
       "en": {
-        "slug": "palia-resource-esp-kilima-village-guide",
+        "slug": "kilima",
         "title": "Palia Resource ESP — Kilima Village Farming Route",
-        "metaDescription": "Best Kilima Village resource ESP route for ore, wood, and forage. Palia cheats for PC with node highlights, distance filters, and Bahari Bay farming tips.",
+        "metaDescription": "Best Kilima Village resource ESP route for ore, wood, and forage. Palia cheats for PC with node highlights and distance filters.",
         "h1": "Resource ESP Farming Route — Kilima Village",
         "intro": "Kilima Village has dense ore and wood nodes perfect for Resource ESP. This route covers the most profitable loop using Palia cheats node highlights.",
         "keywords": [
@@ -230,9 +230,9 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": false,
     "translations": {
       "en": {
-        "slug": "palia-teleport-bahari-bay-coordinates",
+        "slug": "bahari",
         "title": "Palia Teleport — Bahari Bay Coordinate Guide",
-        "metaDescription": "Saved teleport coordinates for Bahari Bay fishing spots, hunting grounds, and rare resource nodes. Palia cheats teleport guide for Windows PC license holders.",
+        "metaDescription": "Saved teleport coordinates for Bahari Bay fishing spots, hunting grounds, and rare resource nodes. Palia cheats teleport module guide.",
         "h1": "Teleport Coordinates — Bahari Bay Hotspots",
         "intro": "The teleport module lets you save and recall coordinates anywhere in Palia. These Bahari Bay bookmarks cover the best fishing, hunting, and foraging locations.",
         "keywords": [
@@ -263,7 +263,7 @@ export const blogPosts: BlogPostDefinition[] = [
     "featured": false,
     "translations": {
       "en": {
-        "slug": "palia-premium-cheats-vs-free-trainers",
+        "slug": "premium",
         "title": "Palia Premium Cheats vs Free Trainers — Worth $35?",
         "metaDescription": "Compare palia premium cheats at $35 vs free Palia trainers. Why paid cheats include EAC protection, teleport, and a full cheat menu free tools lack.",
         "h1": "Premium Palia Cheats vs Free Trainers",

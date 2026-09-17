@@ -70,11 +70,18 @@ function readIndexableNonEnLocales() {
 const INDEXABLE_NON_EN_LOCALES = readIndexableNonEnLocales();
 
 const BLOG_PAGES = 9; // /forum/ index + 8 posts
-const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
+
+function readReviewSlugs() {
+	const src = readFileSync(path.join(ROOT, 'src/data/reviews.generated.ts'), 'utf8');
+	return [...src.matchAll(/"slug":\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+
+const REVIEW_SLUGS = readReviewSlugs();
+const REVIEW_PAGES = 1 + REVIEW_SLUGS.length; // /reviews/ index + detail pages
 const FAQ_SITEMAP_PAGES = 4; // Indexed FAQ answer pages (index is in the product pages)
 const FAQ_HTML_DETAIL_PAGES = 10; // All FAQ slug pages built (non-indexed get noindex)
-/** Indexable product pages (11 cannibal URLs 301 to pillars — see seo-cannibal-map.ts) */
-const CANNIBAL_PRODUCT_PAGES = 11;
+/** Indexable product pages (15 cannibal URLs 301 to pillars — see seo-cannibal-map.ts) */
+const CANNIBAL_PRODUCT_PAGES = 15;
 const ENGLISH_PRODUCT_PAGES = 25 - CANNIBAL_PRODUCT_PAGES;
 const ENGLISH_PAGES = ENGLISH_PRODUCT_PAGES + BLOG_PAGES + REVIEW_PAGES + FAQ_SITEMAP_PAGES;
 const I18N_LOCALES = 21;
@@ -138,58 +145,48 @@ const REDIRECT_ONLY_PATHS = new Set([
 	'/best/',
 	'/wallhack/',
 	'/undetected/',
+	'/esp/',
+	'/aimbot/',
+	'/setup/',
 ]);
 
 /** FAQ slug pages built with noindex — omitted from sitemaps by design */
 const NOINDEX_FAQ_PATHS = new Set([
-	'/faq/what-are-palia-cheats/',
-	'/faq/are-palia-cheats-undetected-in-2026/',
-	'/faq/buy-undetected-palia-cheats-windows-pc/',
-	'/faq/esp-wallhack-teleport-or-aimbot/',
-	'/faq/what-is-a-palia-wallhack/',
-	'/faq/does-palia-cheats-include-teleport/',
-	'/faq/eac-anti-cheat-and-palia-cheats/',
+	'/faq/about/',
+	'/faq/undetected/',
+	'/faq/buy/',
+	'/faq/included/',
+	'/faq/wallhack/',
+	'/faq/teleport/',
+	'/faq/eac/',
 ]);
 
 const ENGLISH_PATHS = [
 	'/',
-	'/esp/',
-	'/aimbot/',
 	'/features/',
 	'/store/',
-	'/setup/',
 	'/status/',
 	'/faq/',
 	'/support/',
 	'/teleport/',
-	'/cheats/',
 	'/privacy/',
 	'/refund/',
 	'/terms/',
 	'/forum/',
-	'/forum/how-to-use-palia-cheats-setup-guide/',
-	'/forum/palia-aimbot-settings-ban-risk/',
-	'/forum/palia-fishing-esp-best-settings/',
-	'/forum/buy-palia-cheats-buyers-guide-2026/',
-	'/forum/palia-cheat-menu-full-feature-list/',
-	'/forum/palia-resource-esp-kilima-village-guide/',
-	'/forum/palia-teleport-bahari-bay-coordinates/',
-	'/forum/palia-premium-cheats-vs-free-trainers/',
+	'/forum/setup/',
+	'/forum/aimbot/',
+	'/forum/fishing/',
+	'/forum/buyers/',
+	'/forum/menu/',
+	'/forum/kilima/',
+	'/forum/bahari/',
+	'/forum/premium/',
 	'/reviews/',
-	'/reviews/palia-fishing-review-mike-p/',
-	'/reviews/palia-esp-review-jess-k/',
-	'/reviews/palia-teleport-review-palia-grind/',
-	'/reviews/palia-menu-review-tom-r/',
-	'/reviews/palia-hunting-review-nightowl42/',
-	'/reviews/palia-setup-review-defenderdan/',
-	'/reviews/palia-fishing-review-luna-fish/',
-	'/reviews/palia-esp-review-routerunner/',
-	'/reviews/palia-eac-patch-review-patchday-mike/',
-	'/reviews/palia-setup-review-karen-w/',
-	'/faq/how-are-licenses-delivered/',
-	'/faq/how-to-contact-support/',
-	'/faq/where-to-check-updates/',
-	'/faq/kilima-and-bahari-bay-support/',
+	...REVIEW_SLUGS.map((slug) => `/reviews/${slug}/`),
+	'/faq/delivery/',
+	'/faq/contact/',
+	'/faq/updates/',
+	'/faq/kilima/',
 ];
 
 const LOCALE_CODES = [
@@ -535,16 +532,16 @@ async function main() {
 		if (errors === 0) ok('All 21 non-English locale homepages in per-locale sitemaps');
 	}
 
-	// Review JSON-LD must reference the single Product node on /cheats/ (not homepage /#product)
-	const cheatsHtml = await readFile(path.join(DIST, 'cheats/index.html'), 'utf8');
+	// Review JSON-LD must reference the single Product node on /store/ (not homepage /#product)
+	const cheatsHtml = await readFile(path.join(DIST, 'store/index.html'), 'utf8');
 	const sampleReviewHtml = await readFile(
-		path.join(DIST, 'reviews/palia-fishing-review-mike-p/index.html'),
+		path.join(DIST, `reviews/${REVIEW_SLUGS[0]}/index.html`),
 		'utf8',
 	);
 	if (!cheatsHtml.includes(PRODUCT_SCHEMA_ID)) {
-		fail(`/cheats/ missing Product @id ${PRODUCT_SCHEMA_ID}`);
+		fail(`/store/ missing Product @id ${PRODUCT_SCHEMA_ID}`);
 		bump();
-	} else ok(`/cheats/ Product @id is ${PRODUCT_SCHEMA_ID}`);
+	} else ok(`/store/ Product @id is ${PRODUCT_SCHEMA_ID}`);
 	if (sampleReviewHtml.includes(LEGACY_HOME_PRODUCT_ID)) {
 		fail(`Review itemReviewed still points at ${LEGACY_HOME_PRODUCT_ID}`);
 		bump();
@@ -556,11 +553,11 @@ async function main() {
 	// FAQPage: indexed /faq/{slug}/ only — not duplicated on homepage
 	const homeHtml = await readFile(path.join(DIST, 'index.html'), 'utf8');
 	const indexedFaqHtml = await readFile(
-		path.join(DIST, 'faq/how-are-licenses-delivered/index.html'),
+		path.join(DIST, 'faq/delivery/index.html'),
 		'utf8',
 	);
 	const noindexFaqHtml = await readFile(
-		path.join(DIST, 'faq/what-are-palia-cheats/index.html'),
+		path.join(DIST, 'faq/about/index.html'),
 		'utf8',
 	);
 	if (homeHtml.includes('"@type":"FAQPage"')) {
@@ -576,12 +573,7 @@ async function main() {
 		bump();
 	} else ok('Noindex FAQ slug pages omit FAQPage JSON-LD');
 
-	const INDEXED_FAQ_HOME_IDS = [
-		'how-are-licenses-delivered',
-		'how-to-contact-support',
-		'where-to-check-updates',
-		'kilima-and-bahari-bay-support',
-	];
+	const INDEXED_FAQ_HOME_IDS = ['delivery', 'contact', 'updates', 'kilima'];
 	for (const slug of INDEXED_FAQ_HOME_IDS) {
 		if (homeHtml.includes(`id="${slug}"`)) {
 			fail(`Homepage #faq must not duplicate indexed FAQ slug: ${slug}`);

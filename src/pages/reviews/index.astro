@@ -114,7 +114,6 @@ const extraGraph: Record<string, unknown>[] = [
 									{stars(review.rating)}
 								</p>
 							</div>
-							{review.tag ? <p class="reviews-index__tag">{review.tag}</p> : null}
 							<p class="reviews-index__text">{review.text}</p>
 							<a class="reviews-index__more" href={getReviewPath(review.slug)}>
 								Read full review
@@ -330,21 +329,6 @@ const extraGraph: Record<string, unknown>[] = [
 		letter-spacing: 0.04em;
 		color: var(--accent-amber);
 		white-space: nowrap;
-	}
-
-	.reviews-index__tag {
-		margin: 0;
-		display: inline-flex;
-		align-self: start;
-		padding: 0.2rem 0.55rem;
-		border-radius: 999px;
-		border: 1px solid color-mix(in srgb, var(--magenta) 28%, var(--line));
-		background: var(--bg);
-		color: var(--magenta-soft);
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
 	}
 
 	.reviews-index__text {

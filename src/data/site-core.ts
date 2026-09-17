@@ -109,7 +109,7 @@ export const seoKeywords = brand.keywords.list;
 export const forumLabel = fillBrandTokens(brandCopy.forumLabel);
 
 /** Canonical commercial URL — single Product schema node lives here (EN only). */
-export const productCanonicalPath = '/cheats/' as const;
+export const productCanonicalPath = '/store/' as const;
 export const productCanonicalUrl = new URL(productCanonicalPath, brand.url).href;
 export const productSchemaId = `${productCanonicalUrl}#product`;
 

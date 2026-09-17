@@ -14,10 +14,9 @@ const PREFERRED_HOSTS = [
 	englishPaths.features,
 	englishPaths.pricing,
 	englishPaths.updates,
-	englishPaths['palia-esp'],
-	englishPaths['palia-aimbot'],
-	englishPaths.hacks,
-	englishPaths.setup,
+	englishPaths.radar,
+	englishPaths.faq,
+	englishPaths.support,
 ] as const;
 
 /**

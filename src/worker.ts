@@ -1,47 +1,94 @@
 /**
- * Cloudflare Worker — host canonicalization before static assets.
- * Canonical site: https://paliacheats.org (matches brand.url)
- *
- * Requires DNS: CNAME `www` → `paliacheats.org` (proxied) AND
- * Workers custom domain `www.paliacheats.org` attached — otherwise
- * www is NXDOMAIN and Seobility fails the www/non-www check.
+ * Cloudflare Worker — canonical host + path 301s before static assets.
+ * Bulk redirects live in functions/path-redirects.json (+ cannibal-redirects.json),
+ * not public/_redirects (Cloudflare limits _redirects to 100 dynamic rules).
  */
+import CANNIBAL_REDIRECTS from '../functions/cannibal-redirects.json';
+import PATH_REDIRECTS from '../functions/path-redirects.json';
+
 export interface Env {
 	ASSETS: Fetcher;
 }
 
 const CANONICAL_HOST = 'paliacheats.org';
+const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
 
-/** Old apex still 301 → current canonical. */
-const LEGACY_HOSTS = new Set(['bestpaliacheats.com', 'www.bestpaliacheats.com']);
+const LEGACY_HOSTS = new Set([
+	'bestpaliacheats.com',
+	'www.bestpaliacheats.com',
+	'fortnitehack.net',
+	'www.fortnitehack.net',
+	'fortnitecheats.xyz',
+	'www.fortnitecheats.xyz',
+	'fortnitecheats.net',
+	'www.fortnitecheats.net',
+	'fortnitecheats.com',
+	'www.fortnitecheats.com',
+	'warzonehacks.net',
+	'www.warzonehacks.net',
+	'warzonescheats.net',
+	'www.warzonescheats.net',
+	'warzonescheats.com',
+	'www.warzonescheats.com',
+	'warzonescheats.xyz',
+	'www.warzonescheats.xyz',
+]);
 
-function canonicalUrl(request: Request): URL | null {
-	const url = new URL(request.url);
+type RedirectMap = Record<string, string>;
+
+function resolvePathRedirect(pathname: string): string | null {
+	return (
+		(PATH_REDIRECTS as RedirectMap)[pathname] ??
+		(CANNIBAL_REDIRECTS as RedirectMap)[pathname] ??
+		xmlTrailingSlashRedirect(pathname) ??
+		trailingSlashRedirect(pathname)
+	);
+}
+
+function xmlTrailingSlashRedirect(pathname: string): string | null {
+	if (!pathname.endsWith('.xml/')) return null;
+	return pathname.slice(0, -1);
+}
+
+function trailingSlashRedirect(pathname: string): string | null {
+	if (!pathname || pathname === '/' || pathname.includes('.') || pathname.endsWith('/')) {
+		return null;
+	}
+	return `${pathname}/`;
+}
+
+function needsHostRedirect(request: Request, url: URL): boolean {
 	const host = (request.headers.get('host') || url.hostname).split(':')[0].toLowerCase();
-	let changed = false;
+	if (host === `www.${CANONICAL_HOST}` || LEGACY_HOSTS.has(host)) return true;
+	return url.protocol === 'http:' && (host === CANONICAL_HOST || LEGACY_HOSTS.has(host));
+}
 
-	if (url.protocol === 'http:') {
-		url.protocol = 'https:';
-		changed = true;
-	}
-
-	if (
-		host === `www.${CANONICAL_HOST}` ||
-		url.hostname === `www.${CANONICAL_HOST}` ||
-		LEGACY_HOSTS.has(host)
-	) {
-		url.hostname = CANONICAL_HOST;
-		changed = true;
-	}
-
-	return changed ? url : null;
+function redirectResponse(target: URL): Response {
+	return new Response(null, {
+		status: 301,
+		headers: {
+			Location: target.toString(),
+			'Cache-Control': 'public, max-age=86400',
+		},
+	});
 }
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {
-		const target = canonicalUrl(request);
-		if (target) {
-			return Response.redirect(target.toString(), 301);
+		const url = new URL(request.url);
+
+		if (needsHostRedirect(request, url)) {
+			const target = new URL(url.pathname + url.search, CANONICAL_ORIGIN);
+			target.protocol = 'https:';
+			target.hostname = CANONICAL_HOST;
+			const mapped = resolvePathRedirect(target.pathname);
+			if (mapped) target.pathname = mapped;
+			return redirectResponse(target);
+		}
+
+		const mapped = resolvePathRedirect(url.pathname);
+		if (mapped) {
+			return redirectResponse(new URL(mapped + url.search, CANONICAL_ORIGIN));
 		}
 
 		return env.ASSETS.fetch(request);

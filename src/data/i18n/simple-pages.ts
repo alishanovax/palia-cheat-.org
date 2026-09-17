@@ -90,7 +90,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			'Monthly $35 or lifetime $150. Same ESP, wallhack, fishing tools, and cheat menu on every plan. Instant delivery after checkout.',
 		ctaPrimary: brandCopy.ctaBuy,
 		ctaSecondary: 'Setup guide',
-		ctaSecondaryHref: '/setup/',
+		ctaSecondaryHref: '/features/',
 		galleryTitle: 'In-game look',
 		sections: [
 			{
@@ -182,8 +182,8 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 					'Find ores and fish faster, automate skills, and move between Kilima Village and Bahari Bay with the full cheat menu.',
 				],
 				list: [
-					'<a href="/esp/">ESP & wallhack</a>',
-					'<a href="/aimbot/">Aimbot</a>',
+					'<a href="/features/">ESP & wallhack</a>',
+					'<a href="/features/">Aimbot</a>',
 					'<a href="/teleport/">Teleport</a>',
 					'<a href="/status/">Live status</a>',
 				],
@@ -195,7 +195,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				],
 				list: [
 					'<a href="/features/">Features</a>',
-					'<a href="/setup/">Setup</a>',
+					'<a href="/features/">Setup</a>',
 					'<a href="/status/">Live status</a>',
 				],
 			},
@@ -204,7 +204,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				paragraphs: ['Buy a plan, get your license by email, then follow setup. Check Status after every major patch.'],
 				list: [
 					'<a href="/store/">Open store</a>',
-					'<a href="/setup/">Setup guide</a>',
+					'<a href="/features/">Setup guide</a>',
 					'<a href="/status/">Check status</a>',
 				],
 			},
@@ -239,7 +239,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				h2: 'Next steps',
 				paragraphs: ['ESP is included with fishing tools and wallhack in one palia cheats plan.'],
 				list: [
-					'<a href="/cheats/">Full product</a>',
+					'<a href="/features/">Full product</a>',
 					'<a href="/features/">All features</a>',
 					'<a href="/store/">Store</a>',
 				],
@@ -272,7 +272,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				h2: 'Next steps',
 				paragraphs: ['Aimbot ships with ESP and wallhack in one {brand} license.'],
 				list: [
-					'<a href="/cheats/">Full product</a>',
+					'<a href="/features/">Full product</a>',
 					'<a href="/features/">All features</a>',
 					'<a href="/store/">Store</a>',
 				],
@@ -311,7 +311,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 				h2: 'Next steps',
 				paragraphs: ['Teleport ships with wallhack and ESP in one plan.'],
 				list: [
-					'<a href="/esp/">ESP & wallhack</a>',
+					'<a href="/features/">ESP & wallhack</a>',
 					'<a href="/store/">Store</a>',
 				],
 			},
@@ -345,7 +345,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Buy with maintenance',
 				paragraphs: ['Monthly and lifetime plans include rebuild access while your license is active.'],
-				list: ['<a href="/store/">Compare plans</a>', '<a href="/setup/">Setup guide</a>'],
+				list: ['<a href="/store/">Compare plans</a>', '<a href="/features/">Setup guide</a>'],
 			},
 		],
 	}),
@@ -444,7 +444,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Before checkout',
 				paragraphs: ['Compare pricing, read setup, and bookmark the status page for patch days.'],
-				list: ['<a href="/store/">Store</a>', '<a href="/setup/">Setup</a>', '<a href="/status/">Status</a>'],
+				list: ['<a href="/store/">Store</a>', '<a href="/features/">Setup</a>', '<a href="/status/">Status</a>'],
 			},
 		],
 	}),
@@ -457,7 +457,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			'Palia cheats download starts after payment — license details arrive by email with loader access.',
 		ctaPrimary: brandCopy.ctaBuy,
 		ctaSecondary: 'Setup guide',
-		ctaSecondaryHref: '/setup/',
+		ctaSecondaryHref: '/features/',
 		galleryTitle: 'Palia cheats license delivery',
 		sections: [
 			{
@@ -475,7 +475,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'First launch',
 				paragraphs: ['Follow setup after download. Check status if Palia patched recently.'],
-				list: ['<a href="/setup/">Setup</a>', '<a href="/status/">Status</a>'],
+				list: ['<a href="/features/">Setup</a>', '<a href="/status/">Status</a>'],
 			},
 		],
 	}),
@@ -506,7 +506,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'After patches',
 				paragraphs: ['Menu modules rebuild when EAC updates — check status before play.'],
-				list: ['<a href="/status/">Status</a>', '<a href="/aimbot/">Soft aim</a>'],
+				list: ['<a href="/status/">Status</a>', '<a href="/features/">Soft aim</a>'],
 			},
 		],
 	}),
@@ -537,7 +537,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Included with cheats',
 				paragraphs: ['Soft aim ships with ESP and wallhack in one {brand} license.'],
-				list: ['<a href="/aimbot/">Aimbot</a>', '<a href="/store/">Store</a>'],
+				list: ['<a href="/features/">Aimbot</a>', '<a href="/store/">Store</a>'],
 			},
 		],
 	}),
@@ -598,7 +598,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Maintenance',
 				paragraphs: ['Modules rebuild after EAC patches. Check status before play.'],
-				list: ['<a href="/status/">Status</a>', '<a href="/aimbot/">Aimbot</a>'],
+				list: ['<a href="/status/">Status</a>', '<a href="/features/">Aimbot</a>'],
 			},
 		],
 	}),
@@ -628,7 +628,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Full package',
 				paragraphs: ['ESP hack is part of palia cheats — wallhack and teleport included.'],
-				list: ['<a href="/esp/">ESP</a>', '<a href="/features/">Features</a>'],
+				list: ['<a href="/features/">ESP</a>', '<a href="/features/">Features</a>'],
 			},
 		],
 	}),
@@ -661,7 +661,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Buy the right tool',
 				paragraphs: ['If you need farming cheats, compare features and pricing before checkout.'],
-				list: ['<a href="/cheats/">Product overview</a>', '<a href="/store/">Store</a>'],
+				list: ['<a href="/features/">Product overview</a>', '<a href="/store/">Store</a>'],
 			},
 		],
 	}),
@@ -712,14 +712,14 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Faster answers',
 				paragraphs: ['Check FAQ and Status before you write. Many setup questions are already covered.'],
-				list: ['<a href="/faq/">FAQ</a>', '<a href="/status/">Status</a>', '<a href="/setup/">Setup</a>'],
+				list: ['<a href="/faq/">FAQ</a>', '<a href="/status/">Status</a>', '<a href="/features/">Setup</a>'],
 			},
 		],
 	}),
 	faq: page({
 		title: brandSeo.faqTitle,
 		description: brandSeo.faqDescription,
-		h1: 'FAQ',
+		h1: 'Frequently Asked Questions',
 		intro:
 			'Common questions about buying palia cheats — delivery, ESP, wallhack, setup, updates, and refunds.',
 		ctaPrimary: brandCopy.ctaBuy,
@@ -735,7 +735,7 @@ export const simplePageCopy: Partial<Record<PageId, SimplePageCopy>> = {
 			{
 				h2: 'Setup & updates',
 				paragraphs: ['Follow Setup after you buy. Check Status after big {game} or {antiCheat} patches.'],
-				list: ['<a href="/setup/">Setup guide</a>', '<a href="/status/">Status</a>'],
+				list: ['<a href="/features/">Setup guide</a>', '<a href="/status/">Status</a>'],
 			},
 			{
 				h2: 'Refunds',

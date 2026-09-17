@@ -1,0 +1,486 @@
+---
+import { getFeatureShowcaseItems } from '../data/features-showcase';
+import { getForumBasePath } from '../data/forum/helpers';
+import { getLocalizedPath, localizeInternalHref } from '../data/i18n/routing';
+import type { LocaleCode } from '../data/i18n/locales';
+import { defaultLocale } from '../data/i18n/locales';
+import { siteConfig } from '../data/site';
+import { contentImageSrc, contentSrcSet } from '../lib/responsive-images';
+
+const featureImageSizes = '(max-width: 960px) 100vw, min(56rem, calc(100vw - 20rem))';
+import { getT } from '../i18n/server';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const locale = Astro.props.locale ?? defaultLocale;
+const t = getT(locale);
+const items = getFeatureShowcaseItems();
+
+const featureSchema = {
+	'@type': 'ItemList',
+	'@id': `${siteConfig.url}/features/#feature-showcase`,
+	name: t('featuresShowcase.listTitle'),
+	description: t('featuresShowcase.listLede'),
+	itemListElement: items.map((item, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: item.title,
+		description: item.summary,
+	})),
+};
+---
+
+<section class="feat-show" aria-labelledby="feat-show-title" data-feat-show>
+	<header class="feat-show__head">
+		<p class="feat-show__eyebrow">{t('featuresShowcase.eyebrow')}</p>
+		<h2 id="feat-show-title">{t('featuresShowcase.listTitle')}</h2>
+		<p class="feat-show__lede">{t('featuresShowcase.listLede')}</p>
+	</header>
+
+	<div class="feat-show__layout">
+		<nav class="feat-show__nav" aria-label={t('featuresShowcase.navAria')}>
+			{
+				items.map((item, index) => (
+					<button
+						type="button"
+						class:list={['feat-show__tab', index === 0 && 'is-active']}
+						data-feat-tab={item.id}
+						aria-controls={`feat-panel-${item.id}`}
+						aria-selected={index === 0 ? 'true' : 'false'}
+						id={`feat-tab-${item.id}`}
+					>
+						<span class="feat-show__tab-tag">{item.tag}</span>
+						<span class="feat-show__tab-title">{item.title}</span>
+						<span class="feat-show__tab-summary">{item.summary}</span>
+					</button>
+				))
+			}
+		</nav>
+
+		<div class="feat-show__stage">
+			{
+				items.map((item, index) => {
+					const learnHref = item.learnMorePageId
+						? getLocalizedPath(item.learnMorePageId, locale)
+						: item.learnMoreHref
+							? localizeInternalHref(item.learnMoreHref, locale)
+							: undefined;
+					const imgSrc = contentImageSrc(item.image);
+					const imgSrcSet = contentSrcSet(item.image);
+
+					return (
+						<article
+							class:list={['feat-show__panel', index === 0 && 'is-active']}
+							id={`feat-panel-${item.id}`}
+							data-feat-panel={item.id}
+							role="tabpanel"
+							aria-labelledby={`feat-tab-${item.id}`}
+							hidden={index !== 0 ? true : undefined}
+						>
+							<figure class="feat-show__media">
+								<img
+									src={imgSrc}
+									srcset={imgSrcSet}
+									sizes={featureImageSizes}
+									alt={item.imageAlt}
+									width="960"
+									height="600"
+									loading={index === 0 ? 'eager' : 'lazy'}
+									decoding="async"
+								/>
+								<figcaption class="feat-show__caption">
+									<span class="feat-show__caption-tag">{item.tag}</span>
+									<span>{t('showcase.platform')}</span>
+								</figcaption>
+							</figure>
+
+							<div class="feat-show__copy">
+								<h3>{item.title}</h3>
+								<p class="feat-show__summary">{item.summary}</p>
+								{item.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+								<ul class="feat-show__bullets">
+									{item.bullets.map((bullet) => (
+										<li>{bullet}</li>
+									))}
+								</ul>
+								{
+									learnHref && (
+										<a class="feat-show__more" href={learnHref}>
+											{t('featuresShowcase.learnMore')}
+											<span aria-hidden="true">→</span>
+										</a>
+									)
+								}
+							</div>
+						</article>
+					);
+				})
+			}
+		</div>
+	</div>
+
+	<footer class="feat-show__foot">
+		<p>{t('featuresShowcase.footNote')}</p>
+		<div class="feat-show__foot-links">
+			<a href={getLocalizedPath('updates', locale)}>{t('nav.status')}</a>
+			<a href={`${getForumBasePath(locale)}setup/`}>{t('nav.setup')}</a>
+			<a href={getLocalizedPath('pricing', locale)}>{t('nav.store')}</a>
+		</div>
+	</footer>
+
+	<script type="application/ld+json" set:html={JSON.stringify(featureSchema)} />
+</section>
+
+<script>
+	function initFeatureShowcase(root: HTMLElement) {
+		const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-feat-tab]')];
+		const panels = [...root.querySelectorAll<HTMLElement>('[data-feat-panel]')];
+		if (!tabs.length || !panels.length) return;
+
+		const activate = (id: string) => {
+			for (const tab of tabs) {
+				const on = tab.dataset.featTab === id;
+				tab.classList.toggle('is-active', on);
+				tab.setAttribute('aria-selected', on ? 'true' : 'false');
+			}
+			for (const panel of panels) {
+				const on = panel.dataset.featPanel === id;
+				panel.classList.toggle('is-active', on);
+				if (on) panel.removeAttribute('hidden');
+				else panel.setAttribute('hidden', '');
+			}
+		};
+
+		for (const tab of tabs) {
+			tab.addEventListener('click', () => {
+				const id = tab.dataset.featTab;
+				if (id) activate(id);
+			});
+		}
+	}
+
+	for (const root of document.querySelectorAll<HTMLElement>('[data-feat-show]')) {
+		initFeatureShowcase(root);
+	}
+</script>
+
+<style>
+	.feat-show {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.feat-show__head {
+		max-width: 40rem;
+	}
+
+	.feat-show__eyebrow {
+		margin: 0 0 0.35rem;
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--magenta-soft);
+	}
+
+	.feat-show__head h2 {
+		margin: 0 0 0.5rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--ink);
+	}
+
+	.feat-show__lede {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: var(--ink-muted);
+	}
+
+	.feat-show__layout {
+		display: grid;
+		grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+		gap: 1rem;
+		align-items: start;
+	}
+
+	.feat-show__nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		position: sticky;
+		top: 5.5rem;
+	}
+
+	.feat-show__tab {
+		display: grid;
+		gap: 0.2rem;
+		width: 100%;
+		padding: 0.8rem 0.9rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-panel);
+		text-align: left;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.feat-show__tab:hover {
+		border-color: color-mix(in srgb, var(--magenta) 35%, var(--line));
+		background: var(--bg-elevated);
+	}
+
+	.feat-show__tab.is-active {
+		border-color: color-mix(in srgb, var(--magenta) 50%, var(--line));
+		background: color-mix(in srgb, var(--magenta) 10%, var(--bg-elevated));
+		box-shadow: 0 0 0 1px color-mix(in srgb, var(--magenta) 22%, transparent);
+	}
+
+	.feat-show__tab-tag {
+		font-size: 0.65rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--magenta-soft);
+	}
+
+	.feat-show__tab-title {
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: var(--ink);
+		line-height: 1.25;
+	}
+
+	.feat-show__tab-summary {
+		font-size: 0.75rem;
+		line-height: 1.45;
+		color: var(--ink-faint);
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+	}
+
+	.feat-show__stage {
+		position: relative;
+		min-height: 0;
+	}
+
+	.feat-show__panel {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: var(--bg-panel);
+		overflow: hidden;
+		animation: feat-fade 0.28s ease;
+	}
+
+	.feat-show__panel[hidden] {
+		display: none;
+	}
+
+	.feat-show__media {
+		position: relative;
+		margin: 0;
+		aspect-ratio: 16 / 9;
+		max-height: 22rem;
+		background: var(--bg-elevated);
+		overflow: hidden;
+	}
+
+	.feat-show__media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center center;
+	}
+
+	.feat-show__caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.7rem 0.9rem;
+		background: linear-gradient(180deg, transparent, rgba(8, 9, 10, 0.92));
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #fff;
+	}
+
+	.feat-show__caption-tag {
+		color: var(--magenta-soft);
+	}
+
+	.feat-show__copy {
+		display: grid;
+		gap: 0.65rem;
+		padding: 1.25rem 1.35rem 1.35rem;
+	}
+
+	.feat-show__copy h3 {
+		margin: 0;
+		font-size: 1.15rem;
+		font-weight: 700;
+		line-height: 1.3;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+	}
+
+	.feat-show__summary {
+		margin: 0;
+		font-size: 0.9rem;
+		font-weight: 600;
+		line-height: 1.5;
+		color: var(--magenta-soft);
+	}
+
+	.feat-show__copy p {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.65;
+		color: var(--ink-muted);
+	}
+
+	.feat-show__bullets {
+		margin: 0.15rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.45rem 1rem;
+	}
+
+	.feat-show__bullets li {
+		position: relative;
+		padding-left: 1.1rem;
+		font-size: 0.8125rem;
+		line-height: 1.45;
+		color: var(--ink);
+	}
+
+	.feat-show__bullets li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.45rem;
+		width: 0.4rem;
+		height: 0.4rem;
+		border-radius: 999px;
+		background: var(--magenta-soft);
+	}
+
+	.feat-show__more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-top: 0.85rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--magenta-soft);
+		text-decoration: none;
+	}
+
+	.feat-show__more:hover {
+		color: var(--magenta);
+	}
+
+	.feat-show__foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem 1rem;
+		padding: 1rem 1.1rem;
+		border: 1px dashed var(--line-soft);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--magenta) 6%, var(--bg-panel));
+	}
+
+	.feat-show__foot p {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+	}
+
+	.feat-show__foot-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1rem;
+	}
+
+	.feat-show__foot-links a {
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--magenta-soft);
+		text-decoration: none;
+	}
+
+	.feat-show__foot-links a:hover {
+		color: var(--magenta);
+	}
+
+	@keyframes feat-fade {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 960px) {
+		.feat-show__layout {
+			grid-template-columns: 1fr;
+		}
+
+		.feat-show__nav {
+			position: static;
+			flex-direction: row;
+			overflow-x: auto;
+			padding-bottom: 0.25rem;
+			scrollbar-width: none;
+		}
+
+		.feat-show__nav::-webkit-scrollbar {
+			display: none;
+		}
+
+		.feat-show__tab {
+			min-width: 11.5rem;
+			flex-shrink: 0;
+		}
+
+		.feat-show__bullets {
+			grid-template-columns: 1fr;
+		}
+
+		.feat-show__media {
+			max-height: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.feat-show__panel {
+			animation: none;
+		}
+	}
+</style>

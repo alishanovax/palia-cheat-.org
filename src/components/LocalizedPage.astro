@@ -11,7 +11,7 @@ import {
 	productSchemaId,
 	siteConfig,
 	customerReviewStats,
-	seoFaqs,
+	indexedFaqs,
 } from '../data/site';
 import { reviewsBasePath } from '../data/reviews';
 import { getFaqPath } from '../data/faq';
@@ -20,6 +20,7 @@ import { simplePageCopy } from '../data/i18n/simple-pages';
 import { getT } from '../i18n/server';
 import { getPageCrawlImage } from '../data/page-images';
 import StatusUpdates from './StatusUpdates.astro';
+import FeaturesShowcase from './FeaturesShowcase.astro';
 
 interface Props {
 	locale: LocaleCode;
@@ -53,7 +54,6 @@ const introEditByPage: Partial<Record<PageId, string>> = {
 	features: 'featuresIntro',
 	pricing: 'storeIntro',
 	updates: 'statusIntro',
-	hacks: 'previewIntro',
 	setup: 'setupIntro',
 	support: 'supportIntro',
 	faq: 'faqIntro',
@@ -68,9 +68,9 @@ const priceValidUntil = '2027-12-31';
 /** FAQ schema on home + /faq/{slug}/ only — not on /faq/ index (avoids triple duplication). */
 const faqSchema = null;
 
-/** Single Product node — EN /cheats/ only (no duplicate on /store/ or locales). */
+/** Single Product node — EN /store/ only (no duplicate on locales). */
 const storeSchema =
-	locale === 'en' && pageId === 'hacks'
+	locale === 'en' && pageId === 'pricing'
 		? {
 				'@type': 'Product',
 				'@id': productSchemaId,
@@ -121,9 +121,7 @@ const lifetime = productInfo.plans.find((p) => p.id === 'lifetime') ?? productIn
 const showStorePlans = pageId === 'pricing' && locale === 'en';
 
 /** Only when eyebrow adds context beyond the H1 (e.g. "Cheats" above "Palia Cheats"). */
-const eyebrowByPage: Partial<Record<PageId, string>> = {
-	hacks: locale === 'en' ? t('nav.preview') : ui.nav.hacks,
-};
+const eyebrowByPage: Partial<Record<PageId, string>> = {};
 
 ---
 
@@ -150,6 +148,7 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 			? { href: ctaSecondaryHref, label: ctaSecondaryLabel }
 			: undefined
 	}
+	showGallery={pageId !== 'features'}
 >
 	{/* JSON-LD is emitted via PageLayout → Layout extraGraph */}
 
@@ -179,26 +178,10 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 		)
 	}
 
+	{pageId === 'features' && <FeaturesShowcase locale={locale} />}
+
 	{
-		pageId === 'features' && locale === 'en' ? (
-			<div class="feature-cards">
-				{sections.map((section) => (
-					<article class="feature-cards__item card-panel">
-						<h2>{section.h2}</h2>
-						{section.paragraphs.map((p) => (
-							<p set:html={localizeParagraphHtml(p)} />
-						))}
-						{section.list && (
-							<ul>
-								{section.list.map((item) => (
-									<li set:html={localizeParagraphHtml(item)} />
-								))}
-							</ul>
-						)}
-					</article>
-				))}
-			</div>
-		) : (
+		pageId !== 'features' ? (
 			sections.map((section) => (
 				<section class="card-panel">
 					<h2>{section.h2}</h2>
@@ -214,7 +197,7 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 					)}
 				</section>
 			))
-		)
+		) : null
 	}
 
 	{
@@ -238,7 +221,7 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 				<p>{t('common.openAnyQuestion')}</p>
 				{locale !== 'en' && <p class="faq-index__note">{t('common.faqAnswersEnglish')}</p>}
 				<ul class="faq-index__list">
-					{seoFaqs.map((item) => (
+					{indexedFaqs.map((item) => (
 						<li>
 							<a href={getFaqPath(item.slug)}>
 								<span>{fillBrandTokens(item.question)}</span>
@@ -247,33 +230,15 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 						</li>
 					))}
 				</ul>
+				<p class="faq-index__more">
+					<a href={`${getLocalizedPath('home', locale)}#faq`}>{t('homeSeo.faqTitle')}</a>
+				</p>
 			</section>
 		)
 	}
 </PageLayout>
 
 <style>
-	.feature-cards {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.85rem;
-	}
-
-	.feature-cards__item {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.feature-cards__item h2 {
-		font-size: 1.05rem;
-	}
-
-	@media (max-width: 720px) {
-		.feature-cards {
-			grid-template-columns: 1fr;
-		}
-	}
-
 	.faq-index__list {
 		margin: 1rem 0 0;
 		padding: 0;
@@ -308,6 +273,21 @@ const eyebrowByPage: Partial<Record<PageId, string>> = {
 		margin: 0.5rem 0 0;
 		font-size: 0.8125rem;
 		color: var(--ink-muted);
+	}
+
+	.faq-index__more {
+		margin: 1rem 0 0;
+		font-size: 0.875rem;
+	}
+
+	.faq-index__more a {
+		color: var(--magenta-soft);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.faq-index__more a:hover {
+		color: var(--magenta);
 	}
 
 	.trust-strip p {

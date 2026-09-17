@@ -4,23 +4,29 @@
  * Weaker URLs redirect to the nav-linked pillar so Google gets one target per topic.
  */
 export const cannibalRedirectTargets = {
-	'esp-hack': 'palia-esp',
-	'aimbot-hack': 'palia-aimbot',
-	'soft-aim': 'palia-aimbot',
+	/** Retired module landings → single Features pillar */
+	'palia-esp': 'features',
+	'palia-aimbot': 'features',
+	setup: 'features',
+	'esp-hack': 'features',
+	'aimbot-hack': 'features',
+	'soft-aim': 'features',
 	/** EAC maintenance → live status pillar */
 	eac: 'updates',
-	/** Year-stamped buyer guide → cheats money page */
-	'cheats-2026': 'hacks',
+	/** Year-stamped buyer guide → features pillar */
+	'cheats-2026': 'features',
 	/** Unlock-all searches → features (what the license includes) */
 	'unlock-all': 'features',
-	/** Delivery / download intent → setup pillar */
-	'cheat-download': 'setup',
+	/** Delivery / download intent → features pillar */
+	'cheat-download': 'features',
 	/** In-game menu toggles → features list */
 	'mod-menu': 'features',
-	/** “Best cheats” comparisons → money page */
-	'best-cheats': 'hacks',
-	/** Wallhack intent → ESP pillar (one visibility URL) */
-	wallhack: 'palia-esp',
+	/** “Best cheats” comparisons → features pillar */
+	'best-cheats': 'features',
+	/** Retired preview URL → homepage hub */
+	hacks: 'home',
+	/** Wallhack intent → features pillar */
+	wallhack: 'features',
 	/** Undetected maintenance → status pillar */
 	undetected: 'updates',
 } as const;

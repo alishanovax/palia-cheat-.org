@@ -117,7 +117,6 @@ const extraGraph: Record<string, unknown>[] = [
 						</p>
 						<p class="review-detail__date">
 							<time datetime={review.date}>{dateLabel}</time>
-							{review.tag ? <span class="review-detail__tag">{review.tag}</span> : null}
 							<span class="review-detail__verified">Verified buyer</span>
 						</p>
 					</div>
@@ -288,7 +287,6 @@ const extraGraph: Record<string, unknown>[] = [
 		color: var(--ink-faint);
 	}
 
-	.review-detail__tag,
 	.review-detail__verified {
 		display: inline-flex;
 		padding: 0.2rem 0.55rem;
@@ -297,15 +295,6 @@ const extraGraph: Record<string, unknown>[] = [
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-	}
-
-	.review-detail__tag {
-		border: 1px solid color-mix(in srgb, var(--magenta) 28%, var(--line));
-		background: var(--bg);
-		color: var(--magenta-soft);
-	}
-
-	.review-detail__verified {
 		border: 1px solid color-mix(in srgb, var(--ok) 35%, var(--line));
 		background: var(--bg);
 		color: var(--ok);

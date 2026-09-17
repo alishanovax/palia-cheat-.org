@@ -120,14 +120,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"This homepage is your map — not the buy page. <a href=\"/cheats/\">Cheats</a> owns checkout and product detail for palia cheats.",
 								"Patch and <a href=\"https://www.eac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Easy Anti-Cheat</a> updates ship through <a href=\"https://palia.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Palia</a>. We post rebuild notes on <a href=\"/status/\">Status</a> (undetected maintenance) before you log in.",
-								"Still researching? Compare <a href=\"/setup/\">download</a> and <a href=\"/cheats/\">best cheats</a> guides, then open Store when you are ready.",
+								"Still researching? Compare <a href=\"/features/\">download</a> and <a href=\"/cheats/\">best cheats</a> guides, then open Store when you are ready.",
 							],
 						},
 						{
 							h2: "Popular pages",
 							paragraphs: [
-								"Browse <a href=\"/esp/\">ESP & wallhack</a>, <a href=\"/aimbot/\">aimbot</a>, and <a href=\"/teleport/\">teleport</a> for module detail.",
-								"Ready to buy? Open <a href=\"/cheats/\">Cheats</a> or <a href=\"/store/\">Store</a>, follow <a href=\"/setup/\">setup</a> after delivery, and bookmark <a href=\"/faq/\">FAQ</a> plus <a href=\"/support/\">support</a>.",
+								"Browse <a href=\"/features/\">ESP & wallhack</a>, <a href=\"/features/\">aimbot</a>, and <a href=\"/teleport/\">teleport</a> for module detail.",
+								"Ready to buy? Open <a href=\"/cheats/\">Cheats</a> or <a href=\"/store/\">Store</a>, follow <a href=\"/features/\">setup</a> after delivery, and bookmark <a href=\"/faq/\">FAQ</a> plus <a href=\"/support/\">support</a>.",
 							],
 						},
 					],
@@ -142,7 +142,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia ESP overlay visuals",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Palia wallhack guide",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What Palia ESP solves in sessions",
@@ -157,7 +157,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Toggle ores, fish, and insects outlines, rare nodes markers, map zones cues, and loot pins so only session-critical ESP wallhack overlays stay active during rotations.",
 								"Distance readouts and snapline options help you control engagement range. Category colour coding supports Kilima and Bahari Bay sessions lobbies alike.",
-								"Compare category detail on the <a href=\"/esp/\">wallhack page</a> and pair visibility with the <a href=\"/teleport/\">wallhack</a> for flanks outside your FOV.",
+								"Compare category detail on the <a href=\"/features/\">wallhack page</a> and pair visibility with the <a href=\"/teleport/\">wallhack</a> for flanks outside your FOV.",
 							],
 							list: [
 								"ores, fish, and insects ESP outlines with distance",
@@ -171,13 +171,13 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Palia Cheats ESP wallhack is maintained for Palia with rebuilds after Easy Anti-Cheat patches. Check the <a href=\"/status/\">Updates page</a> before you log in — no cheat guarantees permanent undetected status.",
 								"Read <a href=\"https://www.eac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Easy Anti-Cheat</a> for how anti-cheat updates ship, then cross-check our <a href=\"/status/\">EAC bypass maintenance guide</a> after major patches.",
-								"Checkout includes instant digital delivery for Windows 10 and 11. After purchase, follow the <a href=\"/setup/\">Setup guide</a> and tune overlays before your first session.",
+								"Checkout includes instant digital delivery for Windows 10 and 11. After purchase, follow the <a href=\"/features/\">Setup guide</a> and tune overlays before your first session.",
 							],
 						},
 						{
 							h2: "ESP next steps — Aimbot, pricing, and support",
 							paragraphs: [
-								"ESP alone wins farming routes; Aimbot covers the hunting sessions. Review <a href=\"/aimbot/\">Aimbot controls</a> if you want one license for visibility and assist.",
+								"ESP alone wins farming routes; Aimbot covers the hunting sessions. Review <a href=\"/features/\">Aimbot controls</a> if you want one license for visibility and assist.",
 								"Compare monthly ($35) and lifetime ($150) on <a href=\"/store/\">Pricing</a>, then keep <a href=\"/support/\">Support</a> ready if activation needs a human reply.",
 								"Still researching? The <a href=\"/cheats/\">Palia cheats pillar</a> and <a href=\"/cheats/\">2026 buyer guide</a> summarize the full stack.",
 							],
@@ -194,7 +194,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia Aimbot combat previews",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "See ESP wallhack",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot tuned for Palia combat pace",
@@ -208,8 +208,8 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Per-weapon Aimbot profiles",
 							paragraphs: [
 								"Save separate Aimbot profiles for bows, rods, and tools. Switch between long-range DMR fights and village center clears without reopening menus every session.",
-								"Prefer softer tracking? Read the <a href=\"/aimbot/\">soft aim guide</a>.",
-								"Aimbot ships alongside <a href=\"/esp/\">ESP wallhack</a> and <a href=\"/teleport/\">wallhack</a> in the same Palia Cheats license.",
+								"Prefer softer tracking? Read the <a href=\"/features/\">soft aim guide</a>.",
+								"Aimbot ships alongside <a href=\"/features/\">ESP wallhack</a> and <a href=\"/teleport/\">wallhack</a> in the same Palia Cheats license.",
 							],
 							list: [
 								"Smoothness, FOV, and sensitivity sliders",
@@ -229,7 +229,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 						{
 							h2: "Buy Aimbot with ESP — pricing and setup",
 							paragraphs: [
-								"Every plan includes Aimbot plus ESP and wallhack. Compare options on <a href=\"/store/\">Pricing</a>, then activate with the <a href=\"/setup/\">Setup guide</a>.",
+								"Every plan includes Aimbot plus ESP and wallhack. Compare options on <a href=\"/store/\">Pricing</a>, then activate with the <a href=\"/features/\">Setup guide</a>.",
 								"Questions about delivery or profiles? Use <a href=\"/faq/\">FAQ</a> or email <a href=\"/support/\">Support</a> with your order ID.",
 								"Want the full control list first? Open <a href=\"/features/\">Features</a> before checkout.",
 							],
@@ -252,7 +252,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "ESP wallhack and visibility features",
 							paragraphs: [
 								"ores, fish, and insects ESP wallhack, rare nodes and map zones awareness cues, loot and container markers, distance readouts, snaplines, and toggleable ESP categories for session-critical overlays only.",
-								"Category colour coding supports Kilima and Bahari Bay sessions. Deep-dive the <a href=\"/esp/\">ESP page</a> and <a href=\"/esp/\">wallhack guide</a> for category-level detail.",
+								"Category colour coding supports Kilima and Bahari Bay sessions. Deep-dive the <a href=\"/features/\">ESP page</a> and <a href=\"/features/\">wallhack guide</a> for category-level detail.",
 								"Map and loot systems evolve with <a href=\"https://palia.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Palia</a> season and map updates — toggleable ESP categories keep overlays useful when POIs rotate.",
 							],
 						},
@@ -260,7 +260,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "wallhack and Aimbot controls",
 							paragraphs: [
 								"wallhack overlay with directional threat cues, configurable range for rotations and late-session map zones, plus Aimbot smoothness, FOV, bone priority, hotkeys, and per-weapon profiles.",
-								"All tools share in-client toggles so you can adjust ESP, wallhack, and Aimbot during live Palia sessions. See <a href=\"/teleport/\">wallhack</a> and <a href=\"/aimbot/\">Aimbot</a> for settings walkthroughs.",
+								"All tools share in-client toggles so you can adjust ESP, wallhack, and Aimbot during live Palia sessions. See <a href=\"/teleport/\">wallhack</a> and <a href=\"/features/\">Aimbot</a> for settings walkthroughs.",
 								"Prefer a menu-first workflow? The <a href=\"/cheats/\">mod menu page</a> explains mid-session toggles without alt-tabbing.",
 							],
 						},
@@ -284,7 +284,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia Cheats package visuals",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Read setup guide",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Monthly and lifetime Palia Cheats plans",
@@ -299,7 +299,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Player ESP wallhack, resource markers, wallhack overlays, Aimbot controls, in-client toggles, and maintenance rebuilds after Easy Anti-Cheat or major Palia patches.",
 								"Season calendars and client updates come from <a href=\"https://palia.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Palia</a>. Active licenses receive rebuild access when we publish maintenance on <a href=\"/status/\">Updates</a>.",
-								"Digital delivery starts after payment confirmation. Keep your order reference for <a href=\"/support/\">Support</a> requests and follow <a href=\"/setup/\">Setup</a> for first launch.",
+								"Digital delivery starts after payment confirmation. Keep your order reference for <a href=\"/support/\">Support</a> requests and follow <a href=\"/features/\">Setup</a> for first launch.",
 							],
 						},
 						{
@@ -336,8 +336,8 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Activate ESP wallhack and Aimbot profiles",
 							paragraphs: [
 								"Follow the delivery instructions in your license email. Load default ESP wallhack categories for players, wildlife, and loot — then tune wallhack range and Aimbot smoothness to your playstyle.",
-								"Use in-client hotkeys to toggle ESP, wallhack, and Aimbot mid-session. Details for Easy Anti-Cheat module live on <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>, and <a href=\"/cheats/\">mod menu</a>.",
-								"Prefer a soft tracking feel? Start with the <a href=\"/aimbot/\">soft aim</a> recommendations before raising aggressiveness.",
+								"Use in-client hotkeys to toggle ESP, wallhack, and Aimbot mid-session. Details for Easy Anti-Cheat module live on <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>, and <a href=\"/cheats/\">mod menu</a>.",
+								"Prefer a soft tracking feel? Start with the <a href=\"/features/\">soft aim</a> recommendations before raising aggressiveness.",
 							],
 						},
 						{
@@ -404,7 +404,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "What is Palia Cheats?",
 							paragraphs: [
 								"Palia Cheats is an undetected cheat package for Palia on Windows PC. It includes ESP wallhack, wallhack-style awareness, and Aimbot controls with EAC maintenance updates.",
-								"Packages cover session and co-op sessions. Explore <a href=\"/features/\">Features</a> for the full control list and <a href=\"/esp/\">ESP</a> / <a href=\"/aimbot/\">Aimbot</a> for module detail.",
+								"Packages cover session and co-op sessions. Explore <a href=\"/features/\">Features</a> for the full control list and <a href=\"/features/\">ESP</a> / <a href=\"/features/\">Aimbot</a> for module detail.",
 								"Palia itself is published by Singularity 6 (<a href=\"https://palia.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Palia</a>). Cheats are unofficial tools and may violate Singularity 6 rules — use is at your own risk.",
 							],
 						},
@@ -420,7 +420,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Delivery, pricing, and support",
 							paragraphs: [
 								"Licenses deliver digitally after payment confirmation. Monthly is $35; lifetime is $150 USD — see <a href=\"/store/\">Pricing</a>.",
-								"Contact support@paliacheats.org or the <a href=\"/support/\">Support page</a> with order details for setup or billing help. First launch steps are on <a href=\"/setup/\">Setup</a>.",
+								"Contact support@paliacheats.org or the <a href=\"/support/\">Support page</a> with order details for setup or billing help. First launch steps are on <a href=\"/features/\">Setup</a>.",
 								"Refund eligibility is covered in the <a href=\"/refund/\">Refund Policy</a>.",
 							],
 						},
@@ -436,14 +436,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia Cheats support resources",
 					ctaPrimary: "Email support",
 					ctaSecondary: "Read setup guide",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "When to contact support",
 							paragraphs: [
 								"Reach out for order issues, license activation failures, ESP wallhack or Aimbot setup questions, and post-patch problems after EAC maintenance rebuilds.",
 								"Include your order ID, license tier (monthly or lifetime), Windows version, and a clear description of the issue.",
-								"Many answers already live in <a href=\"/faq/\">FAQ</a>, <a href=\"/setup/\">Setup</a>, and <a href=\"/status/\">Updates</a> — check those first for faster resolution.",
+								"Many answers already live in <a href=\"/faq/\">FAQ</a>, <a href=\"/features/\">Setup</a>, and <a href=\"/status/\">Updates</a> — check those first for faster resolution.",
 							],
 						},
 						{
@@ -497,7 +497,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Combine maintenance with conservative in-game settings. Read the <a href=\"/faq/\">FAQ</a> and Updates log regularly — undetected status is not a one-time promise.",
 								"Lifetime and monthly plans include rebuild access during active terms — see <a href=\"/store/\">Pricing</a>.",
-								"New buyers should also read <a href=\"/cheats/\">Palia cheats 2026</a> and complete <a href=\"/setup/\">Setup</a> after delivery.",
+								"New buyers should also read <a href=\"/cheats/\">Palia cheats 2026</a> and complete <a href=\"/features/\">Setup</a> after delivery.",
 							],
 						},
 					],
@@ -512,14 +512,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia wallhack ESP gallery",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Palia ESP page",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack ESP vs raw aim tools",
 							paragraphs: [
 								"A Palia wallhack focuses on information — player outlines, loot pins, rare nodes threat cues — rather than automatic aiming. Palia Cheats bundles wallhack ESP with wallhack and optional Aimbot in one license.",
 								"Toggle categories so only the wallhack overlays you need stay active during rotations and map zones holds.",
-								"For the broader ESP keyword page see <a href=\"/esp/\">Palia ESP</a>; for combat assist see <a href=\"/aimbot/\">Aimbot</a>.",
+								"For the broader ESP keyword page see <a href=\"/features/\">Palia ESP</a>; for combat assist see <a href=\"/features/\">Aimbot</a>.",
 							],
 						},
 						{
@@ -535,7 +535,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"ESP wallhack modules rebuild after Easy Anti-Cheat patches. Follow the <a href=\"/status/\">Updates page</a> and complete checkout for instant license delivery on Windows PC.",
 								"Learn the full maintenance story on <a href=\"/cheats/\">undetected Palia cheats</a> and <a href=\"/status/\">EAC bypass</a>.",
-								"Ready to buy? Compare <a href=\"/store/\">Pricing</a> or continue to the <a href=\"/esp/\">ESP hack</a> landing for alternate search wording.",
+								"Ready to buy? Compare <a href=\"/store/\">Pricing</a> or continue to the <a href=\"/features/\">ESP hack</a> landing for alternate search wording.",
 							],
 						},
 					],
@@ -550,13 +550,13 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia wallhack visuals",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "See ESP guide",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack for resource farming",
 							paragraphs: [
 								"See ores, fish, and insects through walls while you farm Kilima Village and Bahari Bay.",
-								"Pair wallhack with <a href=\"/esp/\">resource ESP</a> for the fastest gold and skill routes.",
+								"Pair wallhack with <a href=\"/features/\">resource ESP</a> for the fastest gold and skill routes.",
 								"Teleport between saved coordinates to skip long walks between nodes.",
 							],
 						},
@@ -572,7 +572,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Maintenance",
 							paragraphs: [
 								"Wallhack and teleport modules rebuild after Easy Anti-Cheat patches. Check <a href=\"/status/\">Updates</a> before you play.",
-								"Setup steps are on the <a href=\"/setup/\">Setup guide</a>.",
+								"Setup steps are on the <a href=\"/features/\">Setup guide</a>.",
 								"Questions? Email <a href=\"/support/\">Support</a> with your order ID.",
 							],
 						},
@@ -611,7 +611,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"EAC bypass in practice means timely maintenance. Read the undetected guide, <a href=\"/faq/\">FAQ</a>, and Updates log before every session.",
 								"Contact <a href=\"/support/\">Support</a> if activation fails immediately after a posted rebuild.",
-								"Buying for the first time? Compare <a href=\"/store/\">Pricing</a> and finish <a href=\"/setup/\">Setup</a> only after Updates shows a live build.",
+								"Buying for the first time? Compare <a href=\"/store/\">Pricing</a> and finish <a href=\"/features/\">Setup</a> only after Updates shows a live build.",
 							],
 						},
 					],
@@ -640,7 +640,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Full feature stack for 2026 buyers",
 							paragraphs: [
 								"Player ESP wallhack, resource markers, wallhack overlays, Aimbot profiles, in-client toggles, and post-patch rebuilds — one license instead of stacking separate tools.",
-								"Deep links: <a href=\"/cheats/\">Palia cheats pillar</a>, <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>, <a href=\"/esp/\">wallhack</a>, <a href=\"/teleport/\">wallhack</a>, <a href=\"/cheats/\">undetected</a>.",
+								"Deep links: <a href=\"/cheats/\">Palia cheats pillar</a>, <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>, <a href=\"/features/\">wallhack</a>, <a href=\"/teleport/\">wallhack</a>, <a href=\"/cheats/\">undetected</a>.",
 								"Instant digital delivery after checkout confirmation worldwide.",
 							],
 						},
@@ -678,7 +678,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "How this Palia cheats pillar fits nearby pages",
 							paragraphs: [
 								"Use this pillar for the core product overview. For year-specific buying notes, see the <a href=\"/cheats/\">palia cheats 2026</a> and <a href=\"/cheats/\">Palia cheats</a> pages cover buyer comparisons in cheats wording.",
-								"Deep-dive modules: <a href=\"/esp/\">Palia ESP</a>, <a href=\"/aimbot/\">Palia Aimbot</a>, <a href=\"/esp/\">wallhack</a>, <a href=\"/teleport/\">wallhack</a>, and <a href=\"/aimbot/\">soft aim</a>.",
+								"Deep-dive modules: <a href=\"/features/\">Palia ESP</a>, <a href=\"/features/\">Palia Aimbot</a>, <a href=\"/features/\">wallhack</a>, <a href=\"/teleport/\">wallhack</a>, and <a href=\"/features/\">soft aim</a>.",
 								"Blog guides expand Easy Anti-Cheat keyword: <a href=\"/forum/cheats-complete-guide-2026/\">hacks complete guide</a>, <a href=\"/forum/escape-from-palia-cheats-buyers-guide/\">cheats buyers guide</a>, and <a href=\"/forum/undetected-eac/\">undetected Easy Anti-Cheat notes</a>.",
 							],
 						},
@@ -686,8 +686,8 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Palia cheats vs single-feature tools",
 							paragraphs: [
 								"Standalone hacks often cover only wallhack or only aim assist. Palia Cheats maps the full session loop: read resource nodes, track rare nodes and containers, spot flanks on wallhack, and tune Aimbot per weapon class.",
-								"Compare the <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>, and <a href=\"/features/\">Features</a> pages — or review <a href=\"/store/\">Pricing</a> for monthly and lifetime licenses.",
-								"Related landings: <a href=\"/setup/\">cheat download</a>, <a href=\"/cheats/\">mod menu</a>, <a href=\"/aimbot/\">aimbot</a>, <a href=\"/esp/\">ESP</a>.",
+								"Compare the <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>, and <a href=\"/features/\">Features</a> pages — or review <a href=\"/store/\">Pricing</a> for monthly and lifetime licenses.",
+								"Related landings: <a href=\"/features/\">cheat download</a>, <a href=\"/cheats/\">mod menu</a>, <a href=\"/features/\">aimbot</a>, <a href=\"/features/\">ESP</a>.",
 							],
 						},
 						{
@@ -695,7 +695,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Undetected Palia cheats require rebuilds after Easy Anti-Cheat and major Palia patches. Check Updates before logging in — maintenance notes confirm when a new build is live. No package can promise permanent undetected status.",
 								"See <a href=\"https://www.eac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Easy Anti-Cheat</a> for anti-cheat background and our <a href=\"/status/\">EAC bypass guide</a> for the practical workflow. Pair with <a href=\"/cheats/\">undetected Palia cheats</a> for status language buyers expect.",
-								"Digital delivery runs after checkout for Windows 10 and 11 PCs worldwide. After purchase, follow <a href=\"/setup/\">Setup</a> and keep <a href=\"/support/\">Support</a> ready with your order ID.",
+								"Digital delivery runs after checkout for Windows 10 and 11 PCs worldwide. After purchase, follow <a href=\"/features/\">Setup</a> and keep <a href=\"/support/\">Support</a> ready with your order ID.",
 							],
 						},
 					],
@@ -710,13 +710,13 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia cheat download visuals",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Setup guide",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How Palia cheat download delivery works",
 							paragraphs: [
 								"After checkout confirms payment, Palia Cheats license details arrive digitally by email. No physical shipment — access begins once activation instructions are delivered.",
-								"Keep your order confirmation and license email ready for the <a href=\"/setup/\">Setup guide</a> and Support requests.",
+								"Keep your order confirmation and license email ready for the <a href=\"/features/\">Setup guide</a> and Support requests.",
 								"If Singularity 6 services are down, check <a href=\"https://palia.com/support\" target=\"_blank\" rel=\"noopener noreferrer\">Palia Support</a> before assuming a download failure.",
 							],
 						},
@@ -725,7 +725,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Every Palia cheat download includes player ESP wallhack, loot and container markers, wallhack overlays, Aimbot profiles, and in-client toggles for Kilima and Bahari Bay sessions.",
 								"Monthly ($35) and lifetime ($150) plans share the same feature stack — compare options on the <a href=\"/store/\">Pricing page</a>.",
-								"Feature detail: <a href=\"/features/\">Features</a>. Module pages: <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>.",
+								"Feature detail: <a href=\"/features/\">Features</a>. Module pages: <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>.",
 							],
 						},
 						{
@@ -755,7 +755,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"A Palia mod menu is the in-client panel where you enable ESP wallhack overlays, adjust wallhack range, and switch Aimbot profiles during co-op sessions. Palia Cheats keeps those toggles accessible with hotkeys.",
 								"Toggle player outlines, resource markers, map zone cues, and per-weapon Aimbot settings without alt-tabbing out of Palia.",
-								"Control deep-dives: <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>, <a href=\"/teleport/\">wallhack</a>.",
+								"Control deep-dives: <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>, <a href=\"/teleport/\">wallhack</a>.",
 							],
 						},
 						{
@@ -763,7 +763,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Separate ESP wallhack categories for players, loot, containers, and rare nodes let you reduce overlay noise during rotations and map zones holds.",
 								"wallhack range and Aimbot smoothness adjust from the same mod menu — useful when ${EXT.palia} seasons change fight distances and mobility.",
-								"Soft tracking players should start with <a href=\"/aimbot/\">soft aim</a> profiles before aggressive FOV.",
+								"Soft tracking players should start with <a href=\"/features/\">soft aim</a> profiles before aggressive FOV.",
 							],
 						},
 						{
@@ -771,7 +771,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Palia mod menu behavior is rebuilt when Easy Anti-Cheat or major Palia updates land. Follow the <a href=\"/status/\">Updates page</a> and <a href=\"/status/\">EAC bypass guide</a> before logging in on patch days.",
 								"Checkout with instant digital delivery for monthly and lifetime licenses — see <a href=\"/store/\">Pricing</a>.",
-								"Need install steps? Open <a href=\"/setup/\">Setup</a> after your license email arrives.",
+								"Need install steps? Open <a href=\"/features/\">Setup</a> after your license email arrives.",
 							],
 						},
 					],
@@ -786,14 +786,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia soft aim gallery",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Aimbot controls",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What Palia soft aim means",
 							paragraphs: [
 								"Palia soft aim refers to Aimbot behavior tuned for smooth, natural-looking tracking rather than instant snap. Palia Cheats exposes smoothness, FOV, and sensitivity sliders so you control how assist feels in BR hunting sessions.",
 								"Bone priority and target selection cover closest player, lowest health, or highest-threat targets during fishing sessions.",
-								"Full Aimbot documentation: <a href=\"/aimbot/\">Palia Aimbot</a>. Alternate wording: <a href=\"/aimbot/\">aimbot hack</a>.",
+								"Full Aimbot documentation: <a href=\"/features/\">Palia Aimbot</a>. Alternate wording: <a href=\"/features/\">aimbot hack</a>.",
 							],
 						},
 						{
@@ -801,7 +801,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Save separate soft aim profiles for bows, rods, and tools. Switch between hunting and fishing minigames with hotkeys mid-session.",
 								"Weapon TTKs shift with <a href=\"https://palia.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Palia</a> balance patches — retune smoothness after major combat updates.",
-								"Soft aim ships alongside <a href=\"/esp/\">ESP wallhack</a> and <a href=\"/teleport/\">wallhack</a> overlays.",
+								"Soft aim ships alongside <a href=\"/features/\">ESP wallhack</a> and <a href=\"/teleport/\">wallhack</a> overlays.",
 							],
 						},
 						{
@@ -809,7 +809,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Aimbot modules rebuild after Easy Anti-Cheat patches. Check the <a href=\"/status/\">Updates page</a> before logging in — responsible settings and maintenance awareness matter for undetected play.",
 								"Monthly and lifetime licenses checkout with digital delivery on Windows PC — <a href=\"/store/\">Pricing</a>.",
-								"Activation help: <a href=\"/setup/\">Setup</a> · status questions: <a href=\"/support/\">Support</a>.",
+								"Activation help: <a href=\"/features/\">Setup</a> · status questions: <a href=\"/support/\">Support</a>.",
 							],
 						},
 					],
@@ -839,7 +839,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Look for player ESP wallhack, resource markers, wallhack overlays, Aimbot profiles, hotkey toggles, and documented maintenance after Palia patches.",
 								"Review <a href=\"/features/\">Features</a>, <a href=\"/cheats/\">undetected status</a>, and <a href=\"/cheats/\">Palia cheats 2026</a> before checkout — monthly ($35) and lifetime ($150) plans available.",
-								"Module pages worth opening: <a href=\"/esp/\">ESP</a>, <a href=\"/aimbot/\">Aimbot</a>, <a href=\"/cheats/\">hacks</a>.",
+								"Module pages worth opening: <a href=\"/features/\">ESP</a>, <a href=\"/features/\">Aimbot</a>, <a href=\"/cheats/\">hacks</a>.",
 							],
 						},
 						{
@@ -862,14 +862,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia aimbot hack gallery",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "Aimbot settings",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Palia aimbot hack vs visibility tools",
 							paragraphs: [
 								"A Palia aimbot hack focuses on assisted targeting during hunting sessions — while ESP wallhack and wallhack handle map awareness. Palia Cheats bundles aimbot hack modules with visibility overlays in one license.",
 								"Smoothness, FOV, and sensitivity controls tune assist for Palia combat pace across Kilima and Bahari Bay sessions.",
-								"Prefer softer tracking language? See <a href=\"/aimbot/\">soft aim</a>. Full settings: <a href=\"/aimbot/\">Aimbot page</a>.",
+								"Prefer softer tracking language? See <a href=\"/features/\">soft aim</a>. Full settings: <a href=\"/features/\">Aimbot page</a>.",
 							],
 						},
 						{
@@ -885,7 +885,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"Aimbot hack signatures rebuild after Easy Anti-Cheat updates. Follow the <a href=\"/status/\">Updates page</a> and <a href=\"/status/\">EAC bypass guide</a> before logging in after patch days.",
 								"Checkout with instant digital delivery for Windows 10 and 11 — <a href=\"/store/\">Pricing</a>.",
-								"Pair with <a href=\"/esp/\">ESP</a> for the full information + assist loop.",
+								"Pair with <a href=\"/features/\">ESP</a> for the full information + assist loop.",
 							],
 						},
 					],
@@ -900,14 +900,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					galleryTitle: "Palia ESP hack gallery",
 					ctaPrimary: "Buy Palia Cheats",
 					ctaSecondary: "ESP controls",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What a Palia ESP hack shows",
 							paragraphs: [
 								"A Palia ESP hack renders ores, fish, and insects outlines, vehicle positions, and loot pins through walls and terrain — closing the information gap before you commit to a fight.",
 								"Distance readouts and snapline options help control engagement range during long farming routes between villages.",
-								"Canonical visibility guide: <a href=\"/esp/\">Palia ESP</a>. Wallhack wording: <a href=\"/esp/\">wallhack</a>.",
+								"Canonical visibility guide: <a href=\"/features/\">Palia ESP</a>. Wallhack wording: <a href=\"/features/\">wallhack</a>.",
 							],
 						},
 						{
@@ -923,7 +923,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							paragraphs: [
 								"ESP hack modules rebuild after Easy Anti-Cheat and Palia patches. Check the <a href=\"/status/\">Updates page</a> before logging in — pair ESP hack awareness with <a href=\"/teleport/\">wallhack</a> for flank reads.",
 								"Licenses deliver digitally after checkout on Windows PC — see <a href=\"/store/\">Pricing</a>.",
-								"Install steps: <a href=\"/setup/\">Setup</a>. Status questions: <a href=\"/cheats/\">undetected guide</a>.",
+								"Install steps: <a href=\"/features/\">Setup</a>. Status questions: <a href=\"/cheats/\">undetected guide</a>.",
 							],
 						},
 					],
@@ -952,14 +952,14 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 							h2: "Visibility tools vs unlock-all claims",
 							paragraphs: [
 								"ESP wallhack helps you spot resource nodes, rare nodes, and rare resources during co-op sessions. wallhack adds flank awareness; Aimbot covers combat assist with smoothness and hotkey controls.",
-								"For loadout planning during a match, loot and container markers speed map rotations — see the <a href=\"/esp/\">ESP</a> and <a href=\"/features/\">Features</a> pages for the full tool list.",
+								"For loadout planning during a match, loot and container markers speed map rotations — see the <a href=\"/features/\">ESP</a> and <a href=\"/features/\">Features</a> pages for the full tool list.",
 								"Related: <a href=\"/cheats/\">Palia cheats</a> and <a href=\"/cheats/\">Palia cheats</a>.",
 							],
 						},
 						{
 							h2: "Buying Palia Cheats for the right reasons",
 							paragraphs: [
-								"If you need undetected ESP wallhack, wallhack, and Aimbot for Palia on Windows PC, compare <a href=\"/store/\">Pricing</a> and read the <a href=\"/setup/\">Setup guide</a> before checkout.",
+								"If you need undetected ESP wallhack, wallhack, and Aimbot for Palia on Windows PC, compare <a href=\"/store/\">Pricing</a> and read the <a href=\"/features/\">Setup guide</a> before checkout.",
 								"Check the <a href=\"/status/\">Updates page</a> after Easy Anti-Cheat patches — maintenance rebuilds publish for active licenses.",
 								"Questions? <a href=\"/faq/\">FAQ</a> and <a href=\"/support/\">Support</a> cover delivery and configuration — not cosmetic unlocks.",
 							],
@@ -1226,7 +1226,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -1296,7 +1296,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -1436,7 +1436,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -1506,7 +1506,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -1541,7 +1541,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -1681,7 +1681,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -1751,7 +1751,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -1821,7 +1821,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -1856,7 +1856,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver funciones",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -2170,7 +2170,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -2240,7 +2240,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -2380,7 +2380,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -2450,7 +2450,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -2485,7 +2485,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -2625,7 +2625,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -2695,7 +2695,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -2765,7 +2765,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -2800,7 +2800,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Acheter Palia Cheats",
 					ctaSecondary: "Voir les fonctions",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -3114,7 +3114,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -3184,7 +3184,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -3324,7 +3324,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -3394,7 +3394,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -3429,7 +3429,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -3569,7 +3569,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -3639,7 +3639,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -3709,7 +3709,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -3744,7 +3744,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats kaufen",
 					ctaSecondary: "Features ansehen",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -4058,7 +4058,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -4128,7 +4128,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -4268,7 +4268,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -4338,7 +4338,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -4373,7 +4373,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -4513,7 +4513,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -4583,7 +4583,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -4653,7 +4653,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -4688,7 +4688,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Comprar Palia Cheats",
 					ctaSecondary: "Ver recursos",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -5002,7 +5002,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -5072,7 +5072,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -5212,7 +5212,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -5282,7 +5282,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -5317,7 +5317,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -5457,7 +5457,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -5527,7 +5527,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -5597,7 +5597,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -5632,7 +5632,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Acquista Palia Cheats",
 					ctaSecondary: "Vedi funzioni",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -5946,7 +5946,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -6016,7 +6016,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -6156,7 +6156,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -6226,7 +6226,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -6261,7 +6261,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -6401,7 +6401,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -6471,7 +6471,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -6541,7 +6541,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -6576,7 +6576,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats kopen",
 					ctaSecondary: "Bekijk functies",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -6890,7 +6890,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -6960,7 +6960,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -7100,7 +7100,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -7170,7 +7170,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -7205,7 +7205,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -7345,7 +7345,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -7415,7 +7415,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -7485,7 +7485,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -7520,7 +7520,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Kup Palia Cheats",
 					ctaSecondary: "Zobacz funkcje",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -7834,7 +7834,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -7904,7 +7904,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -8044,7 +8044,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -8114,7 +8114,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -8149,7 +8149,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -8289,7 +8289,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -8359,7 +8359,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -8429,7 +8429,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -8464,7 +8464,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Купить Palia Cheats",
 					ctaSecondary: "Смотреть функции",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -8778,7 +8778,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -8848,7 +8848,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -8988,7 +8988,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -9058,7 +9058,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -9093,7 +9093,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -9233,7 +9233,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -9303,7 +9303,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -9373,7 +9373,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -9408,7 +9408,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats satın al",
 					ctaSecondary: "Özellikleri gör",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -9722,7 +9722,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -9792,7 +9792,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -9932,7 +9932,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -10002,7 +10002,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -10037,7 +10037,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -10177,7 +10177,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -10247,7 +10247,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -10317,7 +10317,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -10352,7 +10352,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "اشترِ Palia Cheats",
 					ctaSecondary: "عرض الميزات",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -10666,7 +10666,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -10736,7 +10736,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -10876,7 +10876,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -10946,7 +10946,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -10981,7 +10981,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -11121,7 +11121,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -11191,7 +11191,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -11261,7 +11261,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -11296,7 +11296,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheatsを購入",
 					ctaSecondary: "機能を見る",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -11610,7 +11610,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -11680,7 +11680,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -11820,7 +11820,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -11890,7 +11890,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -11925,7 +11925,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -12065,7 +12065,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -12135,7 +12135,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -12205,7 +12205,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -12240,7 +12240,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats 구매",
 					ctaSecondary: "기능 보기",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -12554,7 +12554,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -12624,7 +12624,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -12764,7 +12764,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -12834,7 +12834,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -12869,7 +12869,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -13009,7 +13009,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -13079,7 +13079,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -13149,7 +13149,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -13184,7 +13184,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "购买 Palia Cheats",
 					ctaSecondary: "查看功能",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -13498,7 +13498,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -13568,7 +13568,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -13708,7 +13708,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -13778,7 +13778,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -13813,7 +13813,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -13953,7 +13953,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -14023,7 +14023,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -14093,7 +14093,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -14128,7 +14128,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Palia Cheats खरीदें",
 					ctaSecondary: "फ़ीचर्स देखें",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -14442,7 +14442,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -14512,7 +14512,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -14652,7 +14652,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -14722,7 +14722,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -14757,7 +14757,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -14897,7 +14897,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -14967,7 +14967,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -15037,7 +15037,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -15072,7 +15072,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Beli Palia Cheats",
 					ctaSecondary: "Lihat fitur",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -15386,7 +15386,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -15456,7 +15456,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -15596,7 +15596,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -15666,7 +15666,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -15701,7 +15701,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -15841,7 +15841,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -15911,7 +15911,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -15981,7 +15981,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -16016,7 +16016,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "ซื้อ Palia Cheats",
 					ctaSecondary: "ดูฟีเจอร์",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -16330,7 +16330,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -16400,7 +16400,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -16540,7 +16540,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -16610,7 +16610,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -16645,7 +16645,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -16785,7 +16785,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -16855,7 +16855,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -16925,7 +16925,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -16960,7 +16960,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Mua Palia Cheats",
 					ctaSecondary: "Xem tính năng",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -17274,7 +17274,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -17344,7 +17344,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -17484,7 +17484,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -17554,7 +17554,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -17589,7 +17589,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -17729,7 +17729,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -17799,7 +17799,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -17869,7 +17869,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -17904,7 +17904,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Купити Palia Cheats",
 					ctaSecondary: "Дивитися функції",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -18218,7 +18218,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -18288,7 +18288,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -18428,7 +18428,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -18498,7 +18498,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -18533,7 +18533,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -18673,7 +18673,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -18743,7 +18743,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -18813,7 +18813,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -18848,7 +18848,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Koupit Palia Cheats",
 					ctaSecondary: "Zobrazit funkce",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -19162,7 +19162,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -19232,7 +19232,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -19372,7 +19372,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -19442,7 +19442,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -19477,7 +19477,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -19617,7 +19617,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -19687,7 +19687,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -19757,7 +19757,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -19792,7 +19792,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Cumpără Palia Cheats",
 					ctaSecondary: "Vezi funcții",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",
@@ -20106,7 +20106,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Soft aim controls",
@@ -20176,7 +20176,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "What you pay for",
@@ -20316,7 +20316,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-kilima-village.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Contact us",
@@ -20386,7 +20386,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Wallhack overlays",
@@ -20421,7 +20421,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Save coordinates",
@@ -20561,7 +20561,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-homestead.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/setup/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "How delivery works",
@@ -20631,7 +20631,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Smooth tracking",
@@ -20701,7 +20701,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-bahari-landscape.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/aimbot/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "Aimbot vs ESP",
@@ -20736,7 +20736,7 @@ export const i18nContent: Record<LocaleCode, { ui: LocaleUi; pages: Record<PageI
 					heroImage: "/images/palia-gameplay-ore-mining.webp",
 					ctaPrimary: "Köp Palia Cheats",
 					ctaSecondary: "Se funktioner",
-					ctaSecondaryHref: "/esp/",
+					ctaSecondaryHref: "/features/",
 					sections: [
 						{
 							h2: "ESP hack overlays",

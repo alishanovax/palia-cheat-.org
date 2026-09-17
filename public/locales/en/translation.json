@@ -174,7 +174,7 @@
     "linkBlog": "Forum",
     "linkRefunds": "Refunds",
     "faqEyebrow": "FAQ",
-    "faqTitle": "Quick answers",
+    "faqTitle": "Frequently Asked Questions",
     "faqLede": "Hub topics — maps, features, patches, and support.",
     "indexedFaqTitle": "Buying & delivery",
     "allAnswers": "All answers",
@@ -182,7 +182,7 @@
   },
   "pillar": {
     "exploreCheats": "Explore Palia cheats",
-    "exploreCheatsLede": "Feature guides, setup, live status, and store plans — one license. Checkout lives on Cheats.",
+    "exploreCheatsLede": "Feature guides, setup, live status, and store plans — one license. Checkout lives on Store.",
     "linkDownload": "Download",
     "linkModMenu": "Mod menu",
     "linkBest": "Best cheats",
@@ -197,6 +197,22 @@
     "noticeHint": "For your support channel or buyer Discord only — not for unrelated forums or comment spam. One factual link builds trust.",
     "copy": "Copy"
   },
+  "featuresShowcase": {
+    "eyebrow": "Included in your license",
+    "listTitle": "Explore every feature",
+    "listLede": "Click a module to see real Palia gameplay and what it does in session.",
+    "navAria": "Cheat feature categories",
+    "learnMore": "Deep dive",
+    "footNote": "Every plan includes the full module list. Check Status after patches."
+  },
+  "purchaseOptions": {
+    "title": "Purchase Options",
+    "ledeBefore": "Ready to buy {{game}} cheats? The ",
+    "ledeLink": "product page",
+    "ledeAfter": " shows price, what is included, PC needs, and how to checkout.",
+    "ctaPrimary": "See purchase options",
+    "ctaSecondary": "Full feature list"
+  },
   "trustPills": {
     "aria": "Why buyers trust Palia Cheats",
     "fastUpdates": "Fast updates",
@@ -207,7 +223,7 @@
     "eacMaintenance": "EAC maintenance"
   },
   "showcase": {
-    "title": "Cheat showcase",
+    "title": "Palia cheats showcase",
     "lede": "Real Palia gameplay — Kilima Village, Bahari Bay, homestead farming, and ore routes with ESP and teleport tools.",
     "platform": "Windows PC",
     "details": "View details →",

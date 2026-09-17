@@ -20,7 +20,7 @@ const sources = [
 		updated: '2026-09-10',
 		category: 'Setup Guide',
 		featured: true,
-		slug: 'how-to-use-palia-cheats-setup-guide',
+		slug: 'setup',
 		title: 'How to Use Palia Cheats — Full Setup Guide',
 		metaDescription:
 			'Step-by-step instructions to download, install, and use Palia cheats on Windows PC. Loader setup, cheat menu toggles, and first-session tips from $35.',
@@ -60,7 +60,7 @@ const sources = [
 		updated: '2026-09-12',
 		category: 'Aimbot Settings',
 		featured: true,
-		slug: 'palia-aimbot-settings-ban-risk',
+		slug: 'aimbot',
 		title: 'Palia Aimbot Settings — What Level and Ban Risk',
 		metaDescription:
 			'Learn safe Palia aimbot settings for hunting in Bahari Bay. What smoothness level to use, why you will not get banned at low settings, and when to disable aimbot.',
@@ -93,7 +93,7 @@ const sources = [
 		updated: '2026-09-05',
 		category: 'Fishing ESP',
 		featured: false,
-		slug: 'palia-fishing-esp-best-settings',
+		slug: 'fishing',
 		title: 'Palia Fishing ESP — Best Settings for Gold Farming',
 		metaDescription:
 			'Configure Palia fishing ESP to find rare fish in Bahari Bay. Best filter settings, distance tuning, and gold-per-hour tips with Palia premium cheats.',
@@ -119,7 +119,7 @@ const sources = [
 		updated: '2026-09-01',
 		category: 'Buyers Guide',
 		featured: true,
-		slug: 'buy-palia-cheats-buyers-guide-2026',
+		slug: 'buyers',
 		title: 'Buy Palia Cheats — 2026 Buyers Guide',
 		metaDescription:
 			'Where to buy Palia cheats safely in 2026. Compare palia cheats price, features, delivery speed, and red flags before you purchase premium Palia cheats for PC.',
@@ -133,7 +133,7 @@ const sources = [
 				h2: 'What a good Palia cheats provider includes',
 				paragraphs: [
 					'Look for instant delivery, a clear feature list (ESP, teleport, cheat menu), and post-patch status updates. Avoid sites that promise "100% undetected forever" with no maintenance log.',
-					'Our <a href="/cheats/">palia cheats page</a> lists every module in one $35 license. Monthly and lifetime plans include the same features — pick based on how long you plan to play.',
+					'Our <a href="/features/">features page</a> lists every module in one $35 license. Monthly and lifetime plans include the same features — pick based on how long you plan to play.',
 				],
 			},
 		],
@@ -145,7 +145,7 @@ const sources = [
 		updated: '2026-08-20',
 		category: 'Cheat Menu',
 		featured: false,
-		slug: 'palia-cheat-menu-full-feature-list',
+		slug: 'menu',
 		title: 'Palia Cheat Menu — Full Feature List Explained',
 		metaDescription:
 			'Every toggle in the Palia cheat menu explained — resource ESP, teleport, skill automation, hunting aimbot, and freecam. Best palia cheat menu for PC.',
@@ -171,7 +171,7 @@ const sources = [
 		updated: '2026-08-10',
 		category: 'Resource ESP',
 		featured: false,
-		slug: 'palia-resource-esp-kilima-village-guide',
+		slug: 'kilima',
 		title: 'Palia Resource ESP — Kilima Village Farming Route',
 		metaDescription:
 			'Best Kilima Village resource ESP route for ore, wood, and forage. Palia cheats for PC with node highlights and distance filters.',
@@ -197,7 +197,7 @@ const sources = [
 		updated: '2026-07-30',
 		category: 'Teleport',
 		featured: false,
-		slug: 'palia-teleport-bahari-bay-coordinates',
+		slug: 'bahari',
 		title: 'Palia Teleport — Bahari Bay Coordinate Guide',
 		metaDescription:
 			'Saved teleport coordinates for Bahari Bay fishing spots, hunting grounds, and rare resource nodes. Palia cheats teleport module guide.',
@@ -223,7 +223,7 @@ const sources = [
 		updated: '2026-08-05',
 		category: 'Comparison',
 		featured: false,
-		slug: 'palia-premium-cheats-vs-free-trainers',
+		slug: 'premium',
 		title: 'Palia Premium Cheats vs Free Trainers — Worth $35?',
 		metaDescription:
 			'Compare palia premium cheats at $35 vs free Palia trainers. Why paid cheats include EAC protection, teleport, and a full cheat menu free tools lack.',

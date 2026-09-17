@@ -23,17 +23,17 @@ const CASES = [
 	},
 	{
 		label: 'Indexed FAQ',
-		file: 'faq/how-are-licenses-delivered/index.html',
+		file: 'faq/delivery/index.html',
 		expect: { faqPage: true, faqCount: 1 },
 	},
 	{
 		label: 'Noindex FAQ',
-		file: 'faq/what-are-palia-cheats/index.html',
+		file: 'faq/about/index.html',
 		expect: { faqPage: false },
 	},
 	{
 		label: 'Review',
-		file: 'reviews/palia-fishing-review-mike-p/index.html',
+		file: 'reviews/mike-p/index.html',
 		expect: { review: true, itemReviewed: 'https://paliacheats.org/cheats/#product' },
 	},
 ];

@@ -2,6 +2,7 @@
 import SiteFooterApp from './react/SiteFooter';
 import { getLocalizedPath } from '../data/i18n/routing';
 import { defaultLocale, type LocaleCode } from '../data/i18n/locales';
+import { getForumBasePath } from '../data/forum/helpers';
 import { siteConfig } from '../data/site';
 import { getT } from '../i18n/server';
 
@@ -14,26 +15,18 @@ const t = getT(locale);
 
 const explore = [
 	{ labelKey: 'nav.home', href: getLocalizedPath('home', locale) },
-	{ labelKey: 'nav.hacks', href: getLocalizedPath('hacks', locale) },
-	{ labelKey: 'nav.esp', href: getLocalizedPath('palia-esp', locale) },
-	{ labelKey: 'nav.aimbot', href: getLocalizedPath('palia-aimbot', locale) },
 	{ labelKey: 'common.featureList', href: getLocalizedPath('features', locale) },
 	{ labelKey: 'nav.store', href: getLocalizedPath('pricing', locale) },
 	{ labelKey: 'nav.faq', href: getLocalizedPath('faq', locale) },
-	{ labelKey: 'common.forum', href: '/forum/' },
+	{ labelKey: 'common.forum', href: getForumBasePath(locale) },
 ];
 
 const guides = [
 	{ label: t('nav.status'), href: getLocalizedPath('updates', locale) },
-	{ label: t('nav.setup'), href: getLocalizedPath('setup', locale) },
-	{ label: t('nav.features'), href: getLocalizedPath('features', locale) },
-	{ label: t('nav.esp'), href: getLocalizedPath('palia-esp', locale) },
 	{ label: 'Teleport', href: getLocalizedPath('radar', locale) },
 ];
 
 const help = [
-	{ labelKey: 'nav.setup', href: getLocalizedPath('setup', locale) },
-	{ labelKey: 'nav.updates', href: getLocalizedPath('updates', locale) },
 	{ labelKey: 'common.buyerReviewsNav', href: '/reviews/' },
 	{ labelKey: 'common.support', href: getLocalizedPath('support', locale) },
 	{ labelKey: 'common.refunds', href: getLocalizedPath('refund', locale) },
