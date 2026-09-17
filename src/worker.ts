@@ -91,6 +91,21 @@ export default {
 			return redirectResponse(new URL(mapped + url.search, CANONICAL_ORIGIN));
 		}
 
-		return env.ASSETS.fetch(request);
+		const response = await env.ASSETS.fetch(request);
+		const contentType = response.headers.get('Content-Type') || '';
+		if (!contentType.includes('text/html')) {
+			return response;
+		}
+
+		const headers = new Headers(response.headers);
+		headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+		headers.set('CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+		headers.set('Cloudflare-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+
+		return new Response(response.body, {
+			status: response.status,
+			statusText: response.statusText,
+			headers,
+		});
 	},
 };
